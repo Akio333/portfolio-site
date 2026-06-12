@@ -1,10 +1,10 @@
 {
   "title": "AEM Tools",
-  "description": "A comprehensive productivity suite for AEM developers. Features include instant JCR property editing, OSGi configuration management, and real-time log streaming directly within the VS Code sidebar.",
-  "tags": ["TypeScript", "Sling API", "Node.js"],
-  "installs": "45k+ Installs",
-  "version": "v2.4.0",
-  "marketplaceUrl": "https://marketplace.visualstudio.com/items?itemName=aem-tools",
-  "githubUrl": "https://github.com/example/aem-tools",
-  "icon": "build_circle"
+  "description": "AEM Tools is a lightweight, feature-rich Visual Studio Code extension designed to streamline Adobe Experience Manager (AEM) development. It provides native JCR synchronization, real-time HTL (Sightly) code validation, and context-aware autocompletion helpers.",
+  "tags": ["TypeScript", "Javascript", "Node.js"],
+  "installs": "n Installs",
+  "version": "v0.1.3",
+  "marketplaceUrl": "https://marketplace.visualstudio.com/items?itemName=Akio333.vscode-aem-tools",
+  "githubUrl": "https://github.com/Akio333/vscode-aem-tools",
+  "icon": "code"
 }

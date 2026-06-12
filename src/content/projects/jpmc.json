@@ -1,16 +1,16 @@
 {
-  "title": "JPMC Global Asset Management",
-  "description": "Architected a unified AEM Cloud Service platform for global asset management divisions. Implemented a robust multi-site management strategy serving 15+ locales with high-compliance security protocols.",
-  "tags": ["AEM Cloud Service", "OSGi", "Sling", "SAML", "Dynamic Media"],
-  "role": "Senior AEM Developer",
-  "period": "2021 - Present",
+  "title": "JPMC Chase Cards",
+  "description": "Architected the AEM Frontend for the JP Morgan Chase Cards site (creditcards.chase.com) and Trips portal (trips.chase.com). Established a multi-tenant AEM frontend architecture with a shared component library supporting 8+ tenants and featuring beautiful scroll-based animations.",
+  "tags": ["AEM Cloud Service", "Bootstrap", "WCAG 2.4.3", "jQuery", "Scroll Animations"],
+  "role": "Senior AEM Frontend Architect",
+  "period": "2024 - 2025",
   "company": "JP Morgan & Chase",
   "featured": true,
   "highlights": [
-    "Cloud Service Migration",
-    "SAML Integration",
-    "Dynamic Media",
-    "Headless API Content"
+    "AEM Frontend Multi-Tenant Architecture",
+    "WCAG 2.4.3 Accessibility Compliance",
+    "Trips Portal Scroll-Based Animations",
+    "Shared Component Library (8+ Tenants)"
   ],
   "imageUrl": "https://lh3.googleusercontent.com/aida-public/AB6AXuA0YP8GRQMXQSwc-rASkIN_u9LVlerblclr3LVUYdgUP_zr8nkbriDjzQyG05E1E5n40HiuHRqliQhVsdaacjIY9A8JrB5Z1GmSMFSp167hP6pbYTuKCjVAvykIGcZ1923mFUTO7dqxKvB1eavLaPGTx1TIq4sVrMtWbDwbt9krlT4RLb_X9_NFZjhgdUPzwTqtGNJmVqbHByWP6XiAQdKbp1FuJ26kciQkjs5QK1SzNyeBVKRKW8iC0I0P5Lk3Ka3v3Cumgl3LnZk"
 }

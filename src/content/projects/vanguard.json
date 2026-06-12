@@ -1,14 +1,15 @@
 {
-  "title": "Institutional Investor Portal",
-  "description": "Redesigned the technical architecture of the investor dashboard, leveraging AEM SPA Editor with React for a seamless, low-latency financial monitoring experience.",
-  "tags": ["React", "TypeScript", "HTL", "AEM 6.5", "Core Web Vitals"],
+  "title": "Institutional Investor Site",
+  "description": "Developed AEM components for rendering complex nested investment tables, automated custom publishing workflows, and built modules to fetch monthly reports. Created an Insights library with sliders and custom animations, delivered AEM Experience Fragment-to-Web Component POCs, and introduced BrowserStack Percy for automated visual regression testing.",
+  "tags": ["AEM 6.5", "Angular", "HTL", "Java", "Web Components", "Percy", "jQuery"],
   "role": "AEM Full-Stack Engineer",
-  "period": "2018 - 2021",
+  "period": "2021 - 2024",
   "company": "Vanguard",
   "featured": false,
   "highlights": [
-    "AEM SPA Editor Integration",
-    "Real-time Data Visualization",
-    "Performance Optimization (Core Web Vitals)"
+    "Nested Investment Data Componentry",
+    "Experience Fragment Web Components POC",
+    "Automated Monthly Report Fetch Module",
+    "Percy Visual Regression Testing Pipeline"
   ]
 }
