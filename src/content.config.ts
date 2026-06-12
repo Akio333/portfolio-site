@@ -14,7 +14,7 @@ const projectsCollection = defineCollection({
     featured: z.boolean().default(false),
     highlights: z.array(z.string()).optional(),
     company: z.string().optional(),
-    imageUrl: z.string().url().optional(),
+    imageUrl: z.string().optional(),
   }),
 });
 

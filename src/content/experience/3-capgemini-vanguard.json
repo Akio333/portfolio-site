@@ -1,0 +1,9 @@
+{
+  "company": "Capgemini",
+  "role": "AEM Full-Stack Engineer (Client: Vanguard)",
+  "period": "2021 — 2024",
+  "description": "Developed AEM components for rendering investment tables, custom workflows, and report download modules. Created a custom Insights library with sliders and slider animations, delivered Experience Fragment-to-Web Component POCs, and introduced BrowserStack Percy visual testing pipelines.",
+  "tags": ["AEM 6.5", "React", "Java", "Web Components", "Percy Visual Testing"],
+  "order": 3,
+  "color": "tertiary"
+}

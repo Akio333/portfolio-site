@@ -1,9 +1,0 @@
-{
-  "company": "JP Morgan & Chase",
-  "role": "Senior AEM Developer",
-  "period": "2021 — Present",
-  "description": "Leading the digital transformation of global asset management platforms. Implementing AEM as a Cloud Service solutions focusing on multi-tier caching strategies, headless content delivery via GraphQL, and robust CI/CD pipelines using Jenkins and Maven.",
-  "tags": ["AEM Cloud", "OSGi", "Sling"],
-  "order": 1,
-  "color": "primary"
-}

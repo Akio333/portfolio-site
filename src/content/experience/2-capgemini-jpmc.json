@@ -1,0 +1,9 @@
+{
+  "company": "Capgemini",
+  "role": "Senior AEM Developer (Client: JPMC)",
+  "period": "2024 — 2025",
+  "description": "Architected a multi-tenant AEM frontend system with a shared component library supporting 8+ tenants for Chase Cards and Trips portals. Led development of WCAG 2.4.3 compliant components, performance tuning, and developed high-fidelity scroll-based animation interfaces.",
+  "tags": ["AEM Cloud Service", "React", "WCAG 2.4.3", "Tailwind CSS", "Scroll Animations"],
+  "order": 2,
+  "color": "secondary"
+}
