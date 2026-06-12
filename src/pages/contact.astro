@@ -1,0 +1,227 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = "About & Contact | AEM_Dev";
+const description = "Get in touch with an AEM Full-Stack Developer. Accepting enterprise solutions, consultation, and backend architectures.";
+---
+
+<Layout title={title} description={description}>
+  <!-- Ambient glow background -->
+  <div class="absolute top-0 right-0 w-96 h-96 bg-primary/10 blur-[120px] rounded-full pointer-events-none"></div>
+
+  <!-- Hero Header Title -->
+  <section class="max-w-[1200px] mx-auto px-6 pt-20 pb-12 relative z-10">
+    <h1 class="text-4xl md:text-6xl font-display font-extrabold text-primary max-w-4xl leading-tight">
+      Engineering <span class="text-on-surface">Digital Environments</span> at Scale.
+    </h1>
+    <div class="w-24 h-1.5 bg-primary mt-8 rounded-full"></div>
+  </section>
+
+  <!-- About Me Biography Section -->
+  <section class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start max-w-[1200px] mx-auto px-6 py-12 md:py-16 relative z-10">
+    <!-- Left: Portrait Panel -->
+    <div class="lg:col-span-5 relative group">
+      <div class="absolute -inset-4 bg-primary/15 rounded-2xl blur-2xl group-hover:bg-primary/25 transition-all duration-700"></div>
+      <div class="relative rounded-2xl overflow-hidden glass-surface aspect-[4/5] border border-white/10 shadow-2xl">
+        <img 
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhFafw5olPJ9elfap5pJ98kyASRLLPIcDfne-GB85LiQdmL7eGRqDaiP2x9rokk16QjsZWcV9CMmseUA3u95zfSRJKQzOXxjV_7bi5EKzVU80ZK55sTOHzOb8msaxLnZDfz-fIwyTXTDleB2qu6vOzs_DJkUt3GDmqLk9IgtKPKaSniAVSTK_pszb37dhspRaO26bCCApzuEGZMkkI3NhbTNBDsJ3PvtqRQale8t8virzqFUF1WaXIjDbqwuUvNhz27NzAGYhQbHI" 
+          alt="Professional Portrait of AEM Full-Stack Developer" 
+          class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+        />
+      </div>
+    </div>
+
+    <!-- Right: Personal Bio -->
+    <div class="lg:col-span-7 flex flex-col gap-6">
+      <span class="font-display text-xs font-bold text-primary uppercase tracking-widest">Personal Narrative</span>
+      <h2 class="text-3xl md:text-4xl font-display font-bold text-on-surface">About Me</h2>
+      
+      <div class="space-y-4 text-on-surface-variant font-sans text-sm md:text-base leading-relaxed">
+        <p>
+          I am an AEM Full-Stack Developer dedicated to bridging the gap between sophisticated content management and high-performance user experiences. My journey started at the intersection of architectural design and software engineering, where I realized that digital platforms should be as robust as physical infrastructure.
+        </p>
+        <p>
+          Over the last decade, I have specialized in Adobe Experience Manager, architecting headless CMS solutions and complex OSGi services for enterprise-grade applications. I believe in clean code, modular components, and a "performance-first" mindset.
+        </p>
+        <p>
+          When I'm not orchestrating Java backends or crafting React frontends, I'm contributing to open-source AEM tooling or mentoring the next generation of full-stack engineers. My goal is always to deliver precision-engineered solutions that empower authors and delight users.
+        </p>
+      </div>
+
+      <!-- Quick Stats -->
+      <div class="grid grid-cols-3 gap-4 mt-8">
+        <div class="glass-surface p-4 rounded-xl text-center border border-white/5">
+          <span class="font-display text-2xl md:text-3xl font-extrabold text-primary block">8+</span>
+          <span class="font-sans text-[10px] md:text-xs text-on-surface-variant">Years Exp.</span>
+        </div>
+        <div class="glass-surface p-4 rounded-xl text-center border border-white/5">
+          <span class="font-display text-2xl md:text-3xl font-extrabold text-primary block">40+</span>
+          <span class="font-sans text-[10px] md:text-xs text-on-surface-variant">Projects Done</span>
+        </div>
+        <div class="glass-surface p-4 rounded-xl text-center border border-white/5">
+          <span class="font-display text-2xl md:text-3xl font-extrabold text-primary block">12</span>
+          <span class="font-sans text-[10px] md:text-xs text-on-surface-variant">Certifications</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Digital Footprint section -->
+  <section class="max-w-[1200px] mx-auto px-6 py-12 md:py-16 relative z-10">
+    <h2 class="text-2xl md:text-3xl font-display font-bold text-on-surface mb-8">Digital Footprint</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <a 
+        href="#" 
+        class="glass-surface p-8 rounded-2xl flex flex-col items-center gap-4 hover:-translate-y-2 border border-white/10 hover:border-primary/45 transition-all duration-300 group"
+      >
+        <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-all duration-500">
+          <span class="material-symbols-outlined text-3xl">link</span>
+        </div>
+        <span class="text-xl font-display font-bold text-on-surface">LinkedIn</span>
+        <span class="text-xs font-sans text-on-surface-variant">Professional Network</span>
+      </a>
+      
+      <a 
+        href="#" 
+        class="glass-surface p-8 rounded-2xl flex flex-col items-center gap-4 hover:-translate-y-2 border border-white/10 hover:border-secondary/45 transition-all duration-300 group"
+      >
+        <div class="w-16 h-16 rounded-full bg-secondary/10 flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-on-secondary transition-all duration-500">
+          <span class="material-symbols-outlined text-3xl">code</span>
+        </div>
+        <span class="text-xl font-display font-bold text-on-surface">GitHub</span>
+        <span class="text-xs font-sans text-on-surface-variant">Open Source Code</span>
+      </a>
+      
+      <a 
+        href="#" 
+        class="glass-surface p-8 rounded-2xl flex flex-col items-center gap-4 hover:-translate-y-2 border border-white/10 hover:border-tertiary/45 transition-all duration-300 group"
+      >
+        <div class="w-16 h-16 rounded-full bg-tertiary/10 flex items-center justify-center text-tertiary group-hover:bg-tertiary group-hover:text-on-tertiary transition-all duration-500">
+          <span class="material-symbols-outlined text-3xl">storefront</span>
+        </div>
+        <span class="text-xl font-display font-bold text-on-surface">VS Code</span>
+        <span class="text-xs font-sans text-on-surface-variant">Marketplace Assets</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Contact Form & Info Section -->
+  <section class="max-w-[1200px] mx-auto px-6 py-12 md:py-16 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start pb-24 relative z-10">
+    <!-- Left Column: Info -->
+    <div class="space-y-8">
+      <div>
+        <span class="font-display text-xs font-bold text-primary uppercase tracking-widest">Inquiries</span>
+        <h2 class="text-3xl font-display font-bold text-on-surface mt-2">Get In Touch</h2>
+        <p class="text-on-surface-variant font-sans text-sm md:text-base leading-relaxed mt-4">
+          Whether you have a specific project in mind or just want to discuss the future of AEM development, I'm always open to new connections.
+        </p>
+      </div>
+
+      <div class="space-y-6">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-xl glass-surface flex items-center justify-center text-primary border border-white/10">
+            <span class="material-symbols-outlined">mail</span>
+          </div>
+          <div>
+            <span class="block text-[10px] font-display font-bold text-on-surface-variant uppercase tracking-wider">Email Me</span>
+            <span class="text-base font-sans font-semibold text-on-surface">hello@aemdev.tech</span>
+          </div>
+        </div>
+        
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-xl glass-surface flex items-center justify-center text-secondary border border-white/10">
+            <span class="material-symbols-outlined">location_on</span>
+          </div>
+          <div>
+            <span class="block text-[10px] font-display font-bold text-on-surface-variant uppercase tracking-wider">Based In</span>
+            <span class="text-base font-sans font-semibold text-on-surface">Remote / Global</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-8 rounded-2xl glass-surface relative overflow-hidden group border border-white/10">
+        <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-[0.15] transition-opacity pointer-events-none">
+          <span class="material-symbols-outlined text-9xl">forum</span>
+        </div>
+        <h3 class="text-xl font-display font-bold text-on-surface mb-2">Available for projects</h3>
+        <p class="text-on-surface-variant text-xs font-sans">Currently accepting new Q3 2024 collaborations.</p>
+      </div>
+    </div>
+
+    <!-- Right Column: Form -->
+    <div class="glass-surface p-8 md:p-12 rounded-3xl relative border border-white/10">
+      <form id="contact-form" class="space-y-6">
+        <div class="space-y-2">
+          <label class="text-[10px] font-display font-semibold text-on-surface-variant ml-1 uppercase tracking-wider block" for="contact-name">Full Name</label>
+          <input 
+            class="w-full bg-[#020617] border border-white/5 focus:border-primary focus:ring-1 focus:ring-primary rounded-xl px-4 py-3.5 text-sm text-on-surface outline-none transition-all" 
+            id="contact-name" 
+            placeholder="John Doe" 
+            type="text"
+            required
+          />
+        </div>
+        
+        <div class="space-y-2">
+          <label class="text-[10px] font-display font-semibold text-on-surface-variant ml-1 uppercase tracking-wider block" for="contact-email">Email Address</label>
+          <input 
+            class="w-full bg-[#020617] border border-white/5 focus:border-primary focus:ring-1 focus:ring-primary rounded-xl px-4 py-3.5 text-sm text-on-surface outline-none transition-all" 
+            id="contact-email" 
+            placeholder="john@example.com" 
+            type="email"
+            required
+          />
+        </div>
+        
+        <div class="space-y-2">
+          <label class="text-[10px] font-display font-semibold text-on-surface-variant ml-1 uppercase tracking-wider block" for="contact-message">Message</label>
+          <textarea 
+            class="w-full bg-[#020617] border border-white/5 focus:border-primary focus:ring-1 focus:ring-primary rounded-xl px-4 py-3.5 text-sm text-on-surface outline-none transition-all resize-none" 
+            id="contact-message" 
+            placeholder="Tell me about your project..." 
+            rows="5"
+            required
+          ></textarea>
+        </div>
+        
+        <button 
+          class="w-full bg-primary text-on-primary font-display font-bold text-xs tracking-wider uppercase py-4 rounded-xl hover:scale-[0.98] transition-transform duration-300 shadow-[0_0_20px_rgba(221,183,255,0.25)] hover:shadow-neon-glow cursor-pointer" 
+          type="submit"
+          id="submit-btn"
+        >
+          Send Message
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Script for form active status labels and submit animation -->
+  <script is:inline>
+    const form = document.getElementById('contact-form');
+    const btn = document.getElementById('submit-btn');
+    
+    if (form && btn) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const originalText = btn.innerText;
+        btn.innerText = 'Sending...';
+        btn.disabled = true;
+        btn.classList.add('opacity-80', 'scale-95');
+        
+        setTimeout(() => {
+          btn.innerText = 'Message Sent!';
+          btn.classList.remove('bg-primary');
+          btn.classList.add('bg-secondary', 'text-on-secondary');
+          form.reset();
+          
+          setTimeout(() => {
+            btn.innerText = originalText;
+            btn.disabled = false;
+            btn.classList.remove('bg-secondary', 'text-on-secondary', 'opacity-80', 'scale-95');
+            btn.classList.add('bg-primary');
+          }, 3000);
+        }, 1500);
+      });
+    }
+  </script>
+</Layout>

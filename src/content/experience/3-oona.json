@@ -1,0 +1,9 @@
+{
+  "company": "Oona Insurance",
+  "role": "Java Software Engineer",
+  "period": "2016 — 2018",
+  "description": "Architected core insurance processing backends using Spring Boot and Java. Implemented microservices for automated claims processing and integrated third-party RESTful APIs.",
+  "tags": ["Spring Boot", "Java 8", "PostgreSQL"],
+  "order": 3,
+  "color": "tertiary"
+}

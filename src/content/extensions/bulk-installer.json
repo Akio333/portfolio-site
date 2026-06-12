@@ -1,0 +1,10 @@
+{
+  "title": "AEM Bulk Package Installer",
+  "description": "Streamline your CI/CD by deploying multiple packages simultaneously. Integrated with CRX/DE protocols to ensure consistent environment provisioning across clusters.",
+  "tags": ["JavaScript", "AEM Package Manager", "Rest API"],
+  "installs": "12k+ Installs",
+  "version": "v1.1.2",
+  "marketplaceUrl": "https://marketplace.visualstudio.com/items?itemName=aem-bulk-package-installer",
+  "githubUrl": "https://github.com/example/aem-bulk-package-installer",
+  "icon": "auto_fix_high"
+}

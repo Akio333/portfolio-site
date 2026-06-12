@@ -1,0 +1,222 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+
+// Fetch experience collection and sort by order
+const experienceList = await getCollection('experience');
+const sortedExperience = [...experienceList].sort((a, b) => a.data.order - b.data.order);
+
+const title = "Experience & Skills | AEM_Dev Portfolio";
+const description = "Architecting enterprise-grade digital experiences through deep technical mastery and high-impact engineering leadership.";
+---
+
+<Layout title={title} description={description}>
+  <!-- Ambient background glow -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/10 blur-[120px] rounded-full pointer-events-none"></div>
+
+  <!-- Hero Header -->
+  <header class="py-16 md:py-24 text-center relative z-10 max-w-[1200px] mx-auto px-6">
+    <h1 class="text-4xl md:text-6xl font-display font-extrabold text-on-surface">
+      Professional <span class="text-primary">Journey</span> & <span class="text-secondary">Skills</span>
+    </h1>
+    <p class="mt-6 text-on-surface-variant font-sans text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+      Architecting enterprise-grade digital experiences through deep technical mastery and high-impact engineering leadership.
+    </p>
+  </header>
+
+  <!-- Content Grid -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 max-w-[1200px] mx-auto px-6 pb-20 relative z-10">
+    
+    <!-- Left Column: Experience Timeline -->
+    <section class="lg:col-span-7 space-y-12">
+      <div class="flex items-center gap-4 mb-8">
+        <span class="material-symbols-outlined text-primary text-4xl">work_history</span>
+        <h2 class="text-2xl md:text-3xl font-display font-bold text-on-surface">Professional Journey</h2>
+      </div>
+
+      <div class="relative pl-8 border-l border-white/10 ml-3 space-y-16">
+        {sortedExperience.map((exp) => {
+          // Dynamic ring color classes
+          let ringColor = "bg-primary ring-primary/20";
+          if (exp.data.color === 'secondary') ringColor = "bg-secondary ring-secondary/20";
+          if (exp.data.color === 'tertiary') ringColor = "bg-tertiary ring-tertiary/20";
+
+          return (
+            <div class="relative">
+              <!-- Timeline node dot -->
+              <div class={`absolute -left-[39px] top-1.5 w-4 h-4 rounded-full border-4 border-[#0b1326] ring-4 ${ringColor}`}></div>
+              
+              <div class="glass-surface p-6 md:p-8 rounded-2xl border border-white/10 hover:border-primary/45 transition-all duration-300 relative overflow-hidden group">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-2">
+                  <h3 class="text-xl font-display font-bold text-primary">
+                    {exp.data.company}
+                  </h3>
+                  <span class="font-display text-xs text-outline px-3 py-1 bg-surface-container-high rounded-full border border-white/5 w-fit">
+                    {exp.data.period}
+                  </span>
+                </div>
+                
+                <h4 class="font-display text-xs font-semibold text-secondary uppercase tracking-widest mb-4">
+                  {exp.data.role}
+                </h4>
+                
+                <p class="text-on-surface-variant text-sm font-sans leading-relaxed">
+                  {exp.data.description}
+                </p>
+                
+                <div class="mt-6 flex flex-wrap gap-2">
+                  {exp.data.tags.map(tag => (
+                    <span class="text-[10px] font-display font-semibold text-primary bg-primary/10 border border-primary/10 rounded-full px-3 py-1 uppercase tracking-wider">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </section>
+
+    <!-- Right Column: Skills Sidebar -->
+    <aside class="lg:col-span-5 space-y-12">
+      <div class="flex items-center gap-4 mb-8">
+        <span class="material-symbols-outlined text-secondary text-4xl">terminal</span>
+        <h2 class="text-2xl md:text-3xl font-display font-bold text-on-surface">Technical Expertise</h2>
+      </div>
+
+      <div class="space-y-6">
+        <!-- CMS Category -->
+        <div class="glass-surface p-6 rounded-2xl border border-white/10">
+          <div class="flex items-center gap-3 mb-6">
+            <span class="material-symbols-outlined text-primary">web_asset</span>
+            <h3 class="font-display text-xs font-bold uppercase tracking-widest text-on-surface">CMS Ecosystem</h3>
+          </div>
+          
+          <div class="space-y-4">
+            <div>
+              <div class="flex justify-between font-display text-xs mb-2 text-outline">
+                <span>AEM as a Cloud Service</span>
+                <span class="text-primary font-bold">95%</span>
+              </div>
+              <div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+                <div class="h-full bg-primary rounded-full transition-all duration-1000" style="width: 95%"></div>
+              </div>
+            </div>
+            
+            <div>
+              <div class="flex justify-between font-display text-xs mb-2 text-outline">
+                <span>AEM 6.x (Classic & Touch UI)</span>
+                <span class="text-primary font-bold">90%</span>
+              </div>
+              <div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+                <div class="h-full bg-primary rounded-full transition-all duration-1000" style="width: 90%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Backend Category -->
+        <div class="glass-surface p-6 rounded-2xl border border-white/10">
+          <div class="flex items-center gap-3 mb-6">
+            <span class="material-symbols-outlined text-secondary">settings_ethernet</span>
+            <h3 class="font-display text-xs font-bold uppercase tracking-widest text-on-surface">Backend & OSGi</h3>
+          </div>
+          
+          <div class="flex flex-wrap gap-2">
+            {[
+              "Java 17",
+              "Spring Boot",
+              "OSGi Services",
+              "Sling Models",
+              "JCR / Jackrabbit"
+            ].map(skill => (
+              <span class="px-4 py-2 bg-surface-container-low border border-white/5 rounded-lg text-secondary font-mono text-xs">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <!-- Frontend Category -->
+        <div class="glass-surface p-6 rounded-2xl border border-white/10">
+          <div class="flex items-center gap-3 mb-6">
+            <span class="material-symbols-outlined text-primary">javascript</span>
+            <h3 class="font-display text-xs font-bold uppercase tracking-widest text-on-surface">Frontend Architecture</h3>
+          </div>
+          
+          <div class="grid grid-cols-2 gap-4">
+            {[
+              "React / TS",
+              "Tailwind CSS",
+              "HTL / Sightly",
+              "Vanilla JS"
+            ].map(skill => (
+              <div class="p-3 bg-surface-container-low border border-white/5 rounded-lg flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-primary"></span>
+                <span class="text-xs font-display font-medium text-on-surface">{skill}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Tools Category -->
+        <div class="glass-surface p-6 rounded-2xl border border-white/10">
+          <div class="flex items-center gap-3 mb-6">
+            <span class="material-symbols-outlined text-secondary">construction</span>
+            <h3 class="font-display text-xs font-bold uppercase tracking-widest text-on-surface">DevOps & Tooling</h3>
+          </div>
+          
+          <div class="flex flex-wrap gap-x-6 gap-y-3">
+            {[
+              "Maven",
+              "Jenkins / GitHub Actions",
+              "Git / SVN",
+              "VS Code Extensions"
+            ].map(tool => (
+              <div class="flex items-center gap-2 text-on-surface-variant">
+                <span class="material-symbols-outlined text-sm text-secondary">check_circle</span>
+                <span class="text-xs font-sans">{tool}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Certification Section -->
+  <section class="max-w-[1200px] mx-auto px-6 pb-24">
+    <div class="glass-surface p-8 md:p-12 rounded-3xl relative overflow-hidden group border border-white/10">
+      <div class="absolute right-0 top-0 w-1/2 h-full opacity-10 pointer-events-none transition-transform duration-700 group-hover:scale-110">
+        <div class="grid grid-cols-4 gap-4 rotate-12 -translate-y-12">
+          <div class="h-32 bg-primary/20 rounded-lg"></div>
+          <div class="h-32 bg-secondary/20 rounded-lg"></div>
+          <div class="h-32 bg-primary/20 rounded-lg"></div>
+          <div class="h-32 bg-secondary/20 rounded-lg"></div>
+          <div class="h-32 bg-secondary/20 rounded-lg"></div>
+          <div class="h-32 bg-primary/20 rounded-lg"></div>
+          <div class="h-32 bg-secondary/20 rounded-lg"></div>
+          <div class="h-32 bg-primary/20 rounded-lg"></div>
+        </div>
+      </div>
+
+      <div class="max-w-xl relative z-10 space-y-6">
+        <h2 class="text-3xl font-display font-extrabold text-on-surface">Certified Adobe Expert</h2>
+        <p class="text-on-surface-variant text-sm md:text-base leading-relaxed">
+          Holding high-level Adobe certifications across Developer and Architect domains, ensuring every project follows industry best practices and optimal performance standards.
+        </p>
+        
+        <div class="flex gap-4">
+          <div class="bg-surface-container border border-white/10 px-6 py-4 rounded-xl flex items-center gap-4">
+            <span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: 'FILL' 1;">verified</span>
+            <div>
+              <p class="text-[10px] font-display font-bold text-on-surface-variant uppercase tracking-wider">Adobe Certified</p>
+              <p class="text-lg font-display font-bold text-on-surface">AEM Architect</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,136 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  canonicalUrl?: string;
+}
+
+const { 
+  title, 
+  description, 
+  image = '/og-image.png', 
+  canonicalUrl = Astro.url.href 
+} = Astro.props;
+
+// Determine current active path for navigation highlight
+const pathname = Astro.url.pathname;
+const currentPath = pathname.replace(/\/$/, '') || '/';
+
+const navItems = [
+  { name: 'Home', href: '/' },
+  { name: 'Projects', href: '/projects' },
+  { name: 'Experience', href: '/experience' },
+  { name: 'Contact', href: '/contact' }
+];
+---
+
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.url.origin)} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalUrl} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, Astro.url.origin)} />
+
+    <!-- Google Material Symbols & Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  </head>
+  <body class="min-h-screen flex flex-col justify-between selection:bg-primary/30 selection:text-primary">
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary text-on-primary px-4 py-2 rounded-md font-semibold z-[60]">
+      Skip to main content
+    </a>
+
+    <!-- Top Navigation Bar -->
+    <nav class="bg-surface/50 backdrop-blur-xl border-b border-white/10 shadow-[0_0_30px_rgba(221,183,255,0.1)] sticky top-0 z-50 transition-all duration-300" id="main-nav">
+      <div class="flex justify-between items-center px-6 py-4 w-full max-w-[1200px] mx-auto">
+        <a href="/" class="text-2xl font-display font-bold text-primary select-none">
+          AEM_Dev
+        </a>
+        
+        <!-- Desktop Nav Links -->
+        <div class="hidden md:flex gap-8 items-center">
+          {navItems.map((item) => {
+            const isActive = currentPath === item.href;
+            return (
+              <a 
+                href={item.href} 
+                class={isActive 
+                  ? "text-primary font-bold border-b-2 border-primary pb-1 font-display text-sm transition-all duration-300" 
+                  : "text-on-surface-variant font-sans text-sm hover:text-primary transition-all duration-300 pb-1"
+                }
+              >
+                {item.name}
+              </a>
+            );
+          })}
+        </div>
+        
+        <button class="bg-primary text-on-primary px-6 py-2 rounded-full font-display text-xs font-bold active:scale-95 transition-all hover:shadow-[0_0_20px_rgba(221,183,255,0.4)] cursor-pointer">
+          Resume
+        </button>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content" class="flex-grow w-full relative">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface-container-lowest border-t border-white/5">
+      <div class="flex flex-col md:flex-row justify-between items-center px-6 py-12 w-full max-w-[1200px] mx-auto gap-8">
+        <div class="space-y-3 text-center md:text-left">
+          <div class="font-display text-xl text-primary font-bold">AEM_Dev</div>
+          <p class="text-on-surface-variant font-sans text-xs max-w-xs">
+            &copy; {new Date().getFullYear()} AEM Full-Stack Developer. Built with precision and a passion for clean code.
+          </p>
+        </div>
+        <div class="flex gap-8 text-xs font-display">
+          <a href="#" class="text-on-surface-variant hover:text-secondary transition-colors">GitHub</a>
+          <a href="#" class="text-on-surface-variant hover:text-secondary transition-colors">LinkedIn</a>
+          <a href="#" class="text-on-surface-variant hover:text-secondary transition-colors">VS Code Marketplace</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Navigation shrink micro-interaction
+      const nav = document.getElementById('main-nav');
+      if (nav) {
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 50) {
+            nav.querySelector('.flex')?.classList.add('py-2');
+            nav.querySelector('.flex')?.classList.remove('py-4');
+          } else {
+            nav.querySelector('.flex')?.classList.add('py-4');
+            nav.querySelector('.flex')?.classList.remove('py-2');
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

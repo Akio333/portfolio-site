@@ -1,0 +1,9 @@
+{
+  "company": "Vanguard",
+  "role": "AEM Full-Stack Engineer",
+  "period": "2018 — 2021",
+  "description": "Modernized the investor portal using AEM 6.5. Developed responsive components with HTL and React. Optimized content authoring experiences by creating custom Touch UI widgets and Granite UI extensions.",
+  "tags": ["AEM 6.5", "React", "HTL"],
+  "order": 2,
+  "color": "secondary"
+}

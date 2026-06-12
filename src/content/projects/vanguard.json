@@ -1,0 +1,14 @@
+{
+  "title": "Institutional Investor Portal",
+  "description": "Redesigned the technical architecture of the investor dashboard, leveraging AEM SPA Editor with React for a seamless, low-latency financial monitoring experience.",
+  "tags": ["React", "TypeScript", "HTL", "AEM 6.5", "Core Web Vitals"],
+  "role": "AEM Full-Stack Engineer",
+  "period": "2018 - 2021",
+  "company": "Vanguard",
+  "featured": false,
+  "highlights": [
+    "AEM SPA Editor Integration",
+    "Real-time Data Visualization",
+    "Performance Optimization (Core Web Vitals)"
+  ]
+}

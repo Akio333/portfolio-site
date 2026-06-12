@@ -1,0 +1,216 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+
+// Fetch projects and extensions
+const projects = await getCollection('projects');
+const extensions = await getCollection('extensions');
+
+// Separate JPMC and Vanguard specifically to match the Bento Grid layout from designs
+const jpmcProject = projects.find(p => p.id.includes('jpmc'));
+const vanguardProject = projects.find(p => p.id.includes('vanguard'));
+
+const title = "Projects & Extensions | AEM_Dev";
+const description = "Specializing in Adobe Experience Manager ecosystems, building high-performance extensions and large-scale financial platforms.";
+---
+
+<Layout title={title} description={description}>
+  <!-- Glow Effect -->
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1200px] h-[600px] bg-radial-gradient opacity-[0.08] pointer-events-none" style="background: radial-gradient(circle at center, rgba(221, 183, 255, 0.6) 0%, transparent 70%);"></div>
+
+  <!-- Hero Intro Header -->
+  <section class="max-w-[1200px] mx-auto px-6 pt-20 pb-12 text-center relative z-10">
+    <h1 class="text-4xl md:text-6xl font-display font-extrabold text-on-surface mb-4">
+      Architecture & <span class="text-primary">Extensions</span>
+    </h1>
+    <p class="text-on-surface-variant font-sans text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+      Specializing in Adobe Experience Manager ecosystems, building high-performance extensions and large-scale financial platforms.
+    </p>
+  </section>
+
+  <!-- VS Code Extensions Section -->
+  <section class="max-w-[1200px] mx-auto px-6 py-12 md:py-16">
+    <div class="flex items-center gap-4 mb-12">
+      <span class="material-symbols-outlined text-primary text-4xl">extension</span>
+      <h2 class="text-2xl md:text-3xl font-display font-bold text-on-surface">VS Code Extensions</h2>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {extensions.map((ext) => (
+        <div class="glass-surface p-8 rounded-2xl flex flex-col justify-between h-full border border-white/10 hover:border-primary/45 transition-all duration-300 relative overflow-hidden group hover:-translate-y-1">
+          <div class="absolute -top-6 -right-6 p-4 opacity-5 group-hover:opacity-15 transition-opacity pointer-events-none">
+            <span class="material-symbols-outlined text-9xl">{ext.data.icon}</span>
+          </div>
+
+          <div>
+            <div class="flex justify-between items-start mb-6">
+              <div class="p-3 bg-primary/10 rounded-lg text-primary">
+                <span class="material-symbols-outlined text-3xl">{ext.data.icon}</span>
+              </div>
+              <span class="font-mono text-xs text-secondary px-2.5 py-1 bg-secondary/5 rounded-full border border-secondary/15">
+                {ext.data.version}
+              </span>
+            </div>
+            <h3 class="text-2xl font-display font-bold text-on-surface mb-4 group-hover:text-primary transition-colors">
+              {ext.data.title}
+            </h3>
+            <p class="text-on-surface-variant text-sm font-sans leading-relaxed mb-8">
+              {ext.data.description}
+            </p>
+          </div>
+
+          <div>
+            <div class="flex flex-wrap gap-2 mb-8">
+              <span class="px-3.5 py-1.5 bg-primary/10 text-primary text-xs font-display font-semibold rounded-full uppercase tracking-wider">
+                {ext.data.installs}
+              </span>
+              {ext.data.tags.map((tag) => (
+                <span class="px-3.5 py-1.5 bg-surface-container text-outline text-xs font-display font-semibold rounded-full uppercase tracking-wider">
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <a 
+              class="inline-flex items-center gap-2 text-primary font-display font-bold text-xs tracking-wider uppercase hover:gap-3 transition-all cursor-pointer" 
+              href={ext.data.marketplaceUrl || '#'}
+            >
+              Marketplace <span class="material-symbols-outlined text-sm">open_in_new</span>
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Financial AEM Projects Section (Bento Grid) -->
+  <section class="max-w-[1200px] mx-auto px-6 py-12 md:py-16">
+    <div class="flex items-center gap-4 mb-12">
+      <span class="material-symbols-outlined text-primary text-4xl">account_balance</span>
+      <h2 class="text-2xl md:text-3xl font-display font-bold text-on-surface">Financial AEM Projects</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+      <!-- JPMC Large Project (Col span 7) -->
+      {jpmcProject && (
+        <div class="md:col-span-7 glass-surface rounded-2xl overflow-hidden group flex flex-col justify-between border border-white/10 hover:border-primary/45 transition-all duration-300">
+          <div>
+            <div class="h-64 relative overflow-hidden">
+              <img 
+                alt="JPMC Financial Portal Skyscraper" 
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                src={jpmcProject.data.imageUrl} 
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-[#0b1326] to-transparent"></div>
+              <div class="absolute bottom-6 left-8">
+                <span class="bg-primary/20 text-primary px-3 py-1.5 rounded-full text-xs font-display font-semibold border border-primary/20 backdrop-blur-md tracking-wider uppercase">
+                  Featured Project
+                </span>
+              </div>
+            </div>
+            
+            <div class="p-8">
+              <h3 class="text-2xl font-display font-bold text-on-surface mb-4 group-hover:text-primary transition-colors">
+                {jpmcProject.data.title}
+              </h3>
+              <p class="text-on-surface-variant text-sm font-sans leading-relaxed mb-6">
+                {jpmcProject.data.description}
+              </p>
+              
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {jpmcProject.data.highlights?.map((highlight) => (
+                  <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary text-base">check_circle</span>
+                    <span class="text-sm font-sans text-on-surface-variant">{highlight}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          
+          <div class="p-8 pt-0 flex gap-2 flex-wrap">
+            {jpmcProject.data.tags.map(tag => (
+              <span class="text-xs font-display font-medium text-secondary bg-secondary/5 border border-secondary/15 rounded-full px-3 py-1">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <!-- Vanguard Project (Col span 5) -->
+      {vanguardProject && (
+        <div class="md:col-span-5 glass-surface p-8 rounded-2xl flex flex-col justify-between border border-white/10 hover:border-primary/45 transition-all duration-300">
+          <div>
+            <div class="flex justify-between items-center mb-6">
+              <div class="p-3 bg-secondary/10 rounded-lg text-secondary">
+                <span class="material-symbols-outlined text-3xl">insights</span>
+              </div>
+              <span class="text-outline font-display text-xs font-bold tracking-widest uppercase">
+                {vanguardProject.data.company}
+              </span>
+            </div>
+            
+            <h3 class="text-2xl font-display font-bold text-on-surface mb-4">
+              {vanguardProject.data.title}
+            </h3>
+            
+            <p class="text-on-surface-variant text-sm font-sans leading-relaxed mb-6">
+              {vanguardProject.data.description}
+            </p>
+            
+            <ul class="space-y-3 mb-8">
+              {vanguardProject.data.highlights?.map((highlight) => (
+                <li class="flex items-center gap-3 text-sm font-sans text-on-surface">
+                  <span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                  {highlight}
+                </li>
+              ))}
+            </ul>
+          </div>
+          
+          <div>
+            <div class="flex flex-wrap gap-2 mb-6">
+              {vanguardProject.data.tags.slice(0, 3).map(tag => (
+                <span class="text-[10px] font-display font-medium text-primary bg-primary/5 border border-primary/15 rounded-full px-2 py-0.5 uppercase tracking-wide">
+                  {tag}
+                </span>
+              ))}
+            </div>
+            
+            <button class="w-full py-3.5 border border-primary/30 text-primary rounded-lg font-display text-xs font-bold tracking-wider uppercase hover:bg-primary/5 active:scale-98 transition-all cursor-pointer">
+              View Case Study
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- Technical Stack / Skill Badges -->
+  <section class="max-w-[1200px] mx-auto px-6 py-12 mb-20 md:mb-32">
+    <div class="glass-surface p-8 md:p-12 rounded-2xl flex flex-col lg:flex-row items-center gap-12 border border-white/10">
+      <div class="flex-1 text-center lg:text-left">
+        <h3 class="text-2xl md:text-3xl font-display font-bold text-on-surface mb-2">Technical Prowess</h3>
+        <p class="text-on-surface-variant text-sm font-sans">
+          Technologies consistently deployed across these enterprise-grade environments.
+        </p>
+      </div>
+      
+      <div class="flex-1 flex flex-wrap justify-center lg:justify-start gap-3">
+        {[
+          "AEM 6.5 / Cloud Service",
+          "Sling/JCR",
+          "React/TypeScript",
+          "Java 11+",
+          "GraphQL",
+          "GitHub Actions",
+          "Adobe Target"
+        ].map((skill) => (
+          <span class="px-4 py-2 bg-primary/5 text-primary border border-primary/20 rounded-full font-display text-xs font-medium uppercase tracking-wider">
+            {skill}
+          </span>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

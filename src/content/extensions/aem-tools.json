@@ -1,0 +1,10 @@
+{
+  "title": "AEM Tools",
+  "description": "A comprehensive productivity suite for AEM developers. Features include instant JCR property editing, OSGi configuration management, and real-time log streaming directly within the VS Code sidebar.",
+  "tags": ["TypeScript", "Sling API", "Node.js"],
+  "installs": "45k+ Installs",
+  "version": "v2.4.0",
+  "marketplaceUrl": "https://marketplace.visualstudio.com/items?itemName=aem-tools",
+  "githubUrl": "https://github.com/example/aem-tools",
+  "icon": "build_circle"
+}

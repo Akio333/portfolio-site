@@ -1,0 +1,252 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+
+// Fetch extensions collection
+const extensions = await getCollection('extensions');
+
+const title = "AEM Full-Stack Developer | Portfolio";
+const description = "Building robust, scalable digital experiences for financial leaders. Specializing in Adobe Experience Manager architecture and modern front-end integration.";
+---
+
+<Layout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="relative min-h-[calc(100vh-80px)] flex flex-col items-center justify-center text-center px-6 py-16 md:py-24 overflow-hidden">
+    <div class="absolute inset-0 bg-radial-gradient opacity-[0.08] pointer-events-none" style="background: radial-gradient(circle at center, rgba(221, 183, 255, 0.8) 0%, transparent 70%);"></div>
+
+    <div class="max-w-4xl mx-auto space-y-8 relative z-10">
+      <!-- Status Badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary font-display text-xs tracking-wider uppercase animate-pulse">
+        <span class="material-symbols-outlined text-[14px]">code</span>
+        Available for Senior Roles
+      </div>
+      
+      <!-- H1 Title -->
+      <h1 class="text-4xl md:text-6xl lg:text-7xl font-display font-extrabold text-on-surface leading-tight tracking-tight">
+        AEM <span class="bg-gradient-to-r from-primary to-[#b76dff] bg-clip-text text-transparent filter drop-shadow-[0_0_20px_rgba(221,183,255,0.4)]">Full-Stack</span> Developer
+      </h1>
+      
+      <!-- Subtitle -->
+      <p class="text-body-lg text-on-surface-variant max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
+        Building robust, scalable digital experiences for financial leaders. Specializing in Adobe Experience Manager architecture and modern front-end integration.
+      </p>
+      
+      <!-- Call to Actions -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+        <a 
+          href="/projects" 
+          class="px-8 py-4 bg-primary text-on-primary font-bold rounded-lg hover:scale-105 transition-transform flex items-center justify-center gap-2 shadow-[0_0_25px_rgba(221,183,255,0.3)] border border-primary/25 cursor-pointer"
+        >
+          View Projects 
+          <span class="material-symbols-outlined text-sm">arrow_forward</span>
+        </a>
+        <a 
+          href="#about" 
+          class="px-8 py-4 glass-surface text-on-surface font-bold rounded-lg hover:bg-white/5 transition-colors flex items-center justify-center gap-2 cursor-pointer"
+        >
+          Expertise
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trusted By Section -->
+  <section class="py-16 border-y border-white/5 bg-surface-container-low w-screen relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw]">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <p class="text-center font-display text-xs text-on-surface-variant/60 uppercase tracking-widest mb-10">
+        Trusted By Financial Leaders
+      </p>
+      <div class="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-60 hover:opacity-100 transition-opacity duration-300">
+        <span class="text-lg md:text-xl font-display font-semibold text-on-surface grayscale hover:grayscale-0 transition-all cursor-default">
+          JP Morgan & Chase
+        </span>
+        <span class="text-lg md:text-xl font-display font-semibold text-on-surface grayscale hover:grayscale-0 transition-all cursor-default">
+          Vanguard
+        </span>
+        <span class="text-lg md:text-xl font-display font-semibold text-on-surface grayscale hover:grayscale-0 transition-all cursor-default">
+          Oona Insurance
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Brief About Section -->
+  <section id="about" class="py-16 md:py-24 max-w-[1200px] mx-auto px-6 scroll-mt-24">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div class="space-y-6">
+        <h2 class="text-3xl md:text-4xl font-display font-extrabold text-on-surface">
+          Architecting the <span class="text-secondary">Future</span> of Content
+        </h2>
+        <p class="text-body-md text-on-surface-variant leading-relaxed">
+          With over 8 years of experience in the Adobe ecosystem, I bridge the gap between complex backend architectures and seamless user interfaces. My approach focuses on performance, component-driven design, and enterprise-grade security.
+        </p>
+        <p class="text-body-md text-on-surface-variant leading-relaxed">
+          I specialize in transforming legacy CMS implementations into modern, high-conversion digital platforms using AEM Sites, Assets, and Form integrations.
+        </p>
+        
+        <!-- Stats Grid -->
+        <div class="grid grid-cols-2 gap-4 pt-4">
+          <div class="p-6 rounded-xl bg-surface-container border border-white/5">
+            <div class="text-primary font-display text-3xl font-bold">50+</div>
+            <div class="text-label-sm text-xs font-display text-on-surface-variant tracking-wider uppercase mt-1">
+              Projects Delivered
+            </div>
+          </div>
+          <div class="p-6 rounded-xl bg-surface-container border border-white/5">
+            <div class="text-secondary font-display text-3xl font-bold">100%</div>
+            <div class="text-label-sm text-xs font-display text-on-surface-variant tracking-wider uppercase mt-1">
+              Financial Compliance
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Image Grid Item -->
+      <div class="relative group">
+        <div class="absolute -inset-4 bg-primary/20 rounded-2xl blur-2xl group-hover:bg-primary/30 transition-all duration-500"></div>
+        <img 
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5jrmAYnp2RyCibaUd4iXjyV0vOZP0K4ZoPzeiQeiKMuimj9vwXKMxY0FzHb4qBqz9t1AzYzi9OLN-U4WtHO8QlnSo3haeLlt9Gqfo6S4Sm0u9CjnrIniTHFbjU2ZwD0JZHLt8IeoW9CvWVd6ViEz2Cq-wH7boR4iUu25EvNYwZRqiJJrfW770j5OKv_6GuNtfT4-Bytc1vJexbxceAZ6vusb9SS5HKz8bFPqlKvAKmU-u1rvVwkGV7k3OziHja461-iGzre-lsho" 
+          alt="Developer workspace showing violet VS Code workspace" 
+          class="relative rounded-2xl border border-white/10 w-full object-cover aspect-video shadow-2xl"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack Section -->
+  <section class="py-16 md:py-24 bg-surface-container-lowest w-screen relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw]">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <div class="text-center mb-16 space-y-4">
+        <h2 class="text-3xl font-display font-extrabold text-on-surface">The Stack</h2>
+        <p class="text-on-surface-variant text-sm font-sans">Engineered for performance and scalability.</p>
+      </div>
+      
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+        <!-- AEM -->
+        <div class="col-span-2 md:col-span-1 p-8 glass-surface rounded-2xl flex flex-col items-center justify-center gap-4 group hover:border-primary/50 transition-colors">
+          <div class="w-16 h-16 rounded-full bg-primary/15 flex items-center justify-center group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-primary text-4xl">layers</span>
+          </div>
+          <span class="font-display text-xs font-semibold text-on-surface tracking-wider uppercase text-center">AEM Cloud / 6.5</span>
+        </div>
+        <!-- Java -->
+        <div class="p-8 glass-surface rounded-2xl flex flex-col items-center justify-center gap-4 group hover:border-secondary/50 transition-colors">
+          <div class="w-16 h-16 rounded-full bg-secondary/15 flex items-center justify-center group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-secondary text-4xl">coffee</span>
+          </div>
+          <span class="font-display text-xs font-semibold text-on-surface tracking-wider uppercase text-center">Java</span>
+        </div>
+        <!-- React -->
+        <div class="p-8 glass-surface rounded-2xl flex flex-col items-center justify-center gap-4 group hover:border-primary/50 transition-colors">
+          <div class="w-16 h-16 rounded-full bg-primary/15 flex items-center justify-center group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-primary text-4xl">rebase_edit</span>
+          </div>
+          <span class="font-display text-xs font-semibold text-on-surface tracking-wider uppercase text-center">React</span>
+        </div>
+        <!-- Node -->
+        <div class="p-8 glass-surface rounded-2xl flex flex-col items-center justify-center gap-4 group hover:border-secondary/50 transition-colors">
+          <div class="w-16 h-16 rounded-full bg-secondary/15 flex items-center justify-center group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-secondary text-4xl">terminal</span>
+          </div>
+          <span class="font-display text-xs font-semibold text-on-surface tracking-wider uppercase text-center">Node.js</span>
+        </div>
+        <!-- OSGi -->
+        <div class="col-span-2 md:col-span-1 p-8 glass-surface rounded-2xl flex flex-col items-center justify-center gap-4 group hover:border-primary/50 transition-colors">
+          <div class="w-16 h-16 rounded-full bg-primary/15 flex items-center justify-center group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-primary text-4xl">settings_input_component</span>
+          </div>
+          <span class="font-display text-xs font-semibold text-on-surface tracking-wider uppercase text-center">OSGi</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Extensions Section -->
+  <section class="py-16 md:py-24 max-w-[1200px] mx-auto px-6">
+    <div class="flex justify-between items-end mb-12">
+      <div>
+        <h2 class="text-3xl font-display font-extrabold text-on-surface">Featured Extensions</h2>
+        <p class="text-on-surface-variant text-sm mt-2 font-sans">Tools built to accelerate AEM development workflows.</p>
+      </div>
+      <div class="hidden md:block">
+        <span class="font-display text-xs text-primary font-bold tracking-wider uppercase">VS Code Marketplace</span>
+      </div>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {extensions.map((ext) => (
+        <div class="glass-surface rounded-2xl p-8 group relative overflow-hidden flex flex-col justify-between h-full border border-white/10 hover:border-primary/30 transition-all duration-300">
+          <!-- Ambient icon background -->
+          <div class="absolute -top-6 -right-6 p-4 opacity-5 group-hover:opacity-15 transition-opacity pointer-events-none">
+            <span class="material-symbols-outlined text-9xl">{ext.data.icon}</span>
+          </div>
+          
+          <div>
+            <div class="flex justify-between items-start mb-6">
+              <div class="p-3 bg-primary/10 rounded-lg text-primary">
+                <span class="material-symbols-outlined text-3xl">{ext.data.icon}</span>
+              </div>
+              <span class="font-mono text-xs text-secondary px-2.5 py-1 bg-secondary/5 rounded-full border border-secondary/15">
+                {ext.data.version}
+              </span>
+            </div>
+            
+            <h3 class="text-2xl font-display font-bold text-on-surface mb-3 group-hover:text-primary transition-colors">
+              {ext.data.title}
+            </h3>
+            
+            <p class="text-on-surface-variant text-sm font-sans leading-relaxed mb-6">
+              {ext.data.description}
+            </p>
+          </div>
+          
+          <div>
+            <div class="flex gap-4 mb-6">
+              <span class="px-3.5 py-1 bg-primary/10 text-primary rounded-full text-xs font-display font-medium">
+                {ext.data.installs}
+              </span>
+              {ext.data.tags.slice(0, 2).map(tag => (
+                <span class="px-3.5 py-1 bg-surface-container-high text-outline rounded-full text-xs font-display font-medium">
+                  {tag}
+                </span>
+              ))}
+            </div>
+            
+            {ext.data.marketplaceUrl && (
+              <a 
+                href={ext.data.marketplaceUrl} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="inline-flex items-center gap-2 text-primary font-display font-bold text-xs tracking-wider uppercase hover:gap-3 transition-all cursor-pointer"
+              >
+                Marketplace <span class="material-symbols-outlined text-sm">open_in_new</span>
+              </a>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 md:py-24 max-w-[1200px] mx-auto px-6">
+    <div class="p-12 md:p-24 rounded-[32px] bg-gradient-to-br from-surface-container-high to-surface-container-lowest border border-white/10 relative overflow-hidden text-center">
+      <div class="absolute -top-24 -left-24 w-64 h-64 bg-primary/10 rounded-full blur-[100px] pointer-events-none"></div>
+      <div class="absolute -bottom-24 -right-24 w-64 h-64 bg-secondary/10 rounded-full blur-[100px] pointer-events-none"></div>
+      
+      <h2 class="text-3xl md:text-4xl font-display font-extrabold text-on-surface mb-6">
+        Ready to scale your digital presence?
+      </h2>
+      <p class="text-on-surface-variant text-base md:text-lg mb-12 max-w-xl mx-auto font-sans leading-relaxed">
+        Currently accepting new projects and consulting engagements for enterprise AEM solutions.
+      </p>
+      
+      <a 
+        href="/contact" 
+        class="inline-block px-10 py-5 bg-white text-[#0b1326] font-display font-bold text-xs tracking-wider uppercase rounded-xl hover:scale-105 active:scale-95 transition-all shadow-2xl cursor-pointer"
+      >
+        Schedule a Consultation
+      </a>
+    </div>
+  </section>
+</Layout>
