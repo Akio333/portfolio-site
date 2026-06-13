@@ -1,9 +1,6 @@
 {
   "title": "AEM Bulk Package Installer",
-  "description": "A powerful Visual Studio Code extension designed for AEM (Adobe Experience Manager) developers. It allows you to select one or multiple AEM packages (.zip) or OSGi bundles (.jar) directly from the VS Code File Explorer and easily upload, install, or backup them to your local AEM server.",
   "tags": ["TypeScript", "AEM Package Manager", "Rest API"],
-  "installs": "12k+ Installs",
-  "version": "v0.1.2",
   "marketplaceUrl": "https://marketplace.visualstudio.com/items?itemName=Akio333.aem-bulk-pkg-install",
   "githubUrl": "https://github.com/Akio333/aem-bulk-pkg-install",
   "icon": "auto_fix_high"

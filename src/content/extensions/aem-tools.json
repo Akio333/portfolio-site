@@ -1,9 +1,6 @@
 {
   "title": "AEM Tools",
-  "description": "AEM Tools is a lightweight, feature-rich Visual Studio Code extension designed to streamline Adobe Experience Manager (AEM) development. It provides native JCR synchronization, real-time HTL (Sightly) code validation, and context-aware autocompletion helpers.",
   "tags": ["TypeScript", "Javascript", "Node.js"],
-  "installs": "n Installs",
-  "version": "v0.1.3",
   "marketplaceUrl": "https://marketplace.visualstudio.com/items?itemName=Akio333.vscode-aem-tools",
   "githubUrl": "https://github.com/Akio333/vscode-aem-tools",
   "icon": "code"
