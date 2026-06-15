@@ -1,0 +1,72 @@
+---
+---
+<div id="custom-pointer" class="fixed left-0 top-0 w-6 h-6 rounded-full border border-primary/50 pointer-events-none z-[9999] hidden md:block backdrop-blur-sm transition-colors duration-150"></div>
+<div id="custom-pointer-dot" class="fixed left-0 top-0 w-1.5 h-1.5 bg-primary rounded-full pointer-events-none z-[10000] hidden md:block shadow-[0_0_10px_rgba(168,85,247,0.8)]"></div>
+
+<style>
+  @media (min-width: 768px) {
+    :global(body), :global(a), :global(button), :global(input), :global(textarea) {
+      cursor: none !important;
+    }
+  }
+</style>
+
+<script>
+  const pointer = document.getElementById('custom-pointer');
+  const dot = document.getElementById('custom-pointer-dot');
+  
+  if (pointer && dot && window.matchMedia("(min-width: 768px)").matches) {
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let currentScale = 1;
+    let targetScale = 1;
+    
+    // Instant follow (no trail) with JS scale animation
+    function animatePointer() {
+      currentScale += (targetScale - currentScale) * 0.3;
+      
+      if (pointer && dot) {
+        // 12px is half of w-6/h-6 (24px), 3px is half of w-1.5/h-1.5 (6px)
+        pointer.style.transform = `translate3d(${mouseX - 12}px, ${mouseY - 12}px, 0) scale(${currentScale})`;
+        dot.style.transform = `translate3d(${mouseX - 3}px, ${mouseY - 3}px, 0)`;
+      }
+      
+      requestAnimationFrame(animatePointer);
+    }
+    animatePointer();
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+    
+    // Add hover effect for interactable elements
+    const setupInteractables = () => {
+      const interactables = document.querySelectorAll('a, button, input, textarea, [role="button"]');
+      interactables.forEach(el => {
+        if ((el as HTMLElement).dataset.pointerInit) return;
+        (el as HTMLElement).dataset.pointerInit = 'true';
+        
+        el.addEventListener('mouseenter', () => {
+          if (pointer) {
+            targetScale = 1.5;
+            pointer.style.backgroundColor = 'rgba(168, 85, 247, 0.1)';
+            pointer.style.borderColor = 'rgba(168, 85, 247, 1)';
+          }
+        });
+        el.addEventListener('mouseleave', () => {
+          if (pointer) {
+            targetScale = 1;
+            pointer.style.backgroundColor = 'transparent';
+            pointer.style.borderColor = 'rgba(168, 85, 247, 0.5)';
+          }
+        });
+      });
+    };
+    
+    setupInteractables();
+    
+    // For Astro view transitions
+    document.addEventListener('astro:page-load', setupInteractables);
+  }
+</script>

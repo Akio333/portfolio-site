@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import StarryBackground from '../components/StarryBackground.astro';
+import CustomPointer from '../components/CustomPointer.astro';
 
 interface Props {
   title: string;
@@ -62,8 +64,11 @@ const navItems = [
     />
   </head>
   <body
-    class="min-h-screen flex flex-col justify-between selection:bg-primary/30 selection:text-primary"
+    class="min-h-screen flex flex-col justify-between selection:bg-primary/30 selection:text-primary relative"
   >
+    <StarryBackground />
+    <CustomPointer />
+
     <!-- Skip to main content for accessibility -->
     <a
       href="#main-content"
