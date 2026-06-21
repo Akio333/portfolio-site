@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import StarryBackground from '../components/StarryBackground.astro';
 import CustomPointer from '../components/CustomPointer.astro';
+import { ClientRouter } from 'astro:transitions';
 
 interface Props {
   title: string;
@@ -36,6 +37,7 @@ const navItems = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <ClientRouter />
 
     <!-- SEO Meta Tags -->
     <title>{title}</title>
@@ -239,48 +241,56 @@ const navItems = [
     </footer>
 
     <script>
-      // Navigation shrink micro-interaction
-      const nav = document.getElementById('main-nav');
-      if (nav) {
-        window.addEventListener('scroll', () => {
-          if (window.scrollY > 50) {
-            nav.querySelector('.flex')?.classList.add('py-2');
-            nav.querySelector('.flex')?.classList.remove('py-4');
-          } else {
-            nav.querySelector('.flex')?.classList.add('py-4');
-            nav.querySelector('.flex')?.classList.remove('py-2');
-          }
-        });
-      }
+      let scrollHandler;
 
-      // Mobile Menu Toggle logic
-      const toggleBtn = document.getElementById('menu-toggle');
-      const mobileMenu = document.getElementById('mobile-menu');
-      const hamburgerIcon = document.getElementById('hamburger-icon');
-      const closeIcon = document.getElementById('close-icon');
+      document.addEventListener('astro:page-load', () => {
+        // Navigation shrink micro-interaction
+        const nav = document.getElementById('main-nav');
+        if (nav) {
+          if (scrollHandler) window.removeEventListener('scroll', scrollHandler);
+          scrollHandler = () => {
+            if (window.scrollY > 50) {
+              nav.querySelector('.flex')?.classList.add('py-2');
+              nav.querySelector('.flex')?.classList.remove('py-4');
+            } else {
+              nav.querySelector('.flex')?.classList.add('py-4');
+              nav.querySelector('.flex')?.classList.remove('py-2');
+            }
+          };
+          window.addEventListener('scroll', scrollHandler);
+        }
 
-      if (toggleBtn && mobileMenu && hamburgerIcon && closeIcon) {
-        toggleBtn.addEventListener('click', () => {
-          const isOpen = mobileMenu.classList.contains('opacity-100');
-          if (isOpen) {
-            // Close menu
-            mobileMenu.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
-            mobileMenu.classList.add('opacity-0', '-translate-y-2', 'pointer-events-none');
-            hamburgerIcon.classList.remove('hidden');
-            hamburgerIcon.classList.add('block');
-            closeIcon.classList.remove('block');
-            closeIcon.classList.add('hidden');
-          } else {
-            // Open menu
-            mobileMenu.classList.remove('opacity-0', '-translate-y-2', 'pointer-events-none');
-            mobileMenu.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
-            hamburgerIcon.classList.remove('block');
-            hamburgerIcon.classList.add('hidden');
-            closeIcon.classList.remove('hidden');
-            closeIcon.classList.add('block');
-          }
-        });
-      }
+        // Mobile Menu Toggle logic
+        const toggleBtn = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+        const closeIcon = document.getElementById('close-icon');
+
+        if (toggleBtn && mobileMenu && hamburgerIcon && closeIcon) {
+          // Remove old listeners by cloning the button if needed, 
+          // or just assume astro replaces the button DOM entirely so old listeners are garbage collected.
+          toggleBtn.addEventListener('click', () => {
+            const isOpen = mobileMenu.classList.contains('opacity-100');
+            if (isOpen) {
+              // Close menu
+              mobileMenu.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+              mobileMenu.classList.add('opacity-0', '-translate-y-2', 'pointer-events-none');
+              hamburgerIcon.classList.remove('hidden');
+              hamburgerIcon.classList.add('block');
+              closeIcon.classList.remove('block');
+              closeIcon.classList.add('hidden');
+            } else {
+              // Open menu
+              mobileMenu.classList.remove('opacity-0', '-translate-y-2', 'pointer-events-none');
+              mobileMenu.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+              hamburgerIcon.classList.remove('block');
+              hamburgerIcon.classList.add('hidden');
+              closeIcon.classList.remove('hidden');
+              closeIcon.classList.add('block');
+            }
+          });
+        }
+      });
     </script>
   </body>
 </html>
