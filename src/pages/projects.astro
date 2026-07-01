@@ -93,8 +93,9 @@ const description =
                 ))}
               </div>
               <a
-                class="inline-flex items-center gap-2 text-primary font-display font-bold text-xs tracking-wider uppercase hover:gap-3 transition-all cursor-pointer"
+                class="ext-marketplace-link inline-flex items-center gap-2 text-primary font-display font-bold text-xs tracking-wider uppercase hover:gap-3 transition-all cursor-pointer"
                 href={ext.data.marketplaceUrl || '#'}
+                data-ext-title={ext.data.title}
               >
                 Marketplace{' '}
                 <span class="material-symbols-outlined text-sm">
@@ -296,6 +297,22 @@ const description =
       }
     </div>
   </section>
+
+  <script>
+    function setupProjectsPageEvents() {
+      document.querySelectorAll('.ext-marketplace-link').forEach((el) => {
+        el.removeEventListener('click', handleExtMarketplaceClick);
+        el.addEventListener('click', handleExtMarketplaceClick);
+      });
+    }
+
+    function handleExtMarketplaceClick(e) {
+      const title = e.currentTarget.dataset.extTitle;
+      window.posthog?.capture('extension_marketplace_clicked', { extension_title: title, page: 'projects' });
+    }
+
+    document.addEventListener('astro:page-load', setupProjectsPageEvents);
+  </script>
 
   <!-- Technical Stack / Skill Badges -->
   <section class="max-w-[1200px] mx-auto px-6 py-12 mb-20 md:mb-32">
