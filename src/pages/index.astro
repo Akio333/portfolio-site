@@ -33,15 +33,17 @@ const description = "Building robust, scalable digital experiences for financial
       
       <!-- Call to Actions -->
       <div class="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-        <a 
-          href="/projects" 
+        <a
+          href="/projects"
+          id="hero-cta-projects"
           class="px-8 py-4 bg-primary text-on-primary font-bold rounded-lg hover:scale-105 transition-transform flex items-center justify-center gap-2 shadow-[0_0_25px_rgba(221,183,255,0.3)] border border-primary/25 cursor-pointer"
         >
-          View Projects 
+          View Projects
           <span class="material-symbols-outlined text-sm">arrow_forward</span>
         </a>
-        <a 
-          href="#about" 
+        <a
+          href="#about"
+          id="hero-cta-expertise"
           class="px-8 py-4 glass-surface text-on-surface font-bold rounded-lg hover:bg-white/5 transition-colors flex items-center justify-center gap-2 cursor-pointer"
         >
           Expertise
@@ -218,11 +220,12 @@ const description = "Building robust, scalable digital experiences for financial
             </div>
             
             {ext.data.marketplaceUrl && (
-              <a 
-                href={ext.data.marketplaceUrl} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                class="inline-flex items-center gap-2 text-primary font-display font-bold text-xs tracking-wider uppercase hover:gap-3 transition-all cursor-pointer"
+              <a
+                href={ext.data.marketplaceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-ext-title={ext.data.title}
+                class="ext-marketplace-link inline-flex items-center gap-2 text-primary font-display font-bold text-xs tracking-wider uppercase hover:gap-3 transition-all cursor-pointer"
               >
                 Marketplace <span class="material-symbols-outlined text-sm">open_in_new</span>
               </a>
@@ -254,4 +257,36 @@ const description = "Building robust, scalable digital experiences for financial
       </a>
     </div>
   </section> -->
+
+<script>
+  function setupIndexPageEvents() {
+    const heroCtaProjects = document.getElementById('hero-cta-projects');
+    const heroCtaExpertise = document.getElementById('hero-cta-expertise');
+
+    heroCtaProjects?.removeEventListener('click', handleHeroCtaProjects);
+    heroCtaExpertise?.removeEventListener('click', handleHeroCtaExpertise);
+    heroCtaProjects?.addEventListener('click', handleHeroCtaProjects);
+    heroCtaExpertise?.addEventListener('click', handleHeroCtaExpertise);
+
+    document.querySelectorAll('.ext-marketplace-link').forEach((el) => {
+      el.removeEventListener('click', handleExtMarketplaceClick);
+      el.addEventListener('click', handleExtMarketplaceClick);
+    });
+  }
+
+  function handleHeroCtaProjects() {
+    window.posthog?.capture('hero_cta_clicked', { cta_label: 'View Projects' });
+  }
+
+  function handleHeroCtaExpertise() {
+    window.posthog?.capture('hero_secondary_cta_clicked', { cta_label: 'Expertise' });
+  }
+
+  function handleExtMarketplaceClick(e) {
+    const title = e.currentTarget.dataset.extTitle;
+    window.posthog?.capture('extension_marketplace_clicked', { extension_title: title, page: 'home' });
+  }
+
+  document.addEventListener('astro:page-load', setupIndexPageEvents);
+</script>
 </Layout>

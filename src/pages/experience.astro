@@ -185,6 +185,12 @@ const description = "Architecting enterprise-grade digital experiences through d
     </aside>
   </div>
 
+  <script>
+    document.addEventListener('astro:page-load', () => {
+      window.posthog?.capture('experience_section_viewed');
+    });
+  </script>
+
   <!-- Certification Section -->
   <!-- <section class="max-w-[1200px] mx-auto px-6 pb-24">
     <div class="glass-surface p-8 md:p-12 rounded-3xl relative overflow-hidden group border border-white/10">
