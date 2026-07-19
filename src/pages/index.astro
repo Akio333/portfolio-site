@@ -193,7 +193,12 @@ const description = "Building robust, scalable digital experiences for financial
               <div class="p-3 bg-primary/10 rounded-lg text-primary">
                 <span class="material-symbols-outlined !text-3xl">{displayIcon}</span>
               </div>
-              <span class="font-mono text-xs text-secondary px-2.5 py-1 bg-secondary/5 rounded-full border border-secondary/15">
+              <span
+                class="font-mono text-xs text-secondary px-2.5 py-1 bg-secondary/5 rounded-full border border-secondary/15"
+                data-extension-version
+                data-marketplace-id={ext.data.extensionId}
+                data-github-repo={ext.data.githubRepo}
+              >
                 {ext.data.version}
               </span>
             </div>
@@ -259,6 +264,8 @@ const description = "Building robust, scalable digital experiences for financial
   </section> -->
 
 <script>
+  import '../scripts/extensionVersions';
+
   function setupIndexPageEvents() {
     const heroCtaProjects = document.getElementById('hero-cta-projects');
     const heroCtaExpertise = document.getElementById('hero-cta-expertise');

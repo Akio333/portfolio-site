@@ -69,7 +69,12 @@ const description =
                     {ext.data.icon}
                   </span>
                 </div>
-                <span class="font-mono text-xs text-secondary px-2.5 py-1 bg-secondary/5 rounded-full border border-secondary/15">
+                <span
+                  class="font-mono text-xs text-secondary px-2.5 py-1 bg-secondary/5 rounded-full border border-secondary/15"
+                  data-extension-version
+                  data-marketplace-id={ext.data.extensionId}
+                  data-github-repo={ext.data.githubRepo}
+                >
                   {ext.data.version}
                 </span>
               </div>
@@ -299,6 +304,8 @@ const description =
   </section>
 
   <script>
+    import '../scripts/extensionVersions';
+
     function setupProjectsPageEvents() {
       document.querySelectorAll('.ext-marketplace-link').forEach((el) => {
         el.removeEventListener('click', handleExtMarketplaceClick);
