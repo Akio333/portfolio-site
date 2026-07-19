@@ -125,3 +125,9 @@ export async function refreshExtensionVersions() {
     }),
   );
 }
+
+if (typeof document !== 'undefined') {
+  document.addEventListener('astro:page-load', () => {
+    void refreshExtensionVersions();
+  });
+}

@@ -158,8 +158,8 @@ const extensionsCollection = defineCollection({
         }
 
         const githubRepo = rawData.githubUrl
-          ?.match(/github\.com\/([^/]+\/[^/]+)/)?.[1]
-          ?.replace(/\/$/, '') || '';
+          ?.match(/github\.com\/([^/?#]+\/[^/?#]+)/)?.[1]
+          ?.replace(/\.git$/, '') || '';
 
         let fetchedFromMarketplace = false;
         if (extensionId) {

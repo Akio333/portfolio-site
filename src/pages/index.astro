@@ -264,11 +264,9 @@ const description = "Building robust, scalable digital experiences for financial
   </section> -->
 
 <script>
-  import { refreshExtensionVersions } from '../scripts/extensionVersions';
+  import '../scripts/extensionVersions';
 
   function setupIndexPageEvents() {
-    void refreshExtensionVersions();
-
     const heroCtaProjects = document.getElementById('hero-cta-projects');
     const heroCtaExpertise = document.getElementById('hero-cta-expertise');
 

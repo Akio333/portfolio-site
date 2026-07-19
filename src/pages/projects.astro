@@ -304,11 +304,9 @@ const description =
   </section>
 
   <script>
-    import { refreshExtensionVersions } from '../scripts/extensionVersions';
+    import '../scripts/extensionVersions';
 
     function setupProjectsPageEvents() {
-      void refreshExtensionVersions();
-
       document.querySelectorAll('.ext-marketplace-link').forEach((el) => {
         el.removeEventListener('click', handleExtMarketplaceClick);
         el.addEventListener('click', handleExtMarketplaceClick);
