@@ -157,6 +157,10 @@ const extensionsCollection = defineCollection({
           }
         }
 
+        const githubRepo = rawData.githubUrl
+          ?.match(/github\.com\/([^/]+\/[^/]+)/)?.[1]
+          ?.replace(/\/$/, '') || '';
+
         let fetchedFromMarketplace = false;
         if (extensionId) {
           try {
@@ -174,21 +178,17 @@ const extensionsCollection = defineCollection({
           }
         }
 
-        if (!fetchedFromMarketplace && rawData.githubUrl) {
-          const repoMatch = rawData.githubUrl.match(/github\.com\/([^/]+\/[^/]+)/);
-          if (repoMatch) {
-            const repoPath = repoMatch[1];
-            try {
-              logger.info(`Fetching GitHub data for ${repoPath}...`);
-              const ghData = await fetchGithubData(repoPath);
-              if (ghData) {
-                description = ghData.description || description;
-                version = ghData.version || version;
-                logger.info(`Successfully loaded data for ${repoPath} from GitHub`);
-              }
-            } catch (err) {
-              logger.error(`Error fetching GitHub data for ${repoPath}: ${err}`);
+        if (!fetchedFromMarketplace && githubRepo) {
+          try {
+            logger.info(`Fetching GitHub data for ${githubRepo}...`);
+            const ghData = await fetchGithubData(githubRepo);
+            if (ghData) {
+              description = ghData.description || description;
+              version = ghData.version || version;
+              logger.info(`Successfully loaded data for ${githubRepo} from GitHub`);
             }
+          } catch (err) {
+            logger.error(`Error fetching GitHub data for ${githubRepo}: ${err}`);
           }
         }
 
@@ -218,7 +218,9 @@ const extensionsCollection = defineCollection({
             ...rawData,
             description,
             version,
-            installs
+            installs,
+            extensionId,
+            githubRepo,
           }
         });
       }
@@ -233,6 +235,8 @@ const extensionsCollection = defineCollection({
     marketplaceUrl: z.string().url().optional(),
     githubUrl: z.string().url().optional(),
     icon: z.string(),
+    extensionId: z.string(),
+    githubRepo: z.string(),
   }),
 });
 
