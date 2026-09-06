@@ -1,0 +1,96 @@
+---
+import { Image } from "astro:assets";
+import photo from "../../public/images/jpmc-skyscraper.webp";
+import { getCollection } from "astro:content";
+const { detailed = false } = Astro.props;
+const projects = await getCollection("projects");
+const order = ["oona", "jpmc", "vanguard"];
+projects.sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id));
+const summaries: Record<string, string> = {
+  oona: "AEM architecture, a React resource center, and a simpler publishing workflow for insurance teams.",
+  jpmc: "A shared frontend foundation for Chase Cards and Trips, built to serve eight or more tenants.",
+  vanguard:
+    "Investment data, publishing workflows, and reusable components for institutional investors.",
+};
+---
+
+<div class="project-list">
+  {
+    projects.map((project, index) => (
+      <article class="project-row" id={project.id} data-reveal>
+        <div
+          class:list={["project-art", `art-${project.id}`]}
+          aria-hidden="true"
+        >
+          {project.id === "oona" && (
+            <>
+              <span class="oona-letter">o</span>
+              <span class="art-word">oona</span>
+            </>
+          )}
+          {project.id === "jpmc" && (
+            <>
+              <Image
+                src={photo}
+                widths={[320, 480, 640, 960]}
+                sizes="(max-width: 767px) 90vw, 460px"
+                quality={80}
+                alt=""
+                width={640}
+                loading="lazy"
+              />
+              <span class="art-word">Chase.</span>
+            </>
+          )}
+          {project.id === "vanguard" && (
+            <>
+              <div class="sails">
+                <i />
+                <i />
+                <i />
+              </div>
+              <span class="art-word">Vanguard</span>
+            </>
+          )}
+        </div>
+        <div class="project-info">
+          <div class="project-meta">
+            <>
+              <span>{project.data.company}</span>
+              <span>{project.data.period}</span>
+            </>
+          </div>
+          <>
+            <h3>{project.data.title}</h3>
+            <p>{summaries[project.id] || project.data.description}</p>
+          </>
+          <div class="tags">
+            {project.data.tags.slice(0, 3).map((tag) => (
+              <span>{tag}</span>
+            ))}
+          </div>
+          {detailed ? (
+            <details>
+              <summary>
+                Inside the project <span aria-hidden="true">+</span>
+              </summary>
+              <div class="project-details">
+                <p>{project.data.description}</p>
+                <p class="role">{project.data.role}</p>
+                <ul>
+                  {project.data.highlights?.map((highlight) => (
+                    <li>{highlight}</li>
+                  ))}
+                </ul>
+              </div>
+            </details>
+          ) : (
+            <a class="text-link" href={`/projects#${project.id}`}>
+              Explore project <span aria-hidden="true">↗</span>
+            </a>
+          )}
+        </div>
+      </article>
+    ))
+  }
+</div>
