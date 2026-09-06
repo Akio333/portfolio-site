@@ -1,326 +1,265 @@
 ---
-import '../styles/global.css';
-import StarryBackground from '../components/StarryBackground.astro';
-import CustomPointer from '../components/CustomPointer.astro';
-import PostHog from '../components/posthog.astro';
-import { ClientRouter } from 'astro:transitions';
-
+import "../styles/global.css";
+import PostHog from "../components/posthog.astro";
+import { ClientRouter } from "astro:transitions";
 interface Props {
   title: string;
   description: string;
   image?: string;
   canonicalUrl?: string;
 }
-
 const {
   title,
   description,
-  image = '/og-image.png',
-  canonicalUrl = Astro.url.href
+  image = "/images/developer-portrait.webp",
+  canonicalUrl = Astro.url.href,
 } = Astro.props;
-
-// Determine current active path for navigation highlight
-const pathname = Astro.url.pathname;
-const currentPath = pathname.replace(/\/$/, '') || '/';
-
+const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
 const navItems = [
-  { name: 'Home', href: '/' },
-  { name: 'Projects', href: '/projects' },
-  { name: 'Experience', href: '/experience' },
-  { name: 'Contact', href: '/contact' }
+  { name: "Home", href: "/" },
+  { name: "Work", href: "/projects" },
+  { name: "Experience", href: "/experience" },
+  { name: "Contact", href: "/contact" },
 ];
 ---
 
 <!doctype html>
-<html lang="en" class="dark scroll-smooth">
+<html lang="en">
   <head>
+    <ClientRouter /><PostHog />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <ClientRouter />
-    <PostHog />
-
-    <!-- SEO Meta Tags -->
-    <title>{title}</title>
-    <meta name="description" content={description} />
+    <title>{title}</title><meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
-    <meta name="robots" content="index, follow" />
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL(image, Astro.url.origin)} />
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={canonicalUrl} />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={new URL(image, Astro.url.origin)} />
-
-    <!-- Google Material Symbols & Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-      rel="stylesheet"
+    <meta property="og:type" content="website" /><meta
+      property="og:url"
+      content={canonicalUrl}
     />
+    <meta property="og:title" content={title} /><meta
+      property="og:description"
+      content={description}
+    />
+    <meta property="og:image" content={new URL(image, Astro.url.origin)} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} /><meta
+      name="twitter:description"
+      content={description}
+    />
+    <meta name="twitter:image" content={new URL(image, Astro.url.origin)} />
+    <script is:inline data-astro-rerun>
+      try {
+        const theme = localStorage.getItem("portfolio-theme");
+        if (theme === "light" || theme === "dark")
+          document.documentElement.dataset.theme = theme;
+      } catch {}
+    </script>
   </head>
-  <body
-    class="min-h-screen flex flex-col justify-between selection:bg-primary/30 selection:text-primary relative"
-  >
-    <StarryBackground />
-    <CustomPointer />
-
-    <!-- Skip to main content for accessibility -->
-    <a
-      href="#main-content"
-      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary text-on-primary px-4 py-2 rounded-md font-semibold z-[60]"
-    >
-      Skip to main content
-    </a>
-
-    <!-- Top Navigation Bar -->
-    <nav
-      class="bg-surface/50 backdrop-blur-xl border-b border-white/10 shadow-[0_0_30px_rgba(221,183,255,0.1)] sticky top-0 z-50 transition-all duration-300"
-      id="main-nav"
-    >
-      <div
-        class="flex justify-between items-center px-6 py-4 w-full max-w-[1200px] mx-auto"
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <header class="site-header wrap">
+      <a href="/" class="wordmark" aria-label="Suyog, home"
+        >suyog<span class="brand-mark">*</span></a
       >
-        <a
-          href="/"
-          class="text-2xl font-display font-bold text-primary select-none"
-        >
-          Suyog
-        </a>
-
-        <!-- Desktop Nav Links -->
-        <div class="hidden md:flex gap-8 items-center">
-          {
-            navItems.map((item) => {
-              const isActive = currentPath === item.href;
-              return (
-                <a
-                  href={item.href}
-                  class={
-                    isActive
-                      ? 'text-primary font-bold border-b-2 border-primary pb-1 font-display text-sm transition-all duration-300'
-                      : 'text-on-surface-variant font-sans text-sm hover:text-primary transition-all duration-300 pb-1'
-                  }
-                >
-                  {item.name}
-                </a>
-              );
-            })
-          }
-        </div>
-
-        <!-- Desktop Resume Link -->
-        <a
-          href="/resume"
-          id="resume-btn-desktop"
-          class="hidden md:flex bg-primary text-on-primary px-6 py-2 rounded-full font-display text-xs font-bold active:scale-95 transition-all hover:shadow-[0_0_20px_rgba(221,183,255,0.4)] cursor-pointer items-center justify-center"
-        >
-          Resume
-        </a>
-
-        <!-- Hamburger Button (Mobile) -->
+      <nav class="desktop-nav" aria-label="Main navigation">
+        {
+          navItems.map((item) => (
+            <a
+              href={item.href}
+              aria-current={currentPath === item.href ? "page" : undefined}
+            >
+              {item.name}
+            </a>
+          ))
+        }
+      </nav>
+      <div class="nav-actions">
         <button
+          class="theme-toggle"
+          id="theme-toggle"
+          aria-label="Switch color theme"
+          title="Switch color theme">◐</button
+        ><a href="/resume" target="_blank" rel="noopener" class="resume-link"
+          >Résumé <span aria-hidden="true">↗</span></a
+        ><button
           id="menu-toggle"
-          class="md:hidden text-on-surface hover:text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 cursor-pointer flex items-center justify-center p-2 rounded-md transition-colors"
-          aria-label="Toggle navigation menu"
+          class="menu-toggle"
+          aria-expanded="false"
+          aria-controls="mobile-menu">Menu +</button
         >
-          <!-- Hamburger Icon (three lines) -->
-          <svg
-            id="hamburger-icon"
-            class="w-6 h-6 block"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.5"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-          </svg>
-          <!-- Close Icon (X) -->
-          <svg
-            id="close-icon"
-            class="w-6 h-6 hidden"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.5"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
       </div>
-
-      <!-- Mobile Navigation Dropdown -->
-      <div
+      <nav
         id="mobile-menu"
-        class="md:hidden absolute top-full left-0 w-full border-b border-white/10 bg-[#0b1326]/95 backdrop-blur-xl px-6 py-6 flex flex-col gap-4 shadow-[0_10px_30px_rgba(0,0,0,0.5)] transition-all duration-300 ease-out origin-top transform -translate-y-2 opacity-0 pointer-events-none"
+        class="mobile-nav"
+        aria-label="Mobile navigation"
+        hidden
       >
         {
-          navItems.map((item) => {
-            const isActive = currentPath === item.href;
-            return (
-              <a
-                href={item.href}
-                class={
-                  isActive
-                    ? 'text-primary font-bold font-display text-base transition-all duration-300 py-2 border-l-2 border-primary pl-3 block'
-                    : 'text-on-surface-variant font-sans text-base hover:text-primary transition-all duration-300 py-2 pl-3 block'
-                }
-              >
-                {item.name}
-              </a>
-            );
-          })
-        }
-        <a
-          href="/resume"
-          id="resume-btn-mobile"
-          class="mt-2 bg-primary text-on-primary py-3 rounded-lg font-display text-sm font-bold text-center hover:shadow-[0_0_20px_rgba(221,183,255,0.4)] transition-all flex items-center justify-center gap-2"
-        >
-          <svg
-            class="w-4 h-4"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.5"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"
-            />
-          </svg>
-          Resume
-        </a>
-      </div>
-    </nav>
-
-    <!-- Main Content -->
-    <main id="main-content" class="flex-grow w-full relative">
-      <slot />
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-surface-container-lowest border-t border-white/5">
-      <div
-        class="flex flex-col md:flex-row justify-between items-center px-6 py-12 w-full max-w-[1200px] mx-auto gap-8"
-      >
-        <div class="space-y-3 text-center md:text-left">
-          <div class="font-display text-xl text-primary font-bold">Suyog</div>
-          <p class="text-on-surface-variant font-sans text-xs max-w-xs">
-            &copy; {new Date().getFullYear()} AEM Full-Stack Developer. Built with
-            precision and a passion for clean code.
-          </p>
-        </div>
-        <div class="flex gap-8 text-xs font-display">
-          <a
-            href="https://github.com/Akio333"
-            data-social-platform="GitHub"
-            class="footer-social-link text-on-surface-variant hover:text-secondary transition-colors"
-            >GitHub</a
-          >
-          <a
-            href="https://www.linkedin.com/in/akio333/"
-            data-social-platform="LinkedIn"
-            class="footer-social-link text-on-surface-variant hover:text-secondary transition-colors"
-            >LinkedIn</a
-          >
-          <a
-            href="https://marketplace.visualstudio.com/publishers/Akio333"
-            data-social-platform="VS Code Marketplace"
-            class="footer-social-link text-on-surface-variant hover:text-secondary transition-colors"
-            >VS Code Marketplace</a
-          >
-        </div>
+          navItems.map((item) => (
+            <a
+              href={item.href}
+              aria-current={currentPath === item.href ? "page" : undefined}
+            >
+              {item.name}
+            </a>
+          ))
+        }<a href="/resume">Résumé ↗</a>
+      </nav>
+    </header>
+    <main id="main-content"><slot /></main>
+    <footer class="site-footer wrap">
+      <a href="/" class="footer-name"
+        >Suyog Mule<span class="brand-mark">*</span></a
+      ><p>© {new Date().getFullYear()} Suyog Mule</p><div>
+        <a href="https://github.com/Akio333">GitHub ↗</a><a
+          href="https://www.linkedin.com/in/akio333/">LinkedIn ↗</a
+        ><a href="mailto:smulye10@gmail.com">Email ↗</a>
       </div>
     </footer>
-
     <script>
-      function setupPostHogLayoutEvents() {
-        const desktopResume = document.getElementById('resume-btn-desktop');
-        const mobileResume = document.getElementById('resume-btn-mobile');
-
-        desktopResume?.removeEventListener('click', handleResumeClick);
-        mobileResume?.removeEventListener('click', handleResumeClick);
-        desktopResume?.addEventListener('click', handleResumeClick);
-        mobileResume?.addEventListener('click', handleResumeClick);
-
-        document.querySelectorAll('.footer-social-link').forEach((el) => {
-          el.removeEventListener('click', handleFooterSocialClick);
-          el.addEventListener('click', handleFooterSocialClick);
-        });
-      }
-
-      function handleResumeClick() {
-        window.posthog?.capture('resume_viewed');
-      }
-
-      function handleFooterSocialClick(e) {
-        const platform = e.currentTarget.dataset.socialPlatform;
-        window.posthog?.capture('footer_social_link_clicked', { platform });
-      }
-
-      document.addEventListener('astro:page-load', setupPostHogLayoutEvents);
-
-      let scrollHandler;
-
-      document.addEventListener('astro:page-load', () => {
-        // Navigation shrink micro-interaction
-        const nav = document.getElementById('main-nav');
-        if (nav) {
-          if (scrollHandler) window.removeEventListener('scroll', scrollHandler);
-          scrollHandler = () => {
-            if (window.scrollY > 50) {
-              nav.querySelector('.flex')?.classList.add('py-2');
-              nav.querySelector('.flex')?.classList.remove('py-4');
-            } else {
-              nav.querySelector('.flex')?.classList.add('py-4');
-              nav.querySelector('.flex')?.classList.remove('py-2');
+      let cleanup = () => {};
+      document.addEventListener("astro:before-swap", () => cleanup());
+      document.addEventListener("astro:page-load", () => {
+        const controller = new AbortController();
+        const { signal } = controller;
+        const resets: Array<() => void> = [];
+        document.addEventListener(
+          "click",
+          (event) => {
+            const link =
+              event.target instanceof Element
+                ? event.target.closest<HTMLAnchorElement>("a")
+                : null;
+            if (!link) return;
+            const analytics = (
+              window as Window & {
+                posthog?: {
+                  capture: (
+                    name: string,
+                    properties: Record<string, string>,
+                  ) => void;
+                };
+              }
+            ).posthog;
+            if (link.dataset.extTitle)
+              analytics?.capture("extension_marketplace_clicked", {
+                extension_title: link.dataset.extTitle,
+                page: "home",
+              });
+            if (link.getAttribute("href") === "#selected-work")
+              analytics?.capture("hero_cta_clicked", {
+                cta_label: link.textContent?.trim() || "Selected work",
+              });
+          },
+          { signal },
+        );
+        const button =
+          document.querySelector<HTMLButtonElement>("#menu-toggle");
+        const menu = document.querySelector<HTMLElement>("#mobile-menu");
+        const closeMenu = () => {
+          if (!button || !menu) return;
+          button.setAttribute("aria-expanded", "false");
+          button.textContent = "Menu +";
+          menu.hidden = true;
+        };
+        button?.addEventListener(
+          "click",
+          () => {
+            if (!menu) return;
+            const open = button.getAttribute("aria-expanded") !== "true";
+            button.setAttribute("aria-expanded", String(open));
+            button.textContent = open ? "Close −" : "Menu +";
+            menu.hidden = !open;
+          },
+          { signal },
+        );
+        document.addEventListener(
+          "keydown",
+          (e) => {
+            if (
+              e.key === "Escape" &&
+              button?.getAttribute("aria-expanded") === "true"
+            ) {
+              closeMenu();
+              button.focus();
             }
-          };
-          window.addEventListener('scroll', scrollHandler);
-        }
-
-        // Mobile Menu Toggle logic
-        const toggleBtn = document.getElementById('menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const hamburgerIcon = document.getElementById('hamburger-icon');
-        const closeIcon = document.getElementById('close-icon');
-
-        if (toggleBtn && mobileMenu && hamburgerIcon && closeIcon) {
-          // Remove old listeners by cloning the button if needed, 
-          // or just assume astro replaces the button DOM entirely so old listeners are garbage collected.
-          toggleBtn.addEventListener('click', () => {
-            const isOpen = mobileMenu.classList.contains('opacity-100');
-            if (isOpen) {
-              // Close menu
-              mobileMenu.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
-              mobileMenu.classList.add('opacity-0', '-translate-y-2', 'pointer-events-none');
-              hamburgerIcon.classList.remove('hidden');
-              hamburgerIcon.classList.add('block');
-              closeIcon.classList.remove('block');
-              closeIcon.classList.add('hidden');
-            } else {
-              // Open menu
-              mobileMenu.classList.remove('opacity-0', '-translate-y-2', 'pointer-events-none');
-              mobileMenu.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
-              hamburgerIcon.classList.remove('block');
-              hamburgerIcon.classList.add('hidden');
-              closeIcon.classList.remove('hidden');
-              closeIcon.classList.add('block');
-            }
+          },
+          { signal },
+        );
+        matchMedia("(min-width: 768px)").addEventListener(
+          "change",
+          (e) => {
+            if (e.matches) closeMenu();
+          },
+          { signal },
+        );
+        document.querySelector("#theme-toggle")?.addEventListener(
+          "click",
+          () => {
+            const dark = document.documentElement.dataset.theme
+              ? document.documentElement.dataset.theme === "dark"
+              : matchMedia("(prefers-color-scheme: dark)").matches;
+            const theme = dark ? "light" : "dark";
+            document.documentElement.dataset.theme = theme;
+            try {
+              localStorage.setItem("portfolio-theme", theme);
+            } catch {}
+          },
+          { signal },
+        );
+        const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+        const observer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries)
+              if (entry.isIntersecting) {
+                if (!reducedMotion.matches)
+                  entry.target.animate(
+                    [
+                      { opacity: 0, transform: "translateY(24px)" },
+                      { opacity: 1, transform: "translateY(0)" },
+                    ],
+                    {
+                      duration: 700,
+                      easing: "cubic-bezier(.2,.7,.2,1)",
+                      fill: "both",
+                    },
+                  );
+                observer.unobserve(entry.target);
+              }
+          },
+          { threshold: 0.12 },
+        );
+        document
+          .querySelectorAll("[data-reveal]")
+          .forEach((el) => observer.observe(el));
+        document.querySelectorAll<HTMLElement>("[data-tilt]").forEach((el) => {
+          let frame = 0;
+          el.addEventListener("pointermove", (e) => {
+            if (reducedMotion.matches || e.pointerType !== "mouse") return;
+            cancelAnimationFrame(frame);
+            frame = requestAnimationFrame(() => {
+              const rect = el.getBoundingClientRect();
+              const x = (e.clientX - rect.left) / rect.width - 0.5;
+              const y = (e.clientY - rect.top) / rect.height - 0.5;
+              el.style.setProperty("--rx", `${-y * 9}deg`);
+              el.style.setProperty("--ry", `${x * 11}deg`);
+            });
           });
-        }
+          const reset = () => {
+            cancelAnimationFrame(frame);
+            el.style.setProperty("--rx", "0deg");
+            el.style.setProperty("--ry", "0deg");
+          };
+          el.addEventListener("pointerleave", reset);
+          reducedMotion.addEventListener("change", reset, { signal });
+          resets.push(reset);
+        });
+        cleanup = () => {
+          controller.abort();
+          observer.disconnect();
+          resets.forEach((reset) => reset());
+        };
       });
     </script>
   </body>
