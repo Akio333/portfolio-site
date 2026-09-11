@@ -1,38 +1,150 @@
 ---
 import { Image } from "astro:assets";
-import photo from "../../public/images/developer-portrait.webp";
+import { getCollection } from "astro:content";
+import portrait from "../../public/images/developer-portrait-cutout.webp";
 import Layout from "../layouts/Layout.astro";
 import ProjectList from "../components/ProjectList.astro";
-import { getCollection } from "astro:content";
+
 const extensions = await getCollection("extensions");
+const extensionOrder = ["aem-tools", "bulk-installer"];
+extensions.sort((a, b) => extensionOrder.indexOf(a.id) - extensionOrder.indexOf(b.id));
+
+const metrics = [
+  { value: "5.5 years", label: "Enterprise AEM delivery" },
+  { value: "8+ tenants", label: "One shared component system" },
+  { value: "10+ components", label: "Authorable and reusable" },
+  { value: "2 public tools", label: "Built for AEM developers" },
+];
+
+const capabilities = [
+  {
+    title: "Platform architecture",
+    items: ["AEMaaCS", "AEM 6.5", "On-premise", "Sling", "JCR", "OSGi", "Java"],
+  },
+  {
+    title: "Authoring and frontend",
+    items: ["HTL", "Core Components", "Templates", "Dialogs", "React", "TypeScript"],
+  },
+  {
+    title: "Delivery and performance",
+    items: ["Dispatcher", "CloudFront", "Persisted GraphQL", "ClientLibs", "Caching"],
+  },
+  {
+    title: "Quality and automation",
+    items: ["WCAG", "Percy", "BrowserStack", "CI/CD", "Jest", "Mockito"],
+  },
+];
 ---
-<Layout title="Suyog Mule | AEM & Full-stack developer" description="Suyog Mule architects enterprise AEM platforms and builds full-stack products with React, TypeScript, and Java.">
-  <section class="hero wrap">
-    <div class="hero-copy enter">
-      <h1>AEM architect.<br /><span>Full-stack maker.</span></h1>
-      <a class="button" href="#selected-work">Explore my work <span aria-hidden="true">↗</span></a>
-    </div>
-    <div class="hero-art enter" data-tilt aria-hidden="true">
-      <img src="/images/suyog-sculpture.webp" alt="" width="1024" height="1024" fetchpriority="high" />
+
+<Layout
+  title="Suyog Mule | AEM full-stack developer"
+  description="Suyog Mule builds enterprise AEM platforms with Java, React, GraphQL, Dispatcher, and accessible component systems."
+>
+  <section class="home-hero" aria-labelledby="hero-title">
+    <div class="home-hero-inner wrap">
+      <figure class="hero-portrait enter">
+        <Image
+          src={portrait}
+          widths={[480, 720, 960]}
+          sizes="(max-width: 767px) 100vw, 46vw"
+          quality={86}
+          alt="Portrait of Suyog Mule"
+          width={960}
+          fetchpriority="high"
+        />
+      </figure>
+      <div class="home-hero-copy enter">
+        <p class="eyebrow">5.5 years in enterprise AEM</p>
+        <h1 id="hero-title">AEM full-stack developer<span class="accent">.</span></h1>
+        <p class="hero-summary">
+          I build enterprise AEM platforms with Java, React, GraphQL,
+          Dispatcher, and accessible component systems.
+        </p>
+        <a class="button" href="#selected-work">
+          View selected work <span aria-hidden="true">→</span>
+        </a>
+      </div>
     </div>
   </section>
-  <section id="selected-work" class="section wrap">
-    <div class="section-heading" data-reveal><h2>Selected work<span class="accent">.</span></h2><a class="text-link" href="/projects">All work <span aria-hidden="true">↗</span></a></div>
+
+  <section class="proof-section wrap" aria-labelledby="proof-title" data-reveal>
+    <div class="proof-intro">
+      <h2 id="proof-title">Work at enterprise scale<span class="accent">.</span></h2>
+    </div>
+    <dl class="proof-grid">
+      {metrics.map((metric) => (
+        <div class="proof-item">
+          <dt>{metric.value}</dt>
+          <dd>{metric.label}</dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+
+  <section id="selected-work" class="selected-work section wrap" aria-labelledby="work-title">
+    <div class="section-heading" data-reveal>
+      <h2 id="work-title">Selected work<span class="accent">.</span></h2>
+      <a class="text-link" href="/projects">All projects <span aria-hidden="true">→</span></a>
+    </div>
     <ProjectList />
   </section>
-  <section class="about-section wrap" data-reveal>
-    <a href="/contact" class="about-photo" aria-label="About Suyog Mule"><Image src={photo} widths={[240, 400, 640]} sizes="(max-width: 767px) 40vw, 280px" alt="Suyog Mule" width={400} loading="lazy" /></a>
-    <div class="about-statement"><h2>Good interfaces start<br />with good engineering.</h2><p>I’m Suyog. I build AEM platforms, React interfaces, and tools that make a developer’s day easier.</p><a class="text-link" href="/experience">My experience <span aria-hidden="true">↗</span></a></div>
+
+  <section class="capability-section wrap" aria-labelledby="capability-title">
+    <h2 id="capability-title" data-reveal>
+      How I work across AEM<span class="accent">.</span>
+    </h2>
+    <ol class="architecture-flow" aria-label="AEM delivery flow" data-reveal>
+      <li>Author</li>
+      <li>Publish</li>
+      <li>Dispatcher</li>
+      <li>CDN</li>
+    </ol>
+    <div class="capability-grid">
+      {capabilities.map((capability) => (
+        <article class="capability" data-reveal>
+          <h3>{capability.title}<span class="accent">.</span></h3>
+          <ul>
+            {capability.items.map((item) => <li>{item}</li>)}
+          </ul>
+        </article>
+      ))}
+    </div>
   </section>
-  <section class="tools-section wrap">
-    <div class="section-heading" data-reveal><h2>Made for developers<span class="accent">.</span></h2></div>
-    <div class="tools-list">{extensions.map((extension, i) => (
-      <article class="tool" data-reveal>
-        <span class="tool-glyph" aria-hidden="true">{i === 0 ? "{ }" : "[+]"}</span>
-        <h3><a class="ext-marketplace-link" data-ext-title={extension.data.title} href={extension.data.marketplaceUrl}>{extension.data.title}</a></h3>
-        <div class="tool-links"><a data-ext-title={extension.data.title} href={extension.data.marketplaceUrl} aria-label={`Install ${extension.data.title}`}>Install ↗</a><a href={extension.data.githubUrl} aria-label={`Source code for ${extension.data.title}`}>GitHub ↗</a></div>
-      </article>
-    ))}</div>
+
+  <section class="home-tools wrap" aria-labelledby="tools-title" data-reveal>
+    <div class="tools-intro">
+      <h2 id="tools-title">Tools for AEM developers<span aria-hidden="true">.</span></h2>
+    </div>
+    <div class="tools-list">
+      {extensions.map((extension, index) => (
+        <article class="tool">
+          <span class="tool-glyph" aria-hidden="true">{index === 0 ? "{ }" : "[+]"}</span>
+          <div class="tool-body">
+            <h3>{extension.data.title}</h3>
+            <ul class="tool-tags" aria-label={`${extension.data.title} technologies`}>
+              {extension.data.tags.map((tag) => <li>{tag}</li>)}
+            </ul>
+            <div class="tool-links">
+              <a
+                data-ext-title={extension.data.title}
+                href={extension.data.marketplaceUrl}
+                aria-label={`${extension.data.title} on VS Code Marketplace`}
+              >VS Code Marketplace <span aria-hidden="true">→</span></a>
+              <a href={extension.data.githubUrl} aria-label={`${extension.data.title} source on GitHub`}>
+                Source on GitHub <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
   </section>
-  <section class="contact-banner wrap" data-reveal><a href="mailto:smulye10@gmail.com">Let’s build<br />something good.<span aria-hidden="true">↗</span></a></section>
+
+  <section class="contact-cta wrap" aria-labelledby="contact-title" data-reveal>
+    <h2 id="contact-title">
+      Need an AEM developer who can work across the stack<span class="accent">?</span>
+    </h2>
+    <p>Tell me what you're trying to solve.</p>
+    <a class="email-link" href="mailto:smulye10@gmail.com">smulye10@gmail.com</a>
+  </section>
 </Layout>

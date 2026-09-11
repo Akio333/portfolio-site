@@ -1,7 +1,7 @@
 {
   "company": "ITC Infotech",
   "role": "Senior AEM Architect & Developer",
-  "period": "2025 — Present",
+  "period": "2025 - Present",
   "description": "Architecting Oona Insurance's on-premise AEM platform and its Dispatcher and CloudFront environments. Leading development of the React-based D2C and Kahoona products, reorganizing the AEM codebase, and moving legacy APIs to persisted AEM GraphQL queries.",
   "tags": ["AEM On-Premise", "React", "AEM GraphQL", "AWS CloudFront", "Dispatcher"],
   "order": 1,

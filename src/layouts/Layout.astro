@@ -2,19 +2,24 @@
 import "../styles/global.css";
 import PostHog from "../components/posthog.astro";
 import { ClientRouter } from "astro:transitions";
+import CircleHalf from "phosphor-astro/CircleHalf.astro";
+
 interface Props {
   title: string;
   description: string;
   image?: string;
   canonicalUrl?: string;
 }
+
 const {
   title,
   description,
   image = "/images/og-image.png",
   canonicalUrl = new URL(Astro.url.pathname, Astro.site || Astro.url.origin).href,
 } = Astro.props;
+
 const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+const posthogEnabled = Boolean(import.meta.env.PUBLIC_POSTHOG_PROJECT_TOKEN);
 const navItems = [
   { name: "Home", href: "/" },
   { name: "Work", href: "/projects" },
@@ -29,8 +34,10 @@ const navItems = [
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="dark light" />
+    <meta id="theme-color" name="theme-color" content="#f5f4ef" />
     <meta name="darkreader-lock" />
-    <script is:inline data-astro-rerun>
+    <script is:inline>
+      document.documentElement.classList.add("js");
       const systemTheme = matchMedia("(prefers-color-scheme: dark)").matches
         ? "dark"
         : "light";
@@ -44,251 +51,208 @@ const navItems = [
         document.documentElement.dataset.theme = systemTheme;
       }
     </script>
-    <ClientRouter /><PostHog />
+    <ClientRouter />
+    {posthogEnabled && <PostHog />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" sizes="32x32" href="/favicon-32.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.site || Astro.url.origin)} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Suyog Mule, AEM architect and full-stack maker, with a sculptural orange S monogram" />
-    <meta name="twitter:image:alt" content="Suyog Mule, AEM architect and full-stack maker" />
-    <noscript><style>@media (max-width: 767px) { .site-header { height: auto; min-height: 76px; padding-block: 16px; } .desktop-nav { display: flex; grid-row: 2; grid-column: 1 / -1; flex-wrap: wrap; } .menu-toggle, .theme-toggle { display: none; } }</style></noscript>
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title><meta name="description" content={description} />
-    <link rel="canonical" href={canonicalUrl} />
-    <meta property="og:type" content="website" /><meta
-      property="og:url"
-      content={canonicalUrl}
-    />
-    <meta property="og:title" content={title} /><meta
-      property="og:description"
-      content={description}
-    />
-    <meta property="og:image" content={new URL(image, Astro.site || Astro.url.origin)} />
+    <meta property="og:image:alt" content="Suyog Mule, AEM full-stack developer" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} /><meta
-      name="twitter:description"
-      content={description}
-    />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={new URL(image, Astro.site || Astro.url.origin)} />
+    <meta name="twitter:image:alt" content="Suyog Mule, AEM full-stack developer" />
+    <noscript>
+      <style>
+        @media (max-width: 767px) {
+          .site-header { height: auto; min-height: 4.75rem; padding-block: 1rem; }
+          .desktop-nav { display: flex; grid-row: 2; grid-column: 1 / -1; flex-wrap: wrap; }
+          .menu-toggle, .theme-toggle { display: none; }
+        }
+      </style>
+    </noscript>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
     <header class="site-header wrap">
-      <a href="/" class="wordmark" aria-label="Suyog, home"
-        ><img src="/favicon.svg" width="36" height="36" alt="" />Suyog Mule</a
-      >
+      <a href="/" class="wordmark" aria-label="Suyog Mule, home">
+        <img src="/favicon.svg" width="32" height="32" alt="" />
+        <span>Suyog Mule</span>
+      </a>
       <nav class="desktop-nav" aria-label="Main navigation">
         {
           navItems.map((item) => (
-            <a
-              href={item.href}
-              aria-current={currentPath === item.href ? "page" : undefined}
-            >
+            <a href={item.href} aria-current={currentPath === item.href ? "page" : undefined}>
               {item.name}
             </a>
           ))
         }
       </nav>
       <div class="nav-actions">
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Use dark theme">
+          <CircleHalf aria-hidden="true" focusable="false" />
+        </button>
+        <a href="/resume" class="resume-link" aria-current={currentPath === "/resume" ? "page" : undefined}>Résumé</a>
         <button
-          class="theme-toggle"
-          id="theme-toggle"
-          aria-label="Switch color theme"
-          title="Switch color theme">◐</button
-        ><a href="/resume" target="_blank" rel="noopener" class="resume-link"
-          >Résumé ↗</a
-        ><button
           id="menu-toggle"
           class="menu-toggle"
+          type="button"
           aria-expanded="false"
-          aria-controls="mobile-menu">Menu +</button
-        >
+          aria-controls="mobile-menu"
+        >Menu +</button>
       </div>
-      <nav
-        id="mobile-menu"
-        class="mobile-nav"
-        aria-label="Mobile navigation"
-        hidden
-      >
+      <nav id="mobile-menu" class="mobile-nav" aria-label="Mobile navigation" hidden>
         {
           navItems.map((item) => (
-            <a
-              href={item.href}
-              aria-current={currentPath === item.href ? "page" : undefined}
-            >
+            <a href={item.href} aria-current={currentPath === item.href ? "page" : undefined}>
               {item.name}
             </a>
           ))
-        }<a href="/resume">Résumé ↗</a>
+        }
+        <a href="/resume" aria-current={currentPath === "/resume" ? "page" : undefined}>Résumé</a>
       </nav>
     </header>
+
     <main id="main-content"><slot /></main>
+
     <footer class="site-footer wrap">
-      <a href="/" class="footer-name"
-        ><img src="/favicon.svg" width="36" height="36" alt="" />Suyog Mule</a
-      ><div>
-        <a href="https://github.com/Akio333">GitHub ↗</a><a
-          href="https://www.linkedin.com/in/akio333/">LinkedIn ↗</a
-        ><a href="mailto:smulye10@gmail.com">Email ↗</a>
-      </div>
+      <a href="/" class="footer-name">Suyog Mule</a>
+      <nav aria-label="Social links">
+        <a href="https://github.com/Akio333">GitHub</a>
+        <a href="https://www.linkedin.com/in/akio333/">LinkedIn</a>
+        <a href="https://marketplace.visualstudio.com/publishers/Akio333">VS Code Marketplace</a>
+      </nav>
       <small>© {new Date().getFullYear()}</small>
     </footer>
+
     <script>
       let cleanup = () => {};
-      document.addEventListener("astro:before-swap", () => cleanup());
+
+      document.addEventListener("astro:before-swap", (event) => {
+        cleanup();
+        const swapEvent = event as Event & { newDocument?: Document };
+        const theme = document.documentElement.dataset.theme;
+        if (!swapEvent.newDocument || !theme) return;
+        swapEvent.newDocument.documentElement.dataset.theme = theme;
+        swapEvent.newDocument.documentElement.classList.add("js");
+      });
       document.addEventListener("astro:page-load", () => {
         const controller = new AbortController();
         const { signal } = controller;
-        const resets: Array<() => void> = [];
-        document.addEventListener(
-          "click",
-          (event) => {
-            const link =
-              event.target instanceof Element
-                ? event.target.closest<HTMLAnchorElement>("a")
-                : null;
-            if (!link) return;
-            const analytics = (
-              window as Window & {
-                posthog?: {
-                  capture: (
-                    name: string,
-                    properties: Record<string, string>,
-                  ) => void;
-                };
-              }
-            ).posthog;
-            if (link.dataset.extTitle)
-              analytics?.capture("extension_marketplace_clicked", {
-                extension_title: link.dataset.extTitle,
-                page: "home",
-              });
-            if (link.getAttribute("href") === "#selected-work")
-              analytics?.capture("hero_cta_clicked", {
-                cta_label: link.textContent?.trim() || "Selected work",
-              });
-          },
-          { signal },
-        );
-        const button =
-          document.querySelector<HTMLButtonElement>("#menu-toggle");
-        const menu = document.querySelector<HTMLElement>("#mobile-menu");
+
+        const menuButton = document.querySelector<HTMLButtonElement>("#menu-toggle");
+        const mobileMenu = document.querySelector<HTMLElement>("#mobile-menu");
+        const themeButton = document.querySelector<HTMLButtonElement>("#theme-toggle");
+
         const closeMenu = () => {
-          if (!button || !menu) return;
-          button.setAttribute("aria-expanded", "false");
-          button.textContent = "Menu +";
-          menu.hidden = true;
+          if (!menuButton || !mobileMenu) return;
+          menuButton.setAttribute("aria-expanded", "false");
+          menuButton.textContent = "Menu +";
+          mobileMenu.hidden = true;
         };
-        button?.addEventListener(
-          "click",
-          () => {
-            if (!menu) return;
-            const open = button.getAttribute("aria-expanded") !== "true";
-            button.setAttribute("aria-expanded", String(open));
-            button.textContent = open ? "Close −" : "Menu +";
-            menu.hidden = !open;
-          },
-          { signal },
-        );
-        document.addEventListener(
-          "keydown",
-          (e) => {
-            if (
-              e.key === "Escape" &&
-              button?.getAttribute("aria-expanded") === "true"
-            ) {
-              closeMenu();
-              button.focus();
-            }
-          },
-          { signal },
-        );
-        matchMedia("(min-width: 768px)").addEventListener(
-          "change",
-          (e) => {
-            if (e.matches) closeMenu();
-          },
-          { signal },
-        );
-        document.querySelector("#theme-toggle")?.addEventListener(
-          "click",
-          () => {
-            const dark = document.documentElement.dataset.theme !== "light";
-            const theme = dark ? "light" : "dark";
-            document.documentElement.dataset.theme = theme;
-            try {
-              localStorage.setItem("portfolio-theme", theme);
-            } catch {}
-          },
-          { signal },
-        );
-        const systemTheme = matchMedia("(prefers-color-scheme: dark)");
-        systemTheme.addEventListener(
-          "change",
-          (event) => {
-            let savedTheme: string | null = null;
-            try {
-              savedTheme = localStorage.getItem("portfolio-theme");
-            } catch {}
-            if (savedTheme !== "light" && savedTheme !== "dark")
-              document.documentElement.dataset.theme = event.matches
-                ? "dark"
-                : "light";
-          },
-          { signal },
-        );
-        const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
-        const observer = new IntersectionObserver(
-          (entries) => {
-            for (const entry of entries)
-              if (entry.isIntersecting) {
-                if (!reducedMotion.matches)
-                  entry.target.animate(
-                    [
-                      { opacity: 0, transform: "translateY(24px)" },
-                      { opacity: 1, transform: "translateY(0)" },
-                    ],
-                    {
-                      duration: 700,
-                      easing: "cubic-bezier(.2,.7,.2,1)",
-                      fill: "both",
-                    },
-                  );
-                observer.unobserve(entry.target);
-              }
-          },
-          { threshold: 0.12 },
-        );
-        document
-          .querySelectorAll("[data-reveal]")
-          .forEach((el) => observer.observe(el));
-        document.querySelectorAll<HTMLElement>("[data-tilt]").forEach((el) => {
-          let frame = 0;
-          el.addEventListener("pointermove", (e) => {
-            if (reducedMotion.matches || e.pointerType !== "mouse") return;
-            cancelAnimationFrame(frame);
-            frame = requestAnimationFrame(() => {
-              const rect = el.getBoundingClientRect();
-              const x = (e.clientX - rect.left) / rect.width - 0.5;
-              const y = (e.clientY - rect.top) / rect.height - 0.5;
-              el.style.setProperty("--rx", `${-y * 9}deg`);
-              el.style.setProperty("--ry", `${x * 11}deg`);
+
+        menuButton?.addEventListener("click", () => {
+          if (!mobileMenu) return;
+          const open = menuButton.getAttribute("aria-expanded") !== "true";
+          menuButton.setAttribute("aria-expanded", String(open));
+          menuButton.textContent = open ? "Close -" : "Menu +";
+          mobileMenu.hidden = !open;
+        }, { signal });
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape" && menuButton?.getAttribute("aria-expanded") === "true") {
+            closeMenu();
+            menuButton.focus();
+          }
+        }, { signal });
+
+        const desktopQuery = matchMedia("(min-width: 768px)");
+        desktopQuery.addEventListener("change", (event) => {
+          if (event.matches) closeMenu();
+        }, { signal });
+
+        const updateThemeButton = () => {
+          if (!themeButton) return;
+          const dark = document.documentElement.dataset.theme === "dark";
+          themeButton.setAttribute("aria-label", dark ? "Use light theme" : "Use dark theme");
+          themeButton.title = dark ? "Use light theme" : "Use dark theme";
+          document.querySelector<HTMLMetaElement>("#theme-color")?.setAttribute(
+            "content",
+            dark ? "#1a1b18" : "#f5f4ef",
+          );
+        };
+
+        updateThemeButton();
+        themeButton?.addEventListener("click", () => {
+          const theme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+          document.documentElement.dataset.theme = theme;
+          try {
+            localStorage.setItem("portfolio-theme", theme);
+          } catch {}
+          updateThemeButton();
+        }, { signal });
+
+        const systemThemeQuery = matchMedia("(prefers-color-scheme: dark)");
+        systemThemeQuery.addEventListener("change", (event) => {
+          let savedTheme: string | null = null;
+          try {
+            savedTheme = localStorage.getItem("portfolio-theme");
+          } catch {}
+          if (savedTheme !== "light" && savedTheme !== "dark") {
+            document.documentElement.dataset.theme = event.matches ? "dark" : "light";
+            updateThemeButton();
+          }
+        }, { signal });
+
+        document.addEventListener("click", (event) => {
+          const link = event.target instanceof Element
+            ? event.target.closest<HTMLAnchorElement>("a")
+            : null;
+          if (!link) return;
+          const analytics = (window as Window & {
+            posthog?: { capture: (name: string, properties: Record<string, string>) => void };
+          }).posthog;
+          if (link.dataset.extTitle) {
+            analytics?.capture("extension_marketplace_clicked", {
+              extension_title: link.dataset.extTitle,
+              page: window.location.pathname,
             });
-          }, { signal });
-          const reset = () => {
-            cancelAnimationFrame(frame);
-            el.style.setProperty("--rx", "0deg");
-            el.style.setProperty("--ry", "0deg");
-          };
-          el.addEventListener("pointerleave", reset, { signal });
-          reducedMotion.addEventListener("change", reset, { signal });
-          resets.push(reset);
+          }
+          if (link.getAttribute("href") === "#selected-work") {
+            analytics?.capture("hero_cta_clicked", {
+              cta_label: link.textContent?.trim() || "View selected work",
+            });
+          }
+        }, { signal });
+
+        const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)");
+        const observer = new IntersectionObserver((entries) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        }, { threshold: 0.12 });
+
+        document.querySelectorAll("[data-reveal]").forEach((element) => {
+          if (reduceMotion.matches) element.classList.add("is-visible");
+          else observer.observe(element);
         });
+
         cleanup = () => {
           controller.abort();
           observer.disconnect();
-          resets.forEach((reset) => reset());
         };
       });
     </script>

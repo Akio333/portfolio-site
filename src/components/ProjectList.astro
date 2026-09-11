@@ -1,29 +1,91 @@
 ---
 import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
 import chase from "../../public/images/jpmc-skyscraper.webp";
 import workspace from "../../public/images/developer-workspace.webp";
-import { getCollection } from "astro:content";
+
 const { detailed = false } = Astro.props;
 const projects = await getCollection("projects");
 const order = ["oona", "jpmc", "vanguard"];
 projects.sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id));
-const names: Record<string, string> = { oona: "Oona Insurance", jpmc: "Chase Cards & Trips", vanguard: "Vanguard" };
+
+const names: Record<string, string> = {
+  oona: "Oona Insurance",
+  jpmc: "Chase Cards & Trips",
+  vanguard: "Vanguard",
+};
+
+const summaries: Record<string, string> = {
+  oona: "React resource center, persisted GraphQL, Dispatcher, and CloudFront.",
+  jpmc: "Shared component system for 8+ tenants.",
+  vanguard: "AEM components, publishing workflows, and visual regression testing.",
+};
+
+const Heading = detailed ? "h2" : "h3";
 ---
+
 <div class:list={["project-list", { "project-list-detailed": detailed }]}>
-  {projects.map((project) => (
+  {projects.map((project, index) => (
     <article class:list={["project", `project-${project.id}`]} id={project.id} data-reveal>
-      {(project.id !== "vanguard" || detailed) && <a class:list={["project-art", `art-${project.id}`]} href={detailed ? `#${project.id}-details` : `/projects#${project.id}`} aria-label={`Explore ${names[project.id]}`}>
-        {project.id === "oona" && <Image src={workspace} widths={[400, 640, 960]} sizes="(max-width: 767px) 90vw, 60vw" quality={85} alt="Developer workspace representing the Oona platform engineering project" width={960} loading="lazy" />}
-        {project.id === "jpmc" && <Image src={chase} widths={[400, 640, 960]} sizes="(max-width: 767px) 90vw, 50vw" quality={85} alt="Architectural view of a glass skyscraper representing Chase" width={960} loading="lazy" />}
-        {project.id === "vanguard" && <span class="vanguard-word" aria-hidden="true">Vanguard</span>}
-      </a>}
+      <a
+        class:list={["project-art", `art-${project.id}`]}
+        href={detailed ? `#${project.id}-details` : `/projects#${project.id}`}
+        aria-label={`${detailed ? "Jump to details for" : "View"} ${names[project.id]}`}
+      >
+        {project.id === "oona" && (
+          <Image
+            src={workspace}
+            widths={[420, 720, 1080]}
+            sizes={detailed ? "(max-width: 767px) 100vw, 48vw" : "(max-width: 767px) 100vw, 58vw"}
+            quality={84}
+            alt="Code editor and workstation representing the Oona platform project"
+            width={1080}
+            loading={detailed && index === 0 ? "eager" : "lazy"}
+            fetchpriority={detailed && index === 0 ? "high" : "auto"}
+          />
+        )}
+        {project.id === "jpmc" && (
+          <Image
+            src={chase}
+            widths={[420, 720, 1080]}
+            sizes="(max-width: 767px) 100vw, 40vw"
+            quality={84}
+            alt="Glass office architecture representing the Chase platform project"
+            width={1080}
+            loading="lazy"
+          />
+        )}
+        {project.id === "vanguard" && (
+          <span class="vanguard-art" aria-hidden="true">Vanguard</span>
+        )}
+      </a>
+
       <div class="project-info">
-        <h3><a href={detailed ? `#${project.id}-details` : `/projects#${project.id}`}>{names[project.id]}<span aria-hidden="true">↗</span></a></h3>
-        {detailed && <div class="project-description" id={`${project.id}-details`}>
-          <p class="project-role">{project.data.role} <span>{project.data.period}</span></p>
-          <p>{project.data.description}</p>
-          <details><summary>Project highlights <span aria-hidden="true">+</span></summary><ul>{project.data.highlights?.map(highlight => <li>{highlight}</li>)}</ul><div class="tags">{project.data.tags.map(tag => <span>{tag}</span>)}</div></details>
-        </div>}
+        <Heading>
+          <a href={detailed ? `#${project.id}-details` : `/projects#${project.id}`}>
+            {names[project.id]}
+            <span aria-hidden="true">→</span>
+          </a>
+        </Heading>
+        {!detailed && (
+          <>
+            <p class="project-role">{project.data.role}</p>
+            <p class="project-summary">{summaries[project.id]}</p>
+          </>
+        )}
+        {detailed && (
+          <div class="project-description" id={`${project.id}-details`}>
+            <p class="project-role">
+              {project.data.role}<span>{project.data.period}</span>
+            </p>
+            <p>{project.data.description}</p>
+            <details>
+              <summary>Project highlights <span aria-hidden="true">+</span></summary>
+              <ul>{project.data.highlights?.map((highlight) => <li>{highlight}</li>)}</ul>
+              <div class="tags">{project.data.tags.map((tag) => <span>{tag}</span>)}</div>
+            </details>
+          </div>
+        )}
       </div>
     </article>
   ))}

@@ -21,7 +21,7 @@ const experience = (await getCollection("experience")).sort(
             <div>
               <>
                 <p class="experience-period">
-                  {item.data.period.replace("—", "-")}
+                  {item.data.period}
                 </p>
                 <h2>{item.data.company}</h2>
               </>

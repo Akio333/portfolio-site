@@ -1,28 +1,36 @@
-# Suyog’s portfolio
+# Suyog Mule portfolio
 
-A spacious developer portfolio built around a sculptural orange S, generous sans-serif typography, and image-led project previews. Native Astro and CSS retain the existing five routes and content collections.
+An evidence-first portfolio for an AEM full-stack developer. The interface uses Swiss editorial composition, direct technical language, and real project imagery to help recruiters and engineering leads understand the work quickly.
 
-## Direction
+## Design system
 
-- Design variance 7, motion intensity 5, visual density 3. The brief calls for an individual identity and less supporting copy.
-- Self-hosted Geist for all typography. JetBrains Mono appears only in the developer tool symbols.
-- Neutral off-white or charcoal backgrounds, with vermilion as the single identity accent. Text and controls use accessible theme-specific colors. The system theme is respected, with a persistent manual switch.
-- No section numbers, little subtitles, decorative status text, or repeated explanatory captions. Project descriptions and career details remain on their relevant pages.
-- Images have 16px corners. Buttons and compact controls are round. Small mobile tool symbols use 12px corners.
-- The hero S responds to pointer movement. Entrance motion establishes hierarchy, section reveals introduce content, and hover transitions provide feedback. Reduced-motion preferences disable movement. Content stays visible without JavaScript; mobile navigation has a no-script fallback.
-- The homepage uses two staggered project images and one compact project link. Work details use expandable native disclosure controls.
-- Project photos are representative artwork, not screenshots of confidential client products.
+- Design variance 5, motion intensity 3, visual density 4.
+- Geist is the primary typeface. JetBrains Mono is limited to architecture terms, technology labels, and tool glyphs.
+- A warm neutral background, charcoal text, and vermilion accent form the complete palette. Dark mode uses the same hierarchy and accent.
+- Images and controls use a 12px radius. Sections use borders and whitespace instead of elevated cards.
+- The homepage follows one sequence: introduction, proof, selected work, AEM capability map, developer tools, and contact.
+- Motion is limited to entrance, section reveal, hover, focus, and pressed-state feedback. Reduced-motion preferences disable it.
+- The transparent portrait cutout is the only hero image. Project artwork represents engineering work without exposing confidential client interfaces.
+
+## Accessibility and performance
+
+- Semantic heading order, labeled navigation, a skip link, visible keyboard focus, and Escape support for the mobile menu are required.
+- Text, muted copy, accent text, and buttons meet WCAG AA contrast in both themes.
+- Astro generates responsive WebP variants. The hero portrait is prioritized and below-the-fold project images are lazy-loaded.
+- PostHog loads only when a project token is configured.
+- No custom pointer, canvas background, parallax, 3D effect, or animation library is used.
 
 ## References
 
-[Lusion’s projects](https://lusion.co/projects/) informed the emphasis on artwork and generous spacing. [A1’s typographic portfolio gallery](https://www.a1.gallery/websites/typographic-portfolio) informed the restrained navigation and large type. These are visual references, not copied layouts or assets.
+[Lusion's projects](https://lusion.co/projects/) informed the image hierarchy and spacing. [A1's typographic portfolio gallery](https://www.a1.gallery/websites/typographic-portfolio) informed the typography and restrained navigation. The final layout is original and follows the approved mockups in `mocks/`.
 
-## Identity assets
+## Assets
 
-- `public/favicon.svg`: custom geometric S, drawn as a native vector for crisp rendering at favicon sizes.
-- `public/favicon.ico`, `public/favicon-32.png`, `public/apple-touch-icon.png`: raster exports of the same mark.
-- `public/images/suyog-sculpture.webp`: generated orange metallic ribbon S with transparency, optimized to 960 × 960.
-- `public/images/og-image.png`: generated social card, exported at 1200 × 630.
-- Image generation used the built-in ImageGen tool. Prompts are recorded in `design/image-prompts.md`.
+- `public/images/developer-portrait-editorial.webp`: identity-preserving editorial portrait generated from the supplied portrait.
+- `public/images/developer-portrait-cutout.webp`: transparent hero cutout derived from the editorial portrait.
+- `public/images/developer-workspace.webp`: Oona project artwork.
+- `public/images/jpmc-skyscraper.webp`: Chase project artwork.
+- `public/images/og-image.png`: existing social-sharing card.
+- `mocks/`: approved section-level design references.
 
-All routes share the OG image and use the configured production domain for absolute metadata URLs.
+Image generation used the built-in ImageGen tool. The final prompt is recorded in `design/image-prompts.md`.

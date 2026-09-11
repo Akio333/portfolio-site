@@ -1,6 +1,6 @@
 {
   "title": "AEM Bulk Package Installer",
-  "tags": ["TypeScript", "AEM Package Manager", "Rest API"],
+  "tags": ["TypeScript", "AEM Package Manager", "REST API"],
   "marketplaceUrl": "https://marketplace.visualstudio.com/items?itemName=Akio333.aem-bulk-pkg-install",
   "githubUrl": "https://github.com/Akio333/aem-bulk-pkg-install",
   "icon": "auto_fix_high"
