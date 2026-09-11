@@ -12,6 +12,11 @@ const summaries: Record<string, string> = {
   vanguard:
     "Investment data, publishing workflows, and reusable components for institutional investors.",
 };
+const outcomes: Record<string, string> = {
+  oona: "Architecture · GraphQL · Cloud delivery",
+  jpmc: "Shared system · 8+ tenants · WCAG",
+  vanguard: "Data components · Workflows · Visual QA",
+};
 ---
 
 <div class="project-list">
@@ -55,14 +60,12 @@ const summaries: Record<string, string> = {
         </div>
         <div class="project-info">
           <div class="project-meta">
-            <>
-              <span>{project.data.company}</span>
-              <span>{project.data.period}</span>
-            </>
+            <span>0{index + 1}</span><span>{project.data.company}</span><span>{project.data.period}</span>
           </div>
           <>
             <h3>{project.data.title}</h3>
             <p>{summaries[project.id] || project.data.description}</p>
+            <p class="project-outcome">{outcomes[project.id]}</p>
           </>
           <div class="tags">
             {project.data.tags.slice(0, 3).map((tag) => (
@@ -86,7 +89,7 @@ const summaries: Record<string, string> = {
             </details>
           ) : (
             <a class="text-link" href={`/projects#${project.id}`}>
-              Explore project <span aria-hidden="true">↗</span>
+              Read the project <span aria-hidden="true">↗</span>
             </a>
           )}
         </div>

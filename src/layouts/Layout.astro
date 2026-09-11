@@ -26,9 +26,25 @@ const navItems = [
 <!doctype html>
 <html lang="en">
   <head>
-    <ClientRouter /><PostHog />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="darkreader-lock" />
+    <script is:inline data-astro-rerun>
+      const systemTheme = matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+      try {
+        const savedTheme = localStorage.getItem("portfolio-theme");
+        document.documentElement.dataset.theme =
+          savedTheme === "light" || savedTheme === "dark"
+            ? savedTheme
+            : systemTheme;
+      } catch {
+        document.documentElement.dataset.theme = systemTheme;
+      }
+    </script>
+    <ClientRouter /><PostHog />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title><meta name="description" content={description} />
@@ -48,19 +64,12 @@ const navItems = [
       content={description}
     />
     <meta name="twitter:image" content={new URL(image, Astro.url.origin)} />
-    <script is:inline data-astro-rerun>
-      try {
-        const theme = localStorage.getItem("portfolio-theme");
-        if (theme === "light" || theme === "dark")
-          document.documentElement.dataset.theme = theme;
-      } catch {}
-    </script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
     <header class="site-header wrap">
       <a href="/" class="wordmark" aria-label="Suyog, home"
-        >suyog<span class="brand-mark">*</span></a
+        >Suyog Mule<span class="brand-mark">/</span></a
       >
       <nav class="desktop-nav" aria-label="Main navigation">
         {
@@ -81,7 +90,7 @@ const navItems = [
           aria-label="Switch color theme"
           title="Switch color theme">◐</button
         ><a href="/resume" target="_blank" rel="noopener" class="resume-link"
-          >Résumé <span aria-hidden="true">↗</span></a
+          >Résumé ↗</a
         ><button
           id="menu-toggle"
           class="menu-toggle"
@@ -110,12 +119,13 @@ const navItems = [
     <main id="main-content"><slot /></main>
     <footer class="site-footer wrap">
       <a href="/" class="footer-name"
-        >Suyog Mule<span class="brand-mark">*</span></a
-      ><p>© {new Date().getFullYear()} Suyog Mule</p><div>
+        >Suyog Mule<span class="brand-mark">/</span></a
+      ><p>AEM architect · Full-stack developer</p><div>
         <a href="https://github.com/Akio333">GitHub ↗</a><a
           href="https://www.linkedin.com/in/akio333/">LinkedIn ↗</a
         ><a href="mailto:smulye10@gmail.com">Email ↗</a>
       </div>
+      <small>© {new Date().getFullYear()}</small>
     </footer>
     <script>
       let cleanup = () => {};
@@ -197,14 +207,27 @@ const navItems = [
         document.querySelector("#theme-toggle")?.addEventListener(
           "click",
           () => {
-            const dark = document.documentElement.dataset.theme
-              ? document.documentElement.dataset.theme === "dark"
-              : matchMedia("(prefers-color-scheme: dark)").matches;
+            const dark = document.documentElement.dataset.theme !== "light";
             const theme = dark ? "light" : "dark";
             document.documentElement.dataset.theme = theme;
             try {
               localStorage.setItem("portfolio-theme", theme);
             } catch {}
+          },
+          { signal },
+        );
+        const systemTheme = matchMedia("(prefers-color-scheme: dark)");
+        systemTheme.addEventListener(
+          "change",
+          (event) => {
+            let savedTheme: string | null = null;
+            try {
+              savedTheme = localStorage.getItem("portfolio-theme");
+            } catch {}
+            if (savedTheme !== "light" && savedTheme !== "dark")
+              document.documentElement.dataset.theme = event.matches
+                ? "dark"
+                : "light";
           },
           { signal },
         );
