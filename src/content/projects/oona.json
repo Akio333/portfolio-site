@@ -1,6 +1,6 @@
 {
   "title": "Oona Insurance Platform D2C & Kahoona",
-  "description": "Architected the entire on-premise AEM platform and designed 10+ new components. Built a React-based Resource Center for Kahoona to empower agents, refactored styling for code efficiency, migrated legacy APIs to AEM GraphQL persisted queries, and tuned SEO performance.",
+  "description": "Architected the on-premise AEM platform and designed 10+ new components. Built a React resource center for Kahoona agents, reorganized the styling system, migrated legacy APIs to AEM GraphQL persisted queries, and improved SEO performance.",
   "tags": ["AEM On-Premise", "React", "AEM GraphQL", "AWS CloudFront", "Dispatcher", "SEO Tuning"],
   "role": "Senior AEM Architect & Developer",
   "period": "2025 - Present",

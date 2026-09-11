@@ -1,6 +1,6 @@
 {
   "title": "JPMC Chase Cards",
-  "description": "Architected the AEM Frontend for the JP Morgan Chase Cards site (creditcards.chase.com) and Trips portal (trips.chase.com). Established a multi-tenant AEM frontend architecture with a shared component library supporting 8+ tenants and featuring beautiful scroll-based animations.",
+  "description": "Architected the AEM frontend for the JP Morgan Chase Cards site (creditcards.chase.com) and Trips portal (trips.chase.com). Established a multi-tenant system with a shared component library for 8+ tenants and scroll-driven interfaces.",
   "tags": ["AEM Cloud Service", "Bootstrap", "WCAG 2.4.3", "jQuery", "Scroll Animations"],
   "role": "Senior AEM Frontend Architect",
   "period": "2024 - 2025",
