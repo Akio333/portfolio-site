@@ -11,8 +11,8 @@ interface Props {
 const {
   title,
   description,
-  image = "/images/developer-portrait.webp",
-  canonicalUrl = Astro.url.href,
+  image = "/images/og-image.png",
+  canonicalUrl = new URL(Astro.url.pathname, Astro.site || Astro.url.origin).href,
 } = Astro.props;
 const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
 const navItems = [
@@ -46,6 +46,13 @@ const navItems = [
     </script>
     <ClientRouter /><PostHog />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Suyog Mule, AEM architect and full-stack maker, with a sculptural orange S monogram" />
+    <meta name="twitter:image:alt" content="Suyog Mule, AEM architect and full-stack maker" />
+    <noscript><style>@media (max-width: 767px) { .site-header { height: auto; min-height: 76px; padding-block: 16px; } .desktop-nav { display: flex; grid-row: 2; grid-column: 1 / -1; flex-wrap: wrap; } .menu-toggle, .theme-toggle { display: none; } }</style></noscript>
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title><meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
@@ -57,19 +64,19 @@ const navItems = [
       property="og:description"
       content={description}
     />
-    <meta property="og:image" content={new URL(image, Astro.url.origin)} />
+    <meta property="og:image" content={new URL(image, Astro.site || Astro.url.origin)} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} /><meta
       name="twitter:description"
       content={description}
     />
-    <meta name="twitter:image" content={new URL(image, Astro.url.origin)} />
+    <meta name="twitter:image" content={new URL(image, Astro.site || Astro.url.origin)} />
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
     <header class="site-header wrap">
       <a href="/" class="wordmark" aria-label="Suyog, home"
-        >Suyog Mule<span class="brand-mark">/</span></a
+        ><img src="/favicon.svg" width="36" height="36" alt="" />Suyog Mule</a
       >
       <nav class="desktop-nav" aria-label="Main navigation">
         {
@@ -119,8 +126,8 @@ const navItems = [
     <main id="main-content"><slot /></main>
     <footer class="site-footer wrap">
       <a href="/" class="footer-name"
-        >Suyog Mule<span class="brand-mark">/</span></a
-      ><p>AEM architect · Full-stack developer</p><div>
+        ><img src="/favicon.svg" width="36" height="36" alt="" />Suyog Mule</a
+      ><div>
         <a href="https://github.com/Akio333">GitHub ↗</a><a
           href="https://www.linkedin.com/in/akio333/">LinkedIn ↗</a
         ><a href="mailto:smulye10@gmail.com">Email ↗</a>
@@ -268,13 +275,13 @@ const navItems = [
               el.style.setProperty("--rx", `${-y * 9}deg`);
               el.style.setProperty("--ry", `${x * 11}deg`);
             });
-          });
+          }, { signal });
           const reset = () => {
             cancelAnimationFrame(frame);
             el.style.setProperty("--rx", "0deg");
             el.style.setProperty("--ry", "0deg");
           };
-          el.addEventListener("pointerleave", reset);
+          el.addEventListener("pointerleave", reset, { signal });
           reducedMotion.addEventListener("change", reset, { signal });
           resets.push(reset);
         });

@@ -1,0 +1,14 @@
+{
+  "0": "../components/ProjectList.astro",
+  "1": "dependencies",
+  "2": "package.json",
+  "3": "extensionVersions.ts",
+  "4": "Suyog’s portfolio",
+  "5": "tsconfig.json",
+  "6": "content.config.ts",
+  "7": "Image generation prompts",
+  "8": "CustomPointer.astro",
+  "9": "StarryBackground.astro",
+  "10": "astro.config.mjs",
+  "11": "tailwind.config.mjs"
+}

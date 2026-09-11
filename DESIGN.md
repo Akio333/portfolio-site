@@ -1,14 +1,28 @@
-# Suyog's portfolio
+# Suyog’s portfolio
 
-A personal developer portfolio with a technical-editorial layout. The work and measurable outcomes come first.
+A spacious developer portfolio built around a sculptural orange S, generous sans-serif typography, and image-led project previews. Native Astro and CSS retain the existing five routes and content collections.
 
-- Native Astro components and CSS. Existing content collections stay the source of project and experience data.
-- Geist for headlines and body copy. JetBrains Mono for occasional labels and technology names.
-- Off-black, warm white, and one acid-lime accent. Dark mode is the default with a persistent manual switch.
-- A visible twelve-column grid, fine rules, square edges, and oversized type create the visual system.
-- First-person, factual writing. Avoid unsupported performance figures and marketing claims.
-- The portrait responds to mouse movement using CSS perspective. Entrance motion establishes hierarchy; intersection-based reveals introduce sections. Reduced-motion preferences disable movement.
-- Project artwork represents the client rather than pretending to show confidential production screens.
-- Short labels carry navigation and context. Avoid repeated eyebrow subtitles above obvious headings.
-- Mobile uses a single column and an accessible disclosure menu. Content remains visible without JavaScript.
-- Header is the only elevated UI layer at z-index 2. The skip link uses z-index 10.
+## Direction
+
+- Design variance 7, motion intensity 5, visual density 3. The brief calls for an individual identity and less supporting copy.
+- Self-hosted Geist for all typography. JetBrains Mono appears only in the developer tool symbols.
+- Neutral off-white or charcoal backgrounds, with vermilion as the single identity accent. Text and controls use accessible theme-specific colors. The system theme is respected, with a persistent manual switch.
+- No section numbers, little subtitles, decorative status text, or repeated explanatory captions. Project descriptions and career details remain on their relevant pages.
+- Images have 16px corners. Buttons and compact controls are round. Small mobile tool symbols use 12px corners.
+- The hero S responds to pointer movement. Entrance motion establishes hierarchy, section reveals introduce content, and hover transitions provide feedback. Reduced-motion preferences disable movement. Content stays visible without JavaScript; mobile navigation has a no-script fallback.
+- The homepage uses two staggered project images and one compact project link. Work details use expandable native disclosure controls.
+- Project photos are representative artwork, not screenshots of confidential client products.
+
+## References
+
+[Lusion’s projects](https://lusion.co/projects/) informed the emphasis on artwork and generous spacing. [A1’s typographic portfolio gallery](https://www.a1.gallery/websites/typographic-portfolio) informed the restrained navigation and large type. These are visual references, not copied layouts or assets.
+
+## Identity assets
+
+- `public/favicon.svg`: custom geometric S, drawn as a native vector for crisp rendering at favicon sizes.
+- `public/favicon.ico`, `public/favicon-32.png`, `public/apple-touch-icon.png`: raster exports of the same mark.
+- `public/images/suyog-sculpture.webp`: generated orange metallic ribbon S with transparency, optimized to 960 × 960.
+- `public/images/og-image.png`: generated social card, exported at 1200 × 630.
+- Image generation used the built-in ImageGen tool. Prompts are recorded in `design/image-prompts.md`.
+
+All routes share the OG image and use the configured production domain for absolute metadata URLs.
