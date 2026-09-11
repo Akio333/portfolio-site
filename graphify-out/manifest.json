@@ -1,0 +1,192 @@
+{
+  ".vscode/extensions.json": {
+    "mtime": 1781112417.0,
+    "ast_hash": "3adedb22d082dbd1ebb00b75d21403aa",
+    "semantic_hash": ""
+  },
+  ".vscode/launch.json": {
+    "mtime": 1781112417.0,
+    "ast_hash": "60493763dcbc2d109e57da86d997602a",
+    "semantic_hash": ""
+  },
+  "astro.config.mjs": {
+    "mtime": 1789137153.1507668,
+    "ast_hash": "d12d3e707b11a85e6a0c82c3a6c7faa6",
+    "semantic_hash": ""
+  },
+  "package.json": {
+    "mtime": 1788676416.749771,
+    "ast_hash": "62294d3352a8f7742196c45c37c0cc0a",
+    "semantic_hash": ""
+  },
+  "src/components/CustomPointer.astro": {
+    "mtime": 1788676416.7516992,
+    "ast_hash": "c28f1b3b55f2b565dd32b74946e59ced",
+    "semantic_hash": ""
+  },
+  "src/components/ProjectList.astro": {
+    "mtime": 1789136691.8709147,
+    "ast_hash": "bcc0b0a22a35b598127289f1cb8e2bba",
+    "semantic_hash": ""
+  },
+  "src/components/StarryBackground.astro": {
+    "mtime": 1788676416.7519448,
+    "ast_hash": "9385ea532565ee60b2a65b2aba73a24c",
+    "semantic_hash": ""
+  },
+  "src/components/posthog.astro": {
+    "mtime": 1788676416.7520895,
+    "ast_hash": "5ad532c5b1892bbe93adb1190468d6f8",
+    "semantic_hash": ""
+  },
+  "src/content.config.ts": {
+    "mtime": 1788676416.7523925,
+    "ast_hash": "f2ac618d6ffed682609c6582b0b921a8",
+    "semantic_hash": ""
+  },
+  "src/content/experience/1-itc.json": {
+    "mtime": 1789110330.9647286,
+    "ast_hash": "378a2f0ee5761f03a67abf7336cb4e45",
+    "semantic_hash": ""
+  },
+  "src/content/experience/2-capgemini-jpmc.json": {
+    "mtime": 1781286245.943915,
+    "ast_hash": "997207062d2c86a8988c744dccae20bc",
+    "semantic_hash": ""
+  },
+  "src/content/experience/3-capgemini-vanguard.json": {
+    "mtime": 1781287994.2777302,
+    "ast_hash": "3fab21408966be695a4ff5c93e8fc6aa",
+    "semantic_hash": ""
+  },
+  "src/content/extensions/aem-tools.json": {
+    "mtime": 1781378320.4786286,
+    "ast_hash": "0b24bf925aaa87c9f7a2f169bc127a22",
+    "semantic_hash": ""
+  },
+  "src/content/extensions/bulk-installer.json": {
+    "mtime": 1781378326.4422247,
+    "ast_hash": "6b54af337696243fd067e6920432db52",
+    "semantic_hash": ""
+  },
+  "src/content/projects/jpmc.json": {
+    "mtime": 1789110330.9643903,
+    "ast_hash": "3a7000164ca29c877d6f110541dec8a5",
+    "semantic_hash": ""
+  },
+  "src/content/projects/oona.json": {
+    "mtime": 1789110330.964136,
+    "ast_hash": "c052e2f8503f1cf0d47c1addec5bcafa",
+    "semantic_hash": ""
+  },
+  "src/content/projects/vanguard.json": {
+    "mtime": 1781284046.0824273,
+    "ast_hash": "f4be82eafba75eb9a32ca7125db78c09",
+    "semantic_hash": ""
+  },
+  "src/layouts/Layout.astro": {
+    "mtime": 1789137153.1510146,
+    "ast_hash": "fc3c020586c6038bc5e736b028ad1b1b",
+    "semantic_hash": ""
+  },
+  "src/pages/contact.astro": {
+    "mtime": 1789136691.9042182,
+    "ast_hash": "2d2563151ff83d8a0d2defa41df35d27",
+    "semantic_hash": ""
+  },
+  "src/pages/experience.astro": {
+    "mtime": 1789136691.9040926,
+    "ast_hash": "201a28aa89a65197ae5c60ee70e93b99",
+    "semantic_hash": ""
+  },
+  "src/pages/index.astro": {
+    "mtime": 1789136691.8678844,
+    "ast_hash": "804ea963b340fd20d3c9e3fb427e5814",
+    "semantic_hash": ""
+  },
+  "src/pages/projects.astro": {
+    "mtime": 1789136691.903935,
+    "ast_hash": "ac2430f20937005d02990496e0bfba8f",
+    "semantic_hash": ""
+  },
+  "src/pages/resume.astro": {
+    "mtime": 1789111269.522898,
+    "ast_hash": "b30efbb0b41b99ed96d2ae95ea04b90c",
+    "semantic_hash": ""
+  },
+  "src/scripts/extensionVersions.ts": {
+    "mtime": 1788676416.7542093,
+    "ast_hash": "8dd1961342f70e44cfb196804718ca91",
+    "semantic_hash": ""
+  },
+  "tailwind.config.mjs": {
+    "mtime": 1781280101.1533043,
+    "ast_hash": "7d3b9ad5188e229c598ae653de05c05f",
+    "semantic_hash": ""
+  },
+  "tsconfig.json": {
+    "mtime": 1781112417.0,
+    "ast_hash": "1d3613ac08bdda17e2b82251613dbc21",
+    "semantic_hash": ""
+  },
+  "DESIGN.md": {
+    "mtime": 1789137153.1579924,
+    "ast_hash": "95043ff71a50720ff069a744c9da588a",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1789137153.1514244,
+    "ast_hash": "9ec7f0e257d1b8cb4f52d512e15195b1",
+    "semantic_hash": ""
+  },
+  "design/image-prompts.md": {
+    "mtime": 1789137154.4375746,
+    "ast_hash": "431ce9dd2101bdb9c84cd8955ccd277b",
+    "semantic_hash": ""
+  },
+  "public/resume.pdf": {
+    "mtime": 1788676416.7513359,
+    "ast_hash": "5038c9c61eadfe52ef9a9a58409d78f1",
+    "semantic_hash": ""
+  },
+  "public/apple-touch-icon.png": {
+    "mtime": 1789137043.3873186,
+    "ast_hash": "b07ba35d4692ac5d5ff722cfa69bc1ee",
+    "semantic_hash": ""
+  },
+  "public/favicon-32.png": {
+    "mtime": 1789137043.3849998,
+    "ast_hash": "a3d82bfb970921d26bb7aa2d7a1e5320",
+    "semantic_hash": ""
+  },
+  "public/favicon.svg": {
+    "mtime": 1789137042.6359057,
+    "ast_hash": "bac77f7fd16223de21f737c34ab1a586",
+    "semantic_hash": ""
+  },
+  "public/images/developer-portrait.webp": {
+    "mtime": 1781287947.8933315,
+    "ast_hash": "573842033435122795418145612efc0f",
+    "semantic_hash": ""
+  },
+  "public/images/developer-workspace.webp": {
+    "mtime": 1781286622.5376587,
+    "ast_hash": "c194b9c6b547a8a5c8387e4b8ea64bd7",
+    "semantic_hash": ""
+  },
+  "public/images/jpmc-skyscraper.webp": {
+    "mtime": 1781286622.3280842,
+    "ast_hash": "bff472f67dbf46c4c76545d6f5ca8c8a",
+    "semantic_hash": ""
+  },
+  "public/images/og-image.png": {
+    "mtime": 1789137043.3696911,
+    "ast_hash": "b2eaa95fddba7233c417dea76fa33db5",
+    "semantic_hash": ""
+  },
+  "public/images/suyog-sculpture.webp": {
+    "mtime": 1789137043.0263057,
+    "ast_hash": "c779a8a70ab95453f59745f8049154a1",
+    "semantic_hash": ""
+  }
+}

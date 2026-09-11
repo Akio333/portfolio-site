@@ -5,6 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
+  site: process.env.PUBLIC_SITE_URL || "https://shipsolo.xyz",
   vite: {
     plugins: [tailwindcss()]
   }
