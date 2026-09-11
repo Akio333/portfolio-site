@@ -1,6 +1,6 @@
 {
   "title": "AEM Tools",
-  "tags": ["TypeScript", "Javascript", "Node.js"],
+  "tags": ["TypeScript", "JavaScript", "Node.js"],
   "marketplaceUrl": "https://marketplace.visualstudio.com/items?itemName=Akio333.vscode-aem-tools",
   "githubUrl": "https://github.com/Akio333/vscode-aem-tools",
   "icon": "code"
