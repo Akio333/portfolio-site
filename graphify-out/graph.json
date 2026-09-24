@@ -124,10 +124,20 @@
       "norm_label": "astro"
     },
     {
+      "label": "brand",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "package_scripts_brand",
+      "community": 2,
+      "norm_label": "brand"
+    },
+    {
       "label": "dependencies",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L14",
+      "source_location": "L15",
       "_origin": "ast",
       "id": "package_dependencies",
       "community": 1,
@@ -137,7 +147,7 @@
       "label": "@fontsource/jetbrains-mono",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L15",
+      "source_location": "L16",
       "_origin": "ast",
       "id": "package_dependencies_fontsource_jetbrains_mono",
       "community": 1,
@@ -147,7 +157,7 @@
       "label": "@fontsource/jetbrains-mono",
       "file_type": "concept",
       "source_file": "package.json",
-      "source_location": "L15",
+      "source_location": "L16",
       "_origin": "ast",
       "id": "fontsource_jetbrains_mono",
       "community": 1,
@@ -157,7 +167,7 @@
       "label": "astro",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L16",
+      "source_location": "L17",
       "_origin": "ast",
       "id": "package_dependencies_astro",
       "community": 1,
@@ -167,7 +177,7 @@
       "label": "astro",
       "file_type": "concept",
       "source_file": "package.json",
-      "source_location": "L16",
+      "source_location": "L17",
       "_origin": "ast",
       "id": "astro",
       "community": 1,
@@ -177,7 +187,7 @@
       "label": "posthog-js",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L17",
+      "source_location": "L18",
       "_origin": "ast",
       "id": "package_dependencies_posthog_js",
       "community": 1,
@@ -187,7 +197,7 @@
       "label": "posthog-js",
       "file_type": "concept",
       "source_file": "package.json",
-      "source_location": "L17",
+      "source_location": "L18",
       "_origin": "ast",
       "id": "posthog_js",
       "community": 1,
@@ -197,7 +207,7 @@
       "label": "zod",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L18",
+      "source_location": "L19",
       "_origin": "ast",
       "id": "package_dependencies_zod",
       "community": 1,
@@ -207,11 +217,141 @@
       "label": "zod",
       "file_type": "concept",
       "source_file": "package.json",
-      "source_location": "L18",
+      "source_location": "L19",
       "_origin": "ast",
       "id": "zod",
       "community": 1,
       "norm_label": "zod"
+    },
+    {
+      "label": "devDependencies",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "package_devdependencies",
+      "community": 2,
+      "norm_label": "devdependencies"
+    },
+    {
+      "label": "sharp",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "package_devdependencies_sharp",
+      "community": 2,
+      "norm_label": "sharp"
+    },
+    {
+      "label": "sharp",
+      "file_type": "concept",
+      "source_file": "package.json",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "sharp",
+      "community": 2,
+      "norm_label": "sharp"
+    },
+    {
+      "label": "render-brand.mjs",
+      "file_type": "code",
+      "source_file": "scripts/render-brand.mjs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "scripts_render_brand",
+      "community": 0,
+      "norm_label": "render-brand.mjs"
+    },
+    {
+      "label": "root",
+      "file_type": "code",
+      "source_file": "scripts/render-brand.mjs",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "scripts_render_brand_root",
+      "community": 0,
+      "norm_label": "root"
+    },
+    {
+      "label": "at()",
+      "file_type": "code",
+      "source_file": "scripts/render-brand.mjs",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "scripts_render_brand_at",
+      "community": 0,
+      "norm_label": "at()"
+    },
+    {
+      "label": "svg",
+      "file_type": "code",
+      "source_file": "scripts/render-brand.mjs",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "scripts_render_brand_svg",
+      "community": 0,
+      "norm_label": "svg"
+    },
+    {
+      "label": "squareSvg",
+      "file_type": "code",
+      "source_file": "scripts/render-brand.mjs",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "scripts_render_brand_squaresvg",
+      "community": 0,
+      "norm_label": "squaresvg"
+    },
+    {
+      "label": "png()",
+      "file_type": "code",
+      "source_file": "scripts/render-brand.mjs",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "scripts_render_brand_png",
+      "community": 0,
+      "norm_label": "png()"
+    },
+    {
+      "label": "sizes",
+      "file_type": "code",
+      "source_file": "scripts/render-brand.mjs",
+      "source_location": "L27",
+      "_origin": "ast",
+      "id": "scripts_render_brand_sizes",
+      "community": 0,
+      "norm_label": "sizes"
+    },
+    {
+      "label": "header",
+      "file_type": "code",
+      "source_file": "scripts/render-brand.mjs",
+      "source_location": "L29",
+      "_origin": "ast",
+      "id": "scripts_render_brand_header",
+      "community": 0,
+      "norm_label": "header"
+    },
+    {
+      "label": "chrome",
+      "file_type": "code",
+      "source_file": "scripts/render-brand.mjs",
+      "source_location": "L46",
+      "_origin": "ast",
+      "id": "scripts_render_brand_chrome",
+      "community": 0,
+      "norm_label": "chrome"
+    },
+    {
+      "label": "shot",
+      "file_type": "code",
+      "source_file": "scripts/render-brand.mjs",
+      "source_location": "L54",
+      "_origin": "ast",
+      "id": "scripts_render_brand_shot",
+      "community": 0,
+      "norm_label": "shot"
     },
     {
       "label": "../components/posthog.astro",
@@ -221,7 +361,7 @@
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "id": "src_components_posthog",
-      "community": 0,
+      "community": 8,
       "norm_label": "../components/posthog.astro"
     },
     {
@@ -231,7 +371,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_components_posthog_g",
-      "community": 0,
+      "community": 8,
       "norm_label": "g()"
     },
     {
@@ -312,7 +452,7 @@
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "id": "src_layouts_layout",
-      "community": 0,
+      "community": 8,
       "norm_label": "../layouts/layout.astro"
     },
     {
@@ -322,7 +462,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_layouts_layout_posthogenabled",
-      "community": 0,
+      "community": 8,
       "norm_label": "posthogenabled"
     },
     {
@@ -332,7 +472,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "src_layouts_layout_pathparts",
-      "community": 0,
+      "community": 8,
       "norm_label": "pathparts"
     },
     {
@@ -342,7 +482,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "src_layouts_layout_current",
-      "community": 0,
+      "community": 8,
       "norm_label": "current"
     },
     {
@@ -352,7 +492,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "users_akio_developer_portfolio_site_src_styles_global_css",
-      "community": 0,
+      "community": 8,
       "norm_label": "../styles/global.css"
     },
     {
@@ -362,7 +502,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "astro_transitions",
-      "community": 0,
+      "community": 8,
       "norm_label": "astro:transitions"
     },
     {
@@ -382,7 +522,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "client",
-      "community": 0,
+      "community": 8,
       "norm_label": "astro:transitions/client"
     },
     {
@@ -392,7 +532,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "users_akio_developer_portfolio_site_src_scripts_extensionversions",
-      "community": 0,
+      "community": 8,
       "norm_label": "../scripts/extensionversions"
     },
     {
@@ -522,7 +662,7 @@
       "source_location": "L296",
       "_origin": "ast",
       "id": "src_lib_portfolio_highlightjson",
-      "community": 0,
+      "community": 8,
       "norm_label": "highlightjson()"
     },
     {
@@ -796,10 +936,20 @@
       "norm_label": "interaction"
     },
     {
-      "label": "Where things live",
+      "label": "Icon and OG image",
       "file_type": "document",
       "source_file": "DESIGN.md",
       "source_location": "L63",
+      "_origin": "ast",
+      "id": "design_icon_and_og_image",
+      "community": 4,
+      "norm_label": "icon and og image"
+    },
+    {
+      "label": "Where things live",
+      "file_type": "document",
+      "source_file": "DESIGN.md",
+      "source_location": "L69",
       "_origin": "ast",
       "id": "design_where_things_live",
       "community": 4,
@@ -809,7 +959,7 @@
       "label": "Don'ts",
       "file_type": "document",
       "source_file": "DESIGN.md",
-      "source_location": "L70",
+      "source_location": "L76",
       "_origin": "ast",
       "id": "design_don_ts",
       "community": 4,
@@ -849,7 +999,7 @@
       "label": "Editing the site",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L16",
+      "source_location": "L17",
       "_origin": "ast",
       "id": "readme_editing_the_site",
       "community": 4,
@@ -896,20 +1046,10 @@
       "norm_label": "transparent hero edit"
     },
     {
-      "label": "OG image",
-      "file_type": "document",
-      "source_file": "design/image-prompts.md",
-      "source_location": "L13",
-      "_origin": "ast",
-      "id": "design_image_prompts_og_image",
-      "community": 7,
-      "norm_label": "og image"
-    },
-    {
       "label": "Editorial hero portrait",
       "file_type": "document",
       "source_file": "design/image-prompts.md",
-      "source_location": "L17",
+      "source_location": "L13",
       "_origin": "ast",
       "id": "design_image_prompts_editorial_hero_portrait",
       "community": 7,
@@ -919,7 +1059,7 @@
       "label": "Transparent hero portrait cutout",
       "file_type": "document",
       "source_file": "design/image-prompts.md",
-      "source_location": "L21",
+      "source_location": "L17",
       "_origin": "ast",
       "id": "design_image_prompts_transparent_hero_portrait_cutout",
       "community": 7,
@@ -931,10 +1071,20 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L14",
+      "source_location": "L15",
       "weight": 1.0,
       "source": "package",
       "target": "package_dependencies",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "package",
+      "target": "package_devdependencies",
       "confidence_score": 1.0
     },
     {
@@ -1011,6 +1161,16 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "package_scripts",
+      "target": "package_scripts_brand",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
       "source_location": "L10",
       "weight": 1.0,
       "source": "package_scripts",
@@ -1041,7 +1201,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L16",
+      "source_location": "L17",
       "weight": 1.0,
       "source": "package_dependencies",
       "target": "package_dependencies_astro",
@@ -1051,7 +1211,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L15",
+      "source_location": "L16",
       "weight": 1.0,
       "source": "package_dependencies",
       "target": "package_dependencies_fontsource_jetbrains_mono",
@@ -1061,7 +1221,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L17",
+      "source_location": "L18",
       "weight": 1.0,
       "source": "package_dependencies",
       "target": "package_dependencies_posthog_js",
@@ -1071,7 +1231,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L18",
+      "source_location": "L19",
       "weight": 1.0,
       "source": "package_dependencies",
       "target": "package_dependencies_zod",
@@ -1081,7 +1241,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L15",
+      "source_location": "L16",
       "weight": 1.0,
       "context": "import",
       "source": "package_dependencies_fontsource_jetbrains_mono",
@@ -1092,7 +1252,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L16",
+      "source_location": "L17",
       "weight": 1.0,
       "context": "import",
       "source": "package_dependencies_astro",
@@ -1103,7 +1263,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L17",
+      "source_location": "L18",
       "weight": 1.0,
       "context": "import",
       "source": "package_dependencies_posthog_js",
@@ -1114,11 +1274,122 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L18",
+      "source_location": "L19",
       "weight": 1.0,
       "context": "import",
       "source": "package_dependencies_zod",
       "target": "zod",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "package_devdependencies",
+      "target": "package_devdependencies_sharp",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L22",
+      "weight": 1.0,
+      "context": "import",
+      "source": "package_devdependencies_sharp",
+      "target": "sharp",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/render-brand.mjs",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "scripts_render_brand",
+      "target": "scripts_render_brand_at",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/render-brand.mjs",
+      "source_location": "L46",
+      "weight": 1.0,
+      "source": "scripts_render_brand",
+      "target": "scripts_render_brand_chrome",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/render-brand.mjs",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "scripts_render_brand",
+      "target": "scripts_render_brand_header",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/render-brand.mjs",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "scripts_render_brand",
+      "target": "scripts_render_brand_png",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/render-brand.mjs",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "scripts_render_brand",
+      "target": "scripts_render_brand_root",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/render-brand.mjs",
+      "source_location": "L54",
+      "weight": 1.0,
+      "source": "scripts_render_brand",
+      "target": "scripts_render_brand_shot",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/render-brand.mjs",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "scripts_render_brand",
+      "target": "scripts_render_brand_sizes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/render-brand.mjs",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "scripts_render_brand",
+      "target": "scripts_render_brand_squaresvg",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/render-brand.mjs",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "scripts_render_brand",
+      "target": "scripts_render_brand_svg",
       "confidence_score": 1.0
     },
     {
@@ -1825,10 +2096,20 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "DESIGN.md",
-      "source_location": "L70",
+      "source_location": "L76",
       "weight": 1.0,
       "source": "design_suyog_mule_portfolio_developer_ide",
       "target": "design_don_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "DESIGN.md",
+      "source_location": "L63",
+      "weight": 1.0,
+      "source": "design_suyog_mule_portfolio_developer_ide",
+      "target": "design_icon_and_og_image",
       "confidence_score": 1.0
     },
     {
@@ -1875,7 +2156,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "DESIGN.md",
-      "source_location": "L63",
+      "source_location": "L69",
       "weight": 1.0,
       "source": "design_suyog_mule_portfolio_developer_ide",
       "target": "design_where_things_live",
@@ -1905,7 +2186,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L16",
+      "source_location": "L17",
       "weight": 1.0,
       "source": "readme_suyog_mule_s_portfolio",
       "target": "readme_editing_the_site",
@@ -1925,7 +2206,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "design/image-prompts.md",
-      "source_location": "L17",
+      "source_location": "L13",
       "weight": 1.0,
       "source": "design_image_prompts_image_generation_prompts",
       "target": "design_image_prompts_editorial_hero_portrait",
@@ -1945,16 +2226,6 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "design/image-prompts.md",
-      "source_location": "L13",
-      "weight": 1.0,
-      "source": "design_image_prompts_image_generation_prompts",
-      "target": "design_image_prompts_og_image",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "design/image-prompts.md",
       "source_location": "L9",
       "weight": 1.0,
       "source": "design_image_prompts_image_generation_prompts",
@@ -1965,7 +2236,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "design/image-prompts.md",
-      "source_location": "L21",
+      "source_location": "L17",
       "weight": 1.0,
       "source": "design_image_prompts_image_generation_prompts",
       "target": "design_image_prompts_transparent_hero_portrait_cutout",
@@ -1973,5 +2244,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "6373399ba951ff46b528f8b9c8259473f80741ff"
+  "built_at_commit": "91b1fbfd5ccb7b680a053c6d6c9fa7f9c86d65bb"
 }

@@ -15,8 +15,8 @@
     "semantic_hash": ""
   },
   "package.json": {
-    "mtime": 1790234867.3562047,
-    "ast_hash": "8853d5b66eba76d467e66ad751a733df",
+    "mtime": 1790235577.2767632,
+    "ast_hash": "9bd6abc4fe3ae66c1a7a141e2bdc96d8",
     "semantic_hash": ""
   },
   "src/components/posthog.astro": {
@@ -60,8 +60,8 @@
     "semantic_hash": ""
   },
   "src/layouts/Layout.astro": {
-    "mtime": 1790234801.712691,
-    "ast_hash": "54cc48353b944fc744a495ffaaa1a42c",
+    "mtime": 1790235658.6213958,
+    "ast_hash": "61956c81d6d090c0eced114df00affc0",
     "semantic_hash": ""
   },
   "src/scripts/extensionVersions.ts": {
@@ -75,18 +75,18 @@
     "semantic_hash": ""
   },
   "DESIGN.md": {
-    "mtime": 1790234960.9526517,
-    "ast_hash": "31cf375050e4d759536f2a56f243fd4c",
+    "mtime": 1790235692.5030787,
+    "ast_hash": "43b3a678991022eb501fa10c5e74ce96",
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1790234969.067214,
-    "ast_hash": "62efb41cbde68de461506cb99ec6fffd",
+    "mtime": 1790235692.5034044,
+    "ast_hash": "5358bdf94a9bc8e4071e0c8d2c087b5c",
     "semantic_hash": ""
   },
   "design/image-prompts.md": {
-    "mtime": 1789159152.7843688,
-    "ast_hash": "b85b274a5fba5311b2fcebcc5de45692",
+    "mtime": 1790235692.5026937,
+    "ast_hash": "7204e6d47c78544741e0f32deebb83e8",
     "semantic_hash": ""
   },
   "public/resume.pdf": {
@@ -95,18 +95,18 @@
     "semantic_hash": ""
   },
   "public/apple-touch-icon.png": {
-    "mtime": 1789137043.3873186,
-    "ast_hash": "b07ba35d4692ac5d5ff722cfa69bc1ee",
+    "mtime": 1790235647.8245296,
+    "ast_hash": "2ca40d6e9096742a61d5de7c120c0e5b",
     "semantic_hash": ""
   },
   "public/favicon-32.png": {
-    "mtime": 1789137043.3849998,
-    "ast_hash": "a3d82bfb970921d26bb7aa2d7a1e5320",
+    "mtime": 1790235647.8228095,
+    "ast_hash": "3ce31c4555b334126d7af4f834ba6c24",
     "semantic_hash": ""
   },
   "public/favicon.svg": {
-    "mtime": 1789137042.6359057,
-    "ast_hash": "bac77f7fd16223de21f737c34ab1a586",
+    "mtime": 1790235647.5669549,
+    "ast_hash": "4f1480aa48b05e760c79200b16c7ccc6",
     "semantic_hash": ""
   },
   "public/images/developer-portrait.webp": {
@@ -125,8 +125,8 @@
     "semantic_hash": ""
   },
   "public/images/og-image.png": {
-    "mtime": 1789137043.3696911,
-    "ast_hash": "b2eaa95fddba7233c417dea76fa33db5",
+    "mtime": 1790235650.4586437,
+    "ast_hash": "474748bc89affaf4bced28c8a09096ad",
     "semantic_hash": ""
   },
   "public/images/suyog-sculpture.webp": {
@@ -197,6 +197,26 @@
   "public/images/developer-portrait-editorial.webp": {
     "mtime": 1789157175.7011926,
     "ast_hash": "9a52a1e8918cb1aaba19c5155ba2f8ba",
+    "semantic_hash": ""
+  },
+  "scripts/render-brand.mjs": {
+    "mtime": 1790235647.6121757,
+    "ast_hash": "b9335c093d93a93311499a2dd39b9e74",
+    "semantic_hash": ""
+  },
+  "design/og-image.html": {
+    "mtime": 1790235603.8711507,
+    "ast_hash": "b43636bddc61bff8e998e13f9542a507",
+    "semantic_hash": ""
+  },
+  "public/icon-192.png": {
+    "mtime": 1790235647.82615,
+    "ast_hash": "490dee6157d90226671b96256e508654",
+    "semantic_hash": ""
+  },
+  "public/icon-512.png": {
+    "mtime": 1790235647.8292406,
+    "ast_hash": "226b9a08c86159d7e7221695f793b969",
     "semantic_hash": ""
   }
 }

@@ -32,6 +32,7 @@ const current = nodes.find((n) => n.kind === "job");
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" sizes="32x32" href="/favicon-32.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
     <title>{node.title}</title>
     <meta name="description" content={node.description} />
@@ -48,6 +49,7 @@ const current = nodes.find((n) => n.kind === "job");
     <meta name="twitter:title" content={node.title} />
     <meta name="twitter:description" content={node.description} />
     <meta name="twitter:image" content={new URL(image, site)} />
+    <meta name="twitter:image:alt" content={`${profile.name}, AEM full-stack developer`} />
   </head>
   <body>
     <a class="skip-link" href="#content">Skip to content</a>

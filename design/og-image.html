@@ -1,0 +1,78 @@
+<!doctype html>
+<!-- Source for public/images/og-image.png. Render with `npm run brand`. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+@font-face { font-family: "JetBrains Mono"; font-weight: 400; src: url("../node_modules/@fontsource/jetbrains-mono/files/jetbrains-mono-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "JetBrains Mono"; font-weight: 500; src: url("../node_modules/@fontsource/jetbrains-mono/files/jetbrains-mono-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "JetBrains Mono"; font-weight: 700; src: url("../node_modules/@fontsource/jetbrains-mono/files/jetbrains-mono-latin-700-normal.woff2") format("woff2"); }
+:root { --bg:#171B25; --panel:#1E2330; --line:#2E3547; --text:#CFD5E2; --dim:#8690A6; --key:#82AAFF; --str:#E5B567; --sel:#283152; }
+*, *::before { box-sizing: border-box; margin: 0; }
+html, body { width: 1200px; height: 630px; overflow: hidden; }
+body { background: var(--bg); color: var(--text); font: 400 20px/1.4 "JetBrains Mono", monospace; display: grid; grid-template-rows: 64px 1fr 46px; }
+.top { display: flex; align-items: center; gap: 36px; padding: 0 28px; background: var(--panel); border-bottom: 1px solid var(--line); }
+.top strong { color: #fff; font-weight: 700; }
+.top .role { color: var(--dim); margin-left: 16px; }
+.path i { font-style: normal; color: var(--dim); }
+.main { display: grid; grid-template-columns: 290px 1fr; min-height: 0; }
+.tree { background: var(--panel); border-right: 1px solid var(--line); padding: 16px 0; list-style: none; }
+.tree li { display: flex; align-items: center; gap: 14px; height: 46px; padding: 0 24px; }
+.tree li::before { content: ""; width: 13px; height: 13px; border-radius: 2px; background: var(--dim); }
+.tree .root { color: var(--dim); height: 40px; }
+.tree .root::before { display: none; }
+.tree .parent::before { background: none; border: 2px solid var(--key); }
+.tree .sel { background: var(--sel); color: #fff; box-shadow: inset 3px 0 0 var(--key); }
+.editor { display: grid; grid-template-rows: 54px 1fr; }
+.tabs { display: flex; background: var(--panel); border-bottom: 1px solid var(--line); }
+.tabs span { display: flex; align-items: center; padding: 0 24px; color: var(--dim); border-right: 1px solid var(--line); border-top: 3px solid transparent; }
+.tabs .on { color: #fff; background: var(--bg); border-top-color: var(--key); }
+.pane { padding: 48px 56px 0; }
+h1 { font-size: 88px; font-weight: 700; color: #fff; letter-spacing: -0.03em; line-height: 1; }
+.sub { color: var(--str); font-size: 30px; margin-top: 22px; }
+table { border-collapse: collapse; margin-top: 34px; width: 100%; }
+th, td { text-align: left; font-weight: 400; padding: 11px 0; border-bottom: 1px solid var(--line); }
+th { color: var(--dim); width: 36%; }
+td { color: #fff; }
+.status { display: flex; background: #12151D; border-top: 1px solid var(--line); color: var(--dim); font-size: 18px; }
+.status span { display: flex; align-items: center; padding: 0 22px; border-right: 1px solid var(--line); }
+.status .now { color: var(--text); }
+</style>
+</head>
+<body>
+  <div class="top">
+    <p><strong>Suyog Mule</strong><span class="role">AEM Full-Stack Developer</span></p>
+    <p class="path"><i>/</i>content<i>/</i>suyog-mule<i>/</i>profile</p>
+  </div>
+  <div class="main">
+    <ul class="tree">
+      <li class="root">suyog-mule</li>
+      <li class="sel">profile</li>
+      <li class="parent">experience</li>
+      <li class="parent">projects</li>
+      <li class="parent">tools</li>
+      <li>skills</li>
+      <li>certifications</li>
+      <li>resume</li>
+      <li>contact</li>
+    </ul>
+    <div class="editor">
+      <div class="tabs"><span class="on">Preview</span><span>profile.model.json</span></div>
+      <div class="pane">
+        <h1>Suyog Mule</h1>
+        <p class="sub">AEM Full-Stack Developer</p>
+        <table>
+          <tr><th>Years on AEM</th><td>5.5</td></tr>
+          <tr><th>Clients</th><td>Oona Insurance, Chase, Vanguard</td></tr>
+          <tr><th>Stack</th><td>AEM, Java, React, GraphQL, Dispatcher</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="status">
+    <span class="now">Senior AEM Architect &amp; Developer, ITC Infotech</span>
+    <span>Pune, India</span>
+    <span>5.5 years on AEM</span>
+  </div>
+</body>
+</html>
