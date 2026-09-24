@@ -15,6 +15,7 @@ const projectsCollection = defineCollection({
     highlights: z.array(z.string()).optional(),
     company: z.string().optional(),
     imageUrl: z.string().optional(),
+    metric: z.object({ value: z.string(), label: z.string() }).optional(),
   }),
 });
 
@@ -250,6 +251,8 @@ const experienceCollection = defineCollection({
     tags: z.array(z.string()),
     order: z.number(),
     color: z.enum(['primary', 'secondary', 'tertiary', 'accent']).default('primary'),
+    points: z.array(z.string()).default([]),
+    project: z.string().optional(),
   }),
 });
 

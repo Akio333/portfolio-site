@@ -3,7 +3,20 @@
   "role": "AEM Full-Stack Engineer (Client: Vanguard)",
   "period": "2021 - 2024",
   "description": "Developed AEM components for rendering investment tables, custom workflows, and report download modules. Created a custom Insights library with sliders and slider animations, delivered Experience Fragment-to-Web Component POCs, and introduced BrowserStack Percy visual testing pipelines.",
-  "tags": ["AEM 6.5", "React", "Java", "Web Components", "Percy Visual Testing"],
+  "tags": [
+    "AEM 6.5",
+    "React",
+    "Java",
+    "Web Components",
+    "Percy Visual Testing"
+  ],
   "order": 3,
-  "color": "tertiary"
+  "color": "tertiary",
+  "project": "vanguard",
+  "points": [
+    "Built AEM components for nested investment tables, custom publishing workflows and monthly report downloads.",
+    "Created an Insights library with sliders and custom animations.",
+    "Delivered Experience Fragment to Web Component proofs of concept.",
+    "Introduced BrowserStack Percy visual regression testing to the delivery pipeline."
+  ]
 }

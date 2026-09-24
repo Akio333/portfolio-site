@@ -3,7 +3,19 @@
   "role": "Senior AEM Developer (Client: JPMC)",
   "period": "2024 - 2025",
   "description": "Architected a multi-tenant AEM frontend system with a shared component library supporting 8+ tenants for Chase Cards and Trips portals. Led development of WCAG 2.4.3 compliant components, performance tuning, and developed high-fidelity scroll-based animation interfaces.",
-  "tags": ["AEM Cloud Service", "React", "WCAG 2.4.3", "Tailwind CSS", "Scroll Animations"],
+  "tags": [
+    "AEM Cloud Service",
+    "React",
+    "WCAG 2.4.3",
+    "Tailwind CSS",
+    "Scroll Animations"
+  ],
   "order": 2,
-  "color": "secondary"
+  "color": "secondary",
+  "project": "jpmc",
+  "points": [
+    "Architected a multi-tenant AEM frontend with a shared component library serving 8+ tenants across Chase Cards and Trips.",
+    "Led development of WCAG 2.4.3 compliant components and frontend performance tuning.",
+    "Built the scroll-driven animation interfaces for the Trips portal."
+  ]
 }
