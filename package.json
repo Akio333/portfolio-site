@@ -9,12 +9,16 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "brand": "node scripts/render-brand.mjs"
   },
   "dependencies": {
     "@fontsource/jetbrains-mono": "^5.2.8",
     "astro": "^6.4.6",
     "posthog-js": "^1.396.3",
     "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.5"
   }
 }

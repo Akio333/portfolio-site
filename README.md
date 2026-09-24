@@ -12,6 +12,7 @@ Requires Node.js 24 or newer.
 | `npm run dev` | Start the development server at localhost:4321 |
 | `npm run build` | Generate the static site in `dist/` |
 | `npm run preview` | Preview the production build |
+| `npm run brand` | Re-render the icons and OG image (needs Google Chrome) |
 
 ## Editing the site
 
@@ -20,7 +21,8 @@ Requires Node.js 24 or newer.
 - `src/pages/[...path].astro` renders every node's Preview.
 - `src/layouts/Layout.astro` contains metadata, the editor shell and client behaviour.
 - `src/styles/global.css` defines the tokens and layout.
-- `public/` contains the favicon variants, OG image and résumé PDF.
+- `public/favicon.svg` and `design/og-image.html` are the sources for the icons and OG image. Edit them, then run `npm run brand`.
+- `public/` contains the rendered icons, web manifest, OG image and résumé PDF.
 
 The extension loader fetches public VS Code Marketplace metadata at build time, with GitHub and local metadata as fallbacks. Contact links open email or the linked public profiles. There is no contact form backend.
 

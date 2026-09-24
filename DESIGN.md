@@ -60,6 +60,12 @@ The tree marker encodes node type: a hollow `--key` square is a parent, a filled
 - Copy email shows "Copied" for 1.8s. If the clipboard is blocked, the address is selected instead.
 - Nothing animates. `prefers-reduced-motion` is also handled globally.
 
+## Icon and OG image
+
+- **Icon:** the content tree in miniature on a `--panel` tile. A hollow `--key` parent square sits above two indented leaves: the white one is selected and the `--dim` one isn't. It uses the same marker rule as the tree. A 2px `--line` edge keeps the tile visible on dark tab bars. Home-screen sizes drop the corners and edge because the OS masks them.
+- **OG image:** a 1200×630 frame of the editor on the `profile` node, with type sized to stay legible as a social thumbnail.
+- `public/favicon.svg` and `design/og-image.html` are the sources. `npm run brand` renders `favicon.ico`, `favicon-32.png`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png` and `images/og-image.png`.
+
 ## Where things live
 
 - `src/lib/portfolio.ts`: profile data, skills and certifications, the node list and each node's model JSON, and the JSON highlighter.
