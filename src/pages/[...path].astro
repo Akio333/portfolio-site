@@ -1,0 +1,191 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getNodes, profile, type PortfolioNode } from "../lib/portfolio";
+
+export async function getStaticPaths() {
+  const nodes = await getNodes();
+  return nodes.map((node) => ({
+    params: { path: node.href === "/" ? undefined : node.href.slice(1) },
+    props: { id: node.href },
+  }));
+}
+
+const nodes = await getNodes();
+const node = nodes.find((n) => n.href === Astro.props.id) as PortfolioNode;
+const childHref = (parent: string, name: string) => `/${parent}/${name}`;
+const nameOf = (id: string) => id.replace(/^\d+-/, "");
+const current = nodes.find((n): n is Extract<PortfolioNode, { kind: "job" }> => n.kind === "job");
+---
+
+<Layout node={node} nodes={nodes}>
+  <div class="pv">
+    {node.kind === "profile" && (
+      <>
+        <h1>{profile.name}</h1>
+        <p class="sub">{profile.role}</p>
+        <p>{profile.summary}</p>
+        <table>
+          <tbody>
+            <tr><th>Years on AEM</th><td>{profile.yearsOnAem}</td></tr>
+            {current && <tr><th>Current</th><td><a href={current.href}>{current.job.data.company}</a></td></tr>}
+            {profile.stats.map((s) => <tr><th>{s.label}</th><td>{s.value}</td></tr>)}
+            <tr><th>Location</th><td>{profile.location}</td></tr>
+            <tr>
+              <th>Education</th>
+              <td>{profile.education.degree}, {profile.education.school}, {profile.education.to}</td>
+            </tr>
+          </tbody>
+        </table>
+      </>
+    )}
+
+    {node.kind === "experience" && (
+      <>
+        <h1>Experience</h1>
+        <ul class="pv-links">
+          {node.jobs.map((job) => (
+            <li>
+              <a class="pv-go" href={childHref("experience", nameOf(job.id))}>
+                <span class="y">{job.data.period.replace(" - ", "–")}</span>
+                <span><strong>{job.data.role}</strong>, {job.data.company}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </>
+    )}
+
+    {node.kind === "job" && (
+      <>
+        <h1>{node.job.data.role}</h1>
+        <p class="sub">{node.job.data.company}, {node.job.data.period.replace(" - ", "–")}</p>
+        <ul>{node.job.data.points.map((point) => <li>{point}</li>)}</ul>
+        <p>{node.job.data.tags.map((tag) => <code>{tag}</code>)}</p>
+        {node.project && (
+          <a class="pv-go" href={childHref("projects", node.project.id)}>
+            <span class="y">Case study</span>
+            <span><strong>{node.project.data.title}</strong></span>
+          </a>
+        )}
+      </>
+    )}
+
+    {node.kind === "projects" && (
+      <>
+        <h1>Projects</h1>
+        <ul class="pv-links">
+          {node.projects.map((project) => (
+            <li>
+              <a class="pv-go" href={childHref("projects", project.id)}>
+                <span class="y">{project.data.period.replace(" - ", "–")}</span>
+                <span><strong>{project.data.title}</strong>, {project.data.company}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </>
+    )}
+
+    {node.kind === "project" && (
+      <>
+        <h1>{node.project.data.title}</h1>
+        <p class="sub">{node.project.data.role} for {node.project.data.company}, {node.project.data.period.replace(" - ", "–")}</p>
+        <p>{node.project.data.description}</p>
+        {node.project.data.metric && (
+          <p class="pv-metric">
+            <strong>{node.project.data.metric.value}</strong>
+            <span>{node.project.data.metric.label}</span>
+          </p>
+        )}
+        {node.project.data.highlights && (
+          <ul>{node.project.data.highlights.map((h) => <li>{h}</li>)}</ul>
+        )}
+        <p>{node.project.data.tags.map((tag) => <code>{tag}</code>)}</p>
+      </>
+    )}
+
+    {node.kind === "tools" && (
+      <>
+        <h1>Developer tools</h1>
+        <ul class="pv-links">
+          {node.tools.map((tool) => (
+            <li>
+              <a class="pv-go" href={childHref("tools", tool.id)}>
+                <span class="y">{tool.data.version}</span>
+                <span><strong>{tool.data.title}</strong>, {tool.data.installs.toLowerCase()}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </>
+    )}
+
+    {node.kind === "tool" && (
+      <>
+        <h1>{node.tool.data.title}</h1>
+        <p class="sub">
+          <span
+            data-extension-version
+            data-marketplace-id={node.tool.data.extensionId || undefined}
+            data-github-repo={node.tool.data.githubRepo || undefined}
+          >{node.tool.data.version}</span>, {node.tool.data.installs.toLowerCase()}
+        </p>
+        <p>{node.tool.data.description}</p>
+        <p>{node.tool.data.tags.map((tag) => <code>{tag}</code>)}</p>
+        <ul>
+          {node.tool.data.marketplaceUrl && (
+            <li><a href={node.tool.data.marketplaceUrl} data-ext-title={node.tool.data.title}>VS Code Marketplace</a></li>
+          )}
+          {node.tool.data.githubUrl && <li><a href={node.tool.data.githubUrl}>Source on GitHub</a></li>}
+        </ul>
+      </>
+    )}
+
+    {node.kind === "skills" && (
+      <>
+        <h1>Skills</h1>
+        {profile.skills.map((group) => (
+          <section>
+            <h2>{group.group}</h2>
+            <p>{group.items.map((item) => <code>{item}</code>)}</p>
+          </section>
+        ))}
+      </>
+    )}
+
+    {node.kind === "certifications" && (
+      <>
+        <h1>Certifications</h1>
+        <table class="pv-certs">
+          <tbody>
+            {profile.certifications.map((c) => (
+              <tr><th>{c.issuer}</th><td>{c.name}</td><td class="date">{c.date}</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </>
+    )}
+
+    {node.kind === "resume" && (
+      <>
+        <h1>Résumé</h1>
+        <p>{profile.resume.summary}</p>
+        <p><a class="ide-btn" href={profile.resume.href} target="_blank" rel="noopener">Download PDF</a></p>
+        <h2>Leadership</h2>
+        <p>{profile.resume.competencies.map((c) => <code>{c}</code>)}</p>
+      </>
+    )}
+
+    {node.kind === "contact" && (
+      <>
+        <h1>Contact</h1>
+        <p><a class="pv-email" href={`mailto:${profile.email}`} data-email>{profile.email}</a></p>
+        <p><button type="button" class="ide-btn" data-copy-email={profile.email}>Copy email</button></p>
+        <ul>
+          {profile.links.map((link) => <li><a href={link.href}>{link.label}</a></li>)}
+        </ul>
+        <p>{profile.location}</p>
+      </>
+    )}
+  </div>
+</Layout>

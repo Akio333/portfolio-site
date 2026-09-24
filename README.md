@@ -1,8 +1,6 @@
 # Suyog Mule's portfolio
 
-A personal portfolio built with Astro 6, Tailwind CSS 4, and Astro content collections. Five pages cover selected projects, professional experience, open-source tools, contact information, and a native résumé.
-
-The design uses self-hosted Geist and JetBrains Mono, system-aware light and dark themes, and custom sculptural artwork with mouse-driven perspective. Entrance animations and section reveals respect reduced-motion preferences. The content remains readable without JavaScript.
+A personal portfolio built with Astro 6 and content collections. It is styled as an AEM repository open in a code editor: each part of the CV is a JCR node with a Preview tab and a `.model.json` tab. See [DESIGN.md](DESIGN.md).
 
 ## Development
 
@@ -17,13 +15,12 @@ Requires Node.js 24 or newer.
 
 ## Editing the site
 
-- `src/pages/` contains Home, Work, Experience, and Contact.
-- `src/components/ProjectList.astro` renders projects on Home and Work.
-- `src/layouts/Layout.astro` contains metadata, navigation, footer, theme controls, and motion behavior.
-- `src/styles/global.css` defines themes, layouts, and responsive styles.
-- `src/content/` contains project, experience, and extension data.
-- `public/` contains the portrait, project imagery, custom favicon variants, OG image, and résumé.
-- [DESIGN.md](DESIGN.md) describes the visual direction.
+- `src/lib/portfolio.ts` holds the profile, skills, certifications and résumé text, and builds the content tree and each node's model JSON.
+- `src/content/` holds experience, projects and extensions. Adding a JSON file adds a node to the tree.
+- `src/pages/[...path].astro` renders every node's Preview.
+- `src/layouts/Layout.astro` contains metadata, the editor shell and client behaviour.
+- `src/styles/global.css` defines the tokens and layout.
+- `public/` contains the favicon variants, OG image and résumé PDF.
 
 The extension loader fetches public VS Code Marketplace metadata at build time, with GitHub and local metadata as fallbacks. Contact links open email or the linked public profiles. There is no contact form backend.
 

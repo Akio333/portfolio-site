@@ -1,0 +1,24 @@
+{
+  "company": "ITC Infotech",
+  "role": "Senior AEM Architect & Developer",
+  "period": "2025 - Present",
+  "description": "Architecting Oona Insurance's on-premise AEM platform and its Dispatcher and CloudFront environments. Leading development of the React-based D2C and Kahoona products, reorganizing the AEM codebase, and moving legacy APIs to persisted AEM GraphQL queries.",
+  "tags": [
+    "AEM On-Premise",
+    "React",
+    "AEM GraphQL",
+    "AWS CloudFront",
+    "Dispatcher"
+  ],
+  "order": 1,
+  "color": "primary",
+  "project": "oona",
+  "points": [
+    "Own technical decisions for AEM Sites and Assets cloud operations, leading a team of 3–5 developers, QA engineers and architects through pre-production and production deployments.",
+    "Maintain the Dispatcher and AWS CloudFront configuration, including cache and CSP policies, for 100% regulatory compliance.",
+    "Made GraphQL persisted queries the team's data-fetching standard: 70% less over-fetching, 30% faster frontend delivery and 50% faster page loads with caching and preloading.",
+    "Defined the SCSS architecture standard, cutting CSS bundle size by 40% and font load time by 50%.",
+    "Moved PromoCodes logic into Java servlets to remove credential-leak risk, and reworked dialogs and templates to cut authoring effort by 20%.",
+    "Designed the Resource Center for Kahoona agents, which cut support queries by 60% and became the sales team's knowledge base."
+  ]
+}

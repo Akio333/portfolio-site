@@ -1,16 +1,16 @@
-# Graph Report - portfolio-site  (2026-09-11)
+# Graph Report - portfolio-site  (2026-09-24)
 
 ## Corpus Check
-- 29 files · ~76,757 words
+- 23 files · ~378,863 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 94 nodes · 95 edges · 12 communities
-- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 1 edges (avg confidence: 0.5)
+- 92 nodes · 103 edges · 10 communities
+- Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `62a29647`
+- Built from commit: `6373399b`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -23,34 +23,36 @@
 - tsconfig.json
 - content.config.ts
 - Image generation prompts
+- CustomPointer.astro
 
 ## God Nodes (most connected - your core abstractions)
-1. `../components/ProjectList.astro` - 8 edges
-2. `../layouts/Layout.astro` - 8 edges
-3. `scripts` - 5 edges
-4. `Suyog’s portfolio` - 4 edges
-5. `Image generation prompts` - 4 edges
-6. `formatVersion()` - 3 edges
-7. `fetchMarketplaceVersions()` - 3 edges
-8. `fetchGithubVersion()` - 3 edges
-9. `getMarketplaceVersions()` - 3 edges
-10. `getGithubVersion()` - 3 edges
+1. `../layouts/Layout.astro` - 14 edges
+2. `getNodes()` - 7 edges
+3. `Suyog Mule portfolio: Developer IDE` - 7 edges
+4. `Image generation prompts` - 6 edges
+5. `scripts` - 5 edges
+6. `profile` - 3 edges
+7. `PortfolioNode` - 3 edges
+8. `formatVersion()` - 3 edges
+9. `fetchMarketplaceVersions()` - 3 edges
+10. `fetchGithubVersion()` - 3 edges
 
 ## Surprising Connections (you probably didn't know these)
-- None detected - all connections are within the same source files.
+- `getStaticPaths()` --calls--> `getNodes()`  [EXTRACTED]
+  src/pages/[...path].astro → src/lib/portfolio.ts
 
 ## Import Cycles
 - None detected.
 
-## Communities (12 total, 0 thin omitted)
+## Communities (10 total, 0 thin omitted)
 
 ### Community 0 - "../components/ProjectList.astro"
-Cohesion: 0.14
-Nodes (10): ../components/posthog.astro, ../components/ProjectList.astro, order, string, ../layouts/Layout.astro, experience, ../../public/images/developer-portrait.webp, ../../public/images/developer-workspace.webp (+2 more)
+Cohesion: 0.18
+Nodes (9): astro:transitions/client, ../components/posthog.astro, ../layouts/Layout.astro, current, pathParts, posthogEnabled, highlightJson(), ../scripts/extensionVersions (+1 more)
 
 ### Community 1 - "dependencies"
-Cohesion: 0.12
-Nodes (17): astro, @fontsource/inter, @fontsource/jetbrains-mono, @fontsource-variable/geist, dependencies, astro, @fontsource/inter, @fontsource/jetbrains-mono (+9 more)
+Cohesion: 0.22
+Nodes (9): astro, @fontsource/jetbrains-mono, dependencies, astro, @fontsource/jetbrains-mono, posthog-js, zod, posthog-js (+1 more)
 
 ### Community 2 - "package.json"
 Cohesion: 0.18
@@ -61,8 +63,8 @@ Cohesion: 0.29
 Nodes (10): fetchGithubVersion(), fetchMarketplaceVersions(), formatVersion(), getGithubVersion(), getMarketplaceVersions(), GithubReleaseResponse, githubRequests, marketplaceRequests (+2 more)
 
 ### Community 4 - "Suyog’s portfolio"
-Cohesion: 0.22
-Nodes (7): Direction, Identity assets, References, Suyog’s portfolio, Development, Editing the site, Suyog Mule's portfolio
+Cohesion: 0.17
+Nodes (10): Don'ts, Interaction, Layout, Nodes, Suyog Mule portfolio: Developer IDE, Tokens, Where things live, Development (+2 more)
 
 ### Community 5 - "tsconfig.json"
 Cohesion: 0.25
@@ -73,21 +75,23 @@ Cohesion: 0.29
 Nodes (4): collections, experienceCollection, extensionsCollection, projectsCollection
 
 ### Community 7 - "Image generation prompts"
-Cohesion: 0.40
-Nodes (4): Hero sculpture, Image generation prompts, OG image, Transparent hero edit
+Cohesion: 0.29
+Nodes (6): Editorial hero portrait, Hero sculpture, Image generation prompts, OG image, Transparent hero edit, Transparent hero portrait cutout
+
+### Community 8 - "CustomPointer.astro"
+Cohesion: 0.21
+Nodes (13): base(), camel(), getNodes(), Job, node(), NodeBase, PortfolioNode, profile (+5 more)
 
 ## Knowledge Gaps
-- **43 isolated node(s):** `name`, `type`, `version`, `node`, `dev` (+38 more)
+- **46 isolated node(s):** `name`, `type`, `version`, `node`, `dev` (+41 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
+- **Why does `../layouts/Layout.astro` connect `../components/ProjectList.astro` to `CustomPointer.astro`?**
+  _High betweenness centrality (0.046) - this node is a cross-community bridge._
 - **Why does `dependencies` connect `dependencies` to `package.json`?**
-  _High betweenness centrality (0.067) - this node is a cross-community bridge._
+  _High betweenness centrality (0.027) - this node is a cross-community bridge._
 - **What connects `name`, `type`, `version` to the rest of the system?**
-  _43 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `../components/ProjectList.astro` be split into smaller, more focused modules?**
-  _Cohesion score 0.14035087719298245 - nodes in this community are weakly interconnected._
-- **Should `dependencies` be split into smaller, more focused modules?**
-  _Cohesion score 0.11764705882352941 - nodes in this community are weakly interconnected._
+  _46 weakly-connected nodes found - possible documentation gaps or missing edges._

@@ -2,258 +2,215 @@
 import "../styles/global.css";
 import PostHog from "../components/posthog.astro";
 import { ClientRouter } from "astro:transitions";
-import CircleHalf from "phosphor-astro/CircleHalf.astro";
+import { highlightJson, profile, type PortfolioNode } from "../lib/portfolio";
 
 interface Props {
-  title: string;
-  description: string;
-  image?: string;
-  canonicalUrl?: string;
+  node: PortfolioNode;
+  nodes: PortfolioNode[];
 }
 
-const {
-  title,
-  description,
-  image = "/images/og-image.png",
-  canonicalUrl = new URL(Astro.url.pathname, Astro.site || Astro.url.origin).href,
-} = Astro.props;
-
-const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+const { node, nodes } = Astro.props;
+const image = "/images/og-image.png";
+const site = Astro.site || Astro.url.origin;
+const canonicalUrl = new URL(Astro.url.pathname, site).href;
 const posthogEnabled = Boolean(import.meta.env.PUBLIC_POSTHOG_PROJECT_TOKEN);
-const navItems = [
-  { name: "Home", href: "/" },
-  { name: "Work", href: "/projects" },
-  { name: "Experience", href: "/experience" },
-  { name: "Contact", href: "/contact" },
-];
+const pathParts = node.jcrPath.split("/").slice(1);
+const current = nodes.find((n) => n.kind === "job");
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" transition:animate="none">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="color-scheme" content="dark light" />
-    <meta id="theme-color" name="theme-color" content="#f5f4ef" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#1E2330" />
     <meta name="darkreader-lock" />
-    <script is:inline>
-      document.documentElement.classList.add("js");
-      const systemTheme = matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light";
-      try {
-        const savedTheme = localStorage.getItem("portfolio-theme");
-        document.documentElement.dataset.theme =
-          savedTheme === "light" || savedTheme === "dark"
-            ? savedTheme
-            : systemTheme;
-      } catch {
-        document.documentElement.dataset.theme = systemTheme;
-      }
-    </script>
+    <script is:inline>document.documentElement.classList.add("js");</script>
     <ClientRouter />
     {posthogEnabled && <PostHog />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" sizes="32x32" href="/favicon-32.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
-    <meta name="description" content={description} />
+    <title>{node.title}</title>
+    <meta name="description" content={node.description} />
     <link rel="canonical" href={canonicalUrl} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL(image, Astro.site || Astro.url.origin)} />
+    <meta property="og:title" content={node.title} />
+    <meta property="og:description" content={node.description} />
+    <meta property="og:image" content={new URL(image, site)} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Suyog Mule, AEM full-stack developer" />
+    <meta property="og:image:alt" content={`${profile.name}, AEM full-stack developer`} />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={new URL(image, Astro.site || Astro.url.origin)} />
-    <meta name="twitter:image:alt" content="Suyog Mule, AEM full-stack developer" />
-    <noscript>
-      <style>
-        @media (max-width: 767px) {
-          .site-header { height: auto; min-height: 4.75rem; padding-block: 1rem; }
-          .desktop-nav { display: flex; grid-row: 2; grid-column: 1 / -1; flex-wrap: wrap; }
-          .menu-toggle, .theme-toggle { display: none; }
-        }
-      </style>
-    </noscript>
+    <meta name="twitter:title" content={node.title} />
+    <meta name="twitter:description" content={node.description} />
+    <meta name="twitter:image" content={new URL(image, site)} />
   </head>
   <body>
-    <a class="skip-link" href="#main-content">Skip to main content</a>
-    <header class="site-header wrap">
-      <a href="/" class="wordmark" aria-label="Suyog Mule, home">
-        <img src="/favicon.svg" width="32" height="32" alt="" />
-        <span>Suyog Mule</span>
-      </a>
-      <nav class="desktop-nav" aria-label="Main navigation">
-        {
-          navItems.map((item) => (
-            <a href={item.href} aria-current={currentPath === item.href ? "page" : undefined}>
-              {item.name}
-            </a>
-          ))
-        }
-      </nav>
-      <div class="nav-actions">
-        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Use dark theme">
-          <CircleHalf aria-hidden="true" focusable="false" />
-        </button>
-        <a href="/resume" class="resume-link" aria-current={currentPath === "/resume" ? "page" : undefined}>Résumé</a>
-        <button
-          id="menu-toggle"
-          class="menu-toggle"
-          type="button"
-          aria-expanded="false"
-          aria-controls="mobile-menu"
-        >Menu +</button>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <div class="ide">
+      <header class="ide-top">
+        <a class="ide-who" href="/"><strong>{profile.name}</strong><span>{profile.role}</span></a>
+        <p class="ide-path" aria-label="Content path">
+          {pathParts.map((part) => <><i>/</i>{part}</>)}
+        </p>
+      </header>
+
+      <div class="ide-main">
+        <nav class="ide-tree" aria-label="Content tree">
+          <ul id="ide-tree">
+            <li class="ide-root">{profile.root}</li>
+            {nodes.map((n) => (
+              <li>
+                <a
+                  class:list={["ide-node", { parent: n.parent }]}
+                  href={n.href}
+                  style={`--d:${n.depth}`}
+                  aria-current={n.href === node.href ? "page" : undefined}
+                  data-node
+                >{n.name}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <main class="ide-editor" id="content" tabindex="-1">
+          <div class="ide-tabs" role="tablist" aria-label="View">
+            <button type="button" class="ide-tab" role="tab" id="tab-preview" aria-controls="pane-preview" aria-selected="true" data-tab="preview">Preview</button>
+            <button type="button" class="ide-tab" role="tab" id="tab-json" aria-controls="pane-json" aria-selected="false" tabindex="-1" data-tab="json">{node.name}.model.json</button>
+          </div>
+          <div class="ide-pane" id="pane-preview" role="tabpanel" aria-labelledby="tab-preview">
+            <slot />
+          </div>
+          <div class="ide-pane" id="pane-json" role="tabpanel" aria-labelledby="tab-json" hidden>
+            <pre class="code" set:html={highlightJson(node.model)} />
+          </div>
+        </main>
       </div>
-      <nav id="mobile-menu" class="mobile-nav" aria-label="Mobile navigation" hidden>
-        {
-          navItems.map((item) => (
-            <a href={item.href} aria-current={currentPath === item.href ? "page" : undefined}>
-              {item.name}
-            </a>
-          ))
-        }
-        <a href="/resume" aria-current={currentPath === "/resume" ? "page" : undefined}>Résumé</a>
-      </nav>
-    </header>
 
-    <main id="main-content"><slot /></main>
-
-    <footer class="site-footer wrap">
-      <a href="/" class="footer-name">Suyog Mule</a>
-      <nav aria-label="Social links">
-        <a href="https://github.com/Akio333">GitHub</a>
-        <a href="https://www.linkedin.com/in/akio333/">LinkedIn</a>
-        <a href="https://marketplace.visualstudio.com/publishers/Akio333">VS Code Marketplace</a>
-      </nav>
-      <small>© {new Date().getFullYear()}</small>
-    </footer>
+      <footer class="ide-status">
+        {current && current.kind === "job" && <span class="now">{current.job.data.role.replace(/ \(.*\)$/, "")}, {current.job.data.company}</span>}
+        <span>{profile.location}</span>
+        <span>{profile.yearsOnAem} years on AEM</span>
+        <button type="button" data-copy-email={profile.email}>Copy email</button>
+      </footer>
+    </div>
 
     <script>
+      import { navigate } from "astro:transitions/client";
+      import "../scripts/extensionVersions";
+
+      const TAB_KEY = "ide-tab";
+      let tab = "preview";
+      try {
+        if (sessionStorage.getItem(TAB_KEY) === "json") tab = "json";
+      } catch {}
+      let focusTreeAfterLoad = false;
       let cleanup = () => {};
+
+      const applyTab = (doc: Document) => {
+        doc.querySelectorAll<HTMLButtonElement>(".ide-tab").forEach((button) => {
+          const selected = button.dataset.tab === tab;
+          button.setAttribute("aria-selected", String(selected));
+          button.tabIndex = selected ? 0 : -1;
+        });
+        doc.querySelector<HTMLElement>("#pane-preview")!.hidden = tab !== "preview";
+        doc.querySelector<HTMLElement>("#pane-json")!.hidden = tab !== "json";
+      };
+
+      const setTab = (next: string) => {
+        tab = next;
+        try {
+          sessionStorage.setItem(TAB_KEY, tab);
+        } catch {}
+        applyTab(document);
+      };
 
       document.addEventListener("astro:before-swap", (event) => {
         cleanup();
-        const swapEvent = event as Event & { newDocument?: Document };
-        const theme = document.documentElement.dataset.theme;
-        if (!swapEvent.newDocument || !theme) return;
-        swapEvent.newDocument.documentElement.dataset.theme = theme;
-        swapEvent.newDocument.documentElement.classList.add("js");
+        const doc = (event as Event & { newDocument: Document }).newDocument;
+        doc.documentElement.classList.add("js");
+        applyTab(doc);
       });
+
       document.addEventListener("astro:page-load", () => {
         const controller = new AbortController();
         const { signal } = controller;
+        cleanup = () => controller.abort();
+        applyTab(document);
 
-        const menuButton = document.querySelector<HTMLButtonElement>("#menu-toggle");
-        const mobileMenu = document.querySelector<HTMLElement>("#mobile-menu");
-        const themeButton = document.querySelector<HTMLButtonElement>("#theme-toggle");
+        const tree = document.querySelector<HTMLElement>(".ide-tree")!;
+        const nodeLinks = Array.from(tree.querySelectorAll<HTMLAnchorElement>("[data-node]"));
+        const selected = tree.querySelector<HTMLAnchorElement>('[aria-current="page"]');
 
-        const closeMenu = () => {
-          if (!menuButton || !mobileMenu) return;
-          menuButton.setAttribute("aria-expanded", "false");
-          menuButton.textContent = "Menu +";
-          mobileMenu.hidden = true;
-        };
+        // In the horizontal (mobile) tree, keep the open node in view.
+        if (selected && tree.scrollWidth > tree.clientWidth) {
+          tree.scrollLeft = selected.offsetLeft - (tree.clientWidth - selected.offsetWidth) / 2;
+        }
+        if (focusTreeAfterLoad) selected?.focus();
+        focusTreeAfterLoad = false;
 
-        menuButton?.addEventListener("click", () => {
-          if (!mobileMenu) return;
-          const open = menuButton.getAttribute("aria-expanded") !== "true";
-          menuButton.setAttribute("aria-expanded", String(open));
-          menuButton.textContent = open ? "Close -" : "Menu +";
-          mobileMenu.hidden = !open;
+        tree.addEventListener("keydown", (event) => {
+          if (!["ArrowDown", "ArrowUp", "ArrowLeft", "ArrowRight"].includes(event.key)) return;
+          const index = nodeLinks.indexOf(document.activeElement as HTMLAnchorElement);
+          if (index === -1) return;
+          event.preventDefault();
+          const step = event.key === "ArrowDown" || event.key === "ArrowRight" ? 1 : -1;
+          const next = nodeLinks[(index + step + nodeLinks.length) % nodeLinks.length];
+          focusTreeAfterLoad = true;
+          navigate(next.href);
         }, { signal });
 
-        document.addEventListener("keydown", (event) => {
-          if (event.key === "Escape" && menuButton?.getAttribute("aria-expanded") === "true") {
-            closeMenu();
-            menuButton.focus();
+        const tabs = Array.from(document.querySelectorAll<HTMLButtonElement>(".ide-tab"));
+        tabs.forEach((button) => {
+          button.addEventListener("click", () => setTab(button.dataset.tab!), { signal });
+          button.addEventListener("keydown", (event) => {
+            if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+            event.preventDefault();
+            const other = tabs.find((t) => t !== button)!;
+            setTab(other.dataset.tab!);
+            other.focus();
+          }, { signal });
+        });
+
+        document.addEventListener("click", async (event) => {
+          const target = event.target instanceof Element ? event.target : null;
+          const copy = target?.closest<HTMLButtonElement>("[data-copy-email]");
+          if (copy) {
+            const email = copy.dataset.copyEmail!;
+            try {
+              await navigator.clipboard.writeText(email);
+              copy.textContent = "Copied";
+              setTimeout(() => { copy.textContent = "Copy email"; }, 1800);
+            } catch {
+              // Clipboard blocked: show and select the address so it can be copied by hand.
+              const address = document.querySelector("[data-email]");
+              if (address) {
+                getSelection()?.selectAllChildren(address);
+                copy.textContent = "Email selected";
+                setTimeout(() => { copy.textContent = "Copy email"; }, 1800);
+              } else {
+                copy.textContent = email;
+                getSelection()?.selectAllChildren(copy);
+              }
+            }
+            return;
           }
-        }, { signal });
 
-        const desktopQuery = matchMedia("(min-width: 768px)");
-        desktopQuery.addEventListener("change", (event) => {
-          if (event.matches) closeMenu();
-        }, { signal });
-
-        const updateThemeButton = () => {
-          if (!themeButton) return;
-          const dark = document.documentElement.dataset.theme === "dark";
-          themeButton.setAttribute("aria-label", dark ? "Use light theme" : "Use dark theme");
-          themeButton.title = dark ? "Use light theme" : "Use dark theme";
-          document.querySelector<HTMLMetaElement>("#theme-color")?.setAttribute(
-            "content",
-            dark ? "#1a1b18" : "#f5f4ef",
-          );
-        };
-
-        updateThemeButton();
-        themeButton?.addEventListener("click", () => {
-          const theme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-          document.documentElement.dataset.theme = theme;
-          try {
-            localStorage.setItem("portfolio-theme", theme);
-          } catch {}
-          updateThemeButton();
-        }, { signal });
-
-        const systemThemeQuery = matchMedia("(prefers-color-scheme: dark)");
-        systemThemeQuery.addEventListener("change", (event) => {
-          let savedTheme: string | null = null;
-          try {
-            savedTheme = localStorage.getItem("portfolio-theme");
-          } catch {}
-          if (savedTheme !== "light" && savedTheme !== "dark") {
-            document.documentElement.dataset.theme = event.matches ? "dark" : "light";
-            updateThemeButton();
-          }
-        }, { signal });
-
-        document.addEventListener("click", (event) => {
-          const link = event.target instanceof Element
-            ? event.target.closest<HTMLAnchorElement>("a")
-            : null;
-          if (!link) return;
+          const link = target?.closest<HTMLAnchorElement>("a[data-ext-title]");
           const analytics = (window as Window & {
             posthog?: { capture: (name: string, properties: Record<string, string>) => void };
           }).posthog;
-          if (link.dataset.extTitle) {
+          if (link) {
             analytics?.capture("extension_marketplace_clicked", {
-              extension_title: link.dataset.extTitle,
+              extension_title: link.dataset.extTitle!,
               page: window.location.pathname,
             });
           }
-          if (link.getAttribute("href") === "#selected-work") {
-            analytics?.capture("hero_cta_clicked", {
-              cta_label: link.textContent?.trim() || "View selected work",
-            });
-          }
         }, { signal });
-
-        const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)");
-        const observer = new IntersectionObserver((entries) => {
-          for (const entry of entries) {
-            if (!entry.isIntersecting) continue;
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          }
-        }, { threshold: 0.12 });
-
-        document.querySelectorAll("[data-reveal]").forEach((element) => {
-          if (reduceMotion.matches) element.classList.add("is-visible");
-          else observer.observe(element);
-        });
-
-        cleanup = () => {
-          controller.abort();
-          observer.disconnect();
-        };
       });
     </script>
   </body>
