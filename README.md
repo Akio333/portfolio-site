@@ -4,7 +4,7 @@ A personal portfolio built with Astro 6 and content collections. It is styled as
 
 ## Development
 
-Requires Node.js 24 or newer.
+Requires Node.js 24.22.1 or newer.
 
 | Command | Action |
 | --- | --- |
